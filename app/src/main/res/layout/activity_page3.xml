@@ -7,10 +7,10 @@
 
 
     <TextView
-        android:id="@+id/page2_title"
+        android:id="@+id/page3_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Page 2"
+        android:text="Page 3"
         android:theme="@style/Title" />
 
 </LinearLayout>

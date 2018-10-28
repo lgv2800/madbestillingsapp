@@ -1,5 +1,6 @@
 package com.example.gruppeb.madbestillingsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,12 +10,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreen extends AppCompatActivity {
+import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
+
+public class MainScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbar;
 
@@ -25,6 +30,8 @@ public class MainScreen extends AppCompatActivity {
 
         ViewPager viewPager = findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        //Add toolbar
         mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
@@ -34,8 +41,12 @@ public class MainScreen extends AppCompatActivity {
         //Add fragments here
         adapter.addFragment(new Page1(), "Page 1");
         adapter.addFragment(new Page2(), "Page 2");
+        adapter.addFragment(new Page3(), "Page 3");
+        adapter.addFragment(new Page4(), "Page 4");
+        adapter.addFragment(new Page5(), "Page 5");
         viewPager.setAdapter(adapter);
 
+        //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -76,4 +87,33 @@ public class MainScreen extends AppCompatActivity {
                 return mFragmentTitleList.get(position);
             }
         }
+
+    //https://developer.android.com/training/appbar/actions#java
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.shopping_cart:
+                // User chose the "Settings" item, show the app settings UI...
+                Intent openCart = new Intent(this, CartScreen.class);
+                startActivity(openCart);
+                return true;
+
+            case R.id.action_favorite:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        }
+
     }

@@ -1,4 +1,4 @@
-package com.example.gruppeb.madbestillingsapp;
+package com.example.gruppeb.madbestillingsapp.FoodFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Page2 extends Fragment {
+import com.example.gruppeb.madbestillingsapp.R;
 
-    public Page2() {
+public class Page1 extends Fragment {
+
+    public Page1() {
         //empty constructor
     }
 

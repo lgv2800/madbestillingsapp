@@ -4,7 +4,13 @@
     <string name="login_login_button">Login</string>
     <string name="error_no_value">Du har ikke indtastet et nummer</string>
 
+    <string name="ret1_title">Dyrlægens Natmad</string>
+    <string name="ret1_name">Dyrlægens Natmad ret - body</string>
+    <string name="ret2_name">Dyrlægens Natmad ret - body</string>
+
     <!-- Menu -->
     <string name="menu_burgermenu">Menu</string>
     <string name="menu_shopping">Shop</string>
+    <string name="title_activity_cart_screen">CartScreen</string>
+    <string name="action_settings">Settings</string>
 </resources>
