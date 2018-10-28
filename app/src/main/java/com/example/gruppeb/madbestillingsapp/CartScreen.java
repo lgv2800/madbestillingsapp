@@ -1,6 +1,5 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +14,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     Toolbar mToolbarCart;
     private Button mOrderFoodButton;
-    private TextView mFoodNumber1TextView;
-    private TextView mFoodNumber2TextView;
-    private TextView mFoodNumber3TextView;
     private TextView mFoodClearTextView;
     private ImageView mBinOneImageView;
     private ImageView mBinTwoImageView;
@@ -50,9 +46,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         mBinThreeImageView.setImageResource(R.drawable.ic_delete_black_24dp);
 
         mFoodClearTextView = (TextView) findViewById(R.id.textView_Clear);
-        mFoodNumber1TextView = (TextView) findViewById(R.id.textView6);
-        mFoodNumber2TextView = (TextView) findViewById(R.id.textView7);
-        mFoodNumber3TextView = (TextView) findViewById(R.id.textView8);
 
     }
 
@@ -65,9 +58,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             mBinTwoImageView.setVisibility(View.INVISIBLE);
             mBinThreeImageView.setVisibility(View.INVISIBLE);
             mFoodClearTextView.setVisibility(View.INVISIBLE);
-            mFoodNumber1TextView.setVisibility(View.INVISIBLE);
-            mFoodNumber2TextView.setVisibility(View.INVISIBLE);
-            mFoodNumber3TextView.setVisibility(View.INVISIBLE);
         }
     }
 
