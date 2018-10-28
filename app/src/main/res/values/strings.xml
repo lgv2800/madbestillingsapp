@@ -11,6 +11,7 @@
     <!-- Menu -->
     <string name="menu_burgermenu">Menu</string>
     <string name="menu_shopping">Shop</string>
+    <string name="menu_back">Back</string>
     <string name="title_activity_cart_screen">CartScreen</string>
     <string name="action_settings">Settings</string>
 </resources>
