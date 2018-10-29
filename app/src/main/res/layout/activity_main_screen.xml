@@ -11,6 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <android.support.design.widget.TabLayout
@@ -21,6 +22,7 @@
         android:minHeight="?attr/actionBarSize"
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabIndicatorHeight="4dp"
+        android:elevation="4dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextColor="#FFF" />
