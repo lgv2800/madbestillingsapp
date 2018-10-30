@@ -9,13 +9,15 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/page1_card_view"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:layout_gravity="center|top">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/page1_image"
@@ -29,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/page1_image"
-                android:paddingStart="5dp"
+                android:padding="8dp"
                 android:text="@string/app_name" />
 
             <TextView
@@ -37,68 +39,128 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/page1_title"
-                android:paddingStart="5dp"
+                android:padding="8dp"
                 android:text="Her står der info" />
+            <View
+                android:id="@+id/page1_dividerline"
+                android:layout_width="350dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/page1_subtitle"
+                android:layout_marginTop="10dp">
+            </View>
 
+            <!-- Brødtype -->
+            <TextView
+                style="@style/CardView.accented"
+                android:text="Brødtype"
+                android:id="@+id/page1_breadtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/page1_dividerline"
+                android:padding="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:gravity="center"
+                android:layout_below="@id/page1_breadtype">
+
+            <android.support.design.chip.Chip
+                android:id="@+id/page1_lightbread"
+                style="@style/Theme.MaterialComponents.Light.NoActionBar"
+                android:text="@string/breadtype_light"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.chip.Chip
+                android:id="@+id/page1_darkbread"
+                style="@style/Theme.MaterialComponents.Light.NoActionBar"
+                android:text="@string/breadtype_dark"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+    <!--
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/background_light"
+                android:text="Lyst Brød"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.266"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.268" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/background_light"
-            android:text="Lyst Brød"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.263" />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/background_light"
+                android:text="Mørkt Brød"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toEndOf="@+id/button2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.268" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="8dp"
-            android:background="@android:color/background_light"
-            android:text="Mørkt Brød"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.263" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="76dp"
+                android:layout_marginEnd="8dp"
+                android:text="Antal Valgt:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="130dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="88dp"
-            android:text="Antal Valgt:"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="81dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="80dp"
-            android:textSize="36sp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
-    </android.support.constraint.ConstraintLayout>
-
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="81dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.69" />
+        </android.support.constraint.ConstraintLayout>
+    -->
 </LinearLayout>

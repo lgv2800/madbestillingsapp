@@ -15,4 +15,6 @@
     <string name="title_activity_cart_screen">CartScreen</string>
     <string name="action_settings">Settings</string>
     <string name="cart_bestil">bestil</string>
+    <string name="breadtype_dark">MØRK</string>
+    <string name="breadtype_light">LYS</string>
 </resources>
