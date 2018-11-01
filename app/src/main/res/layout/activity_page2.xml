@@ -20,7 +20,7 @@
                 android:id="@+id/page2_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/lax" />
+                android:background="@drawable/food2" />
 
             <TextView
                 android:id="@+id/page2_title"
