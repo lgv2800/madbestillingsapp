@@ -48,11 +48,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         Toast.makeText(getApplicationContext(), i, Toast.LENGTH_SHORT).show();
 
         //Add fragments here
-        adapter.addFragment(new Page1(), "Avokado");
-        adapter.addFragment(new Page2(), "Laks");
-        adapter.addFragment(new Page3(), "Sild");
-        adapter.addFragment(new Page4(), "Roastbeef");
-        adapter.addFragment(new Page5(), "Agurk");
+        adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
+        adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
+        adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
+        adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
+        adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
         viewPager.setAdapter(adapter);
 
         //Add tabs

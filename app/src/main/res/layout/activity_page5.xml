@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/page5_image"
                 android:paddingStart="5dp"
-                android:text="@string/app_name" />
+                android:text="@string/page5_food_main" />
 
             <TextView
                 android:id="@+id/page5_subtitle"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/page5_title"
                 android:paddingStart="5dp"
-                android:text="Her står der info" />
+                android:text="@string/page5_food_sub" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

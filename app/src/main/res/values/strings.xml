@@ -22,4 +22,25 @@
     <string name="action_added">Tilføjet til kurv</string>
     <string name="action_cart">Kurv</string>
     <string name="page_amountchosen">Antal Valgt</string>
+
+    <!-- Food -->
+    <string name="page1_food_title">Skinke</string>
+    <string name="page1_food_main">Skinkemad</string>
+    <string name="page1_food_sub">Skinke, ærter og argurk</string>
+    
+    <string name="page2_food_title">Æg og rejer</string>
+    <string name="page2_food_main">Æggemad</string>
+    <string name="page2_food_sub">Æg, rejer og salat</string>
+
+    <string name="page3_food_title">Rejer</string>
+    <string name="page3_food_main">Rejemad</string>
+    <string name="page3_food_sub">Rejer, dild og æg</string>
+
+    <string name="page4_food_title">Laks</string>
+    <string name="page4_food_main">Laksemad</string>
+    <string name="page4_food_sub">Laks, dild og asparges</string>
+
+    <string name="page5_food_title">Hamburgerryg</string>
+    <string name="page5_food_main">Hamburgerryg</string>
+    <string name="page5_food_sub">Hamburgerryg, radisser og salat</string>
 </resources>
