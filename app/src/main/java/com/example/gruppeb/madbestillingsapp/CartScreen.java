@@ -25,7 +25,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         setSupportActionBar(mToolbarCart);
 
         if (getSupportActionBar() != null){
-
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }

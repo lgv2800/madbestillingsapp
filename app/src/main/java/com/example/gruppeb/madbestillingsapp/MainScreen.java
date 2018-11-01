@@ -38,15 +38,21 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         String i = getIntent().getExtras().getString("credentials");
         Toast.makeText(getApplicationContext(), i, Toast.LENGTH_SHORT).show();
 
         //Add fragments here
-        adapter.addFragment(new Page1(), "Page 1");
-        adapter.addFragment(new Page2(), "Page 2");
-        adapter.addFragment(new Page3(), "Page 3");
-        adapter.addFragment(new Page4(), "Page 4");
-        adapter.addFragment(new Page5(), "Page 5");
+        adapter.addFragment(new Page1(), "Avokado");
+        adapter.addFragment(new Page2(), "Laks");
+        adapter.addFragment(new Page3(), "Sild");
+        adapter.addFragment(new Page4(), "Roastbeef");
+        adapter.addFragment(new Page5(), "Agurk");
         viewPager.setAdapter(adapter);
 
         //Add tabs
@@ -102,11 +108,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 // User chose the "Settings" item, show the app settings UI...
                 Intent openCart = new Intent(this, CartScreen.class);
                 startActivity(openCart);
-                return true;
-
-            case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
                 return true;
 
             default:
