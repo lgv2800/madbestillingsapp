@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.gruppeb.madbestillingsapp.R;
 
 public class Page1 extends Fragment implements View.OnClickListener {
+
 
     public Page1() {
         //empty constructor
@@ -19,6 +21,7 @@ public class Page1 extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
 

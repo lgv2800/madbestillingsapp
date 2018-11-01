@@ -17,4 +17,9 @@
     <string name="cart_bestil">bestil</string>
     <string name="breadtype_dark">MØRK</string>
     <string name="breadtype_light">LYS</string>
+
+    <!-- Main tekst -->
+    <string name="action_added">Tilføjet til kurv</string>
+    <string name="action_cart">Kurv</string>
+    <string name="page_amountchosen">Antal Valgt</string>
 </resources>

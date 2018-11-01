@@ -2,6 +2,8 @@ package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +24,7 @@ import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 public class MainScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbar;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(this);
     }
 
     @Override
@@ -113,7 +119,16 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
+        if (v == fab) {
+            Snackbar.make(v, R.string.action_added, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.action_cart, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent openCart = new Intent(getApplicationContext(), CartScreen.class);
+                            startActivity(openCart);
+                        }
+                    }).show();
         }
 
+        }
     }
