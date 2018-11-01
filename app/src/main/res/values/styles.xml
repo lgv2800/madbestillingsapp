@@ -25,6 +25,7 @@
     <style name="CardView.accented">
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">#555</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

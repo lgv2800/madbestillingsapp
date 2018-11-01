@@ -122,6 +122,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         if (v == fab) {
             Snackbar.make(v, R.string.action_added, Snackbar.LENGTH_LONG)
+                    .setActionTextColor(getResources().getColor(R.color.white))
                     .setAction(R.string.action_cart, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
