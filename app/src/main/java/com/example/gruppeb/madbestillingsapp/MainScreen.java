@@ -16,12 +16,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
+//Azure database import statement
+import com.microsoft.windowsazure.mobileservices.*;
+
 public class MainScreen extends AppCompatActivity implements View.OnClickListener {
+
+    //Azure database client
+    //https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-android-get-started
+    private MobileServiceClient mClient;
 
     Toolbar mToolbar;
     FloatingActionButton fab;
@@ -59,6 +67,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        //Azure database connection
+        try {
+            mClient = new MobileServiceClient("https://madbestillingsapp.azurewebsites.net", this);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
     }
@@ -68,7 +83,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
 
         //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
         class ViewPagerAdapter extends FragmentPagerAdapter {
