@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
 //Azure database import statement
@@ -33,13 +34,21 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     Toolbar mToolbar;
     FloatingActionButton fab;
+    ViewPager viewPager;
+
+    Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        ViewPager viewPager = findViewById(R.id.pager);
+        //Order logic
+        order = new Order();
+
+
+        //Add viewpager
+        viewPager = findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add toolbar
@@ -144,6 +153,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                             startActivity(openCart);
                         }
                     }).show();
+
+            order.order(viewPager.getCurrentItem());
+
         }
 
         }

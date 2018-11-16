@@ -1,7 +1,7 @@
-package com.example.gruppeb.madbestillingsapp.Domain;
+package com.example.gruppeb.madbestillingsapp.Domain.Dishes;
 
 public class DishOne implements Dish {
-    private static int DISHONE_AMOUNT;
+    private static int DISH_AMOUNT;
     boolean lightBread;
 
 
@@ -13,7 +13,7 @@ public class DishOne implements Dish {
 
     @Override
     public int getAmount() {
-        return DISHONE_AMOUNT;
+        return DISH_AMOUNT;
     }
 
 

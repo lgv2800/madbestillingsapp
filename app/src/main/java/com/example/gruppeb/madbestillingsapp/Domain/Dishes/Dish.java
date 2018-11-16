@@ -1,4 +1,4 @@
-package com.example.gruppeb.madbestillingsapp.Domain;
+package com.example.gruppeb.madbestillingsapp.Domain.Dishes;
 
 public interface Dish {
 
