@@ -1,5 +1,7 @@
 package com.example.gruppeb.madbestillingsapp.Domain.Dishes;
 
+import android.content.Context;
+
 public class DishCounter {
     private int dishOneAmount, dishTwoAmount, dishThreeAmount, dishFourAmount, dishFiveAmount;
 

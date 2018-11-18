@@ -1,5 +1,7 @@
 package com.example.gruppeb.madbestillingsapp.Domain;
 
+import android.content.Context;
+
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishCounter;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishFactory;
@@ -24,10 +26,10 @@ public class Order {
         orderItems.clear();
     }
 
-    public void order(int a){
-        Dish b = factory.createDish(a);
+    public void order(int a, Context context){
+        Dish dish = factory.createDish(a, context);
         counter.addDish(a);
-        addDish(b);
+        addDish(dish);
     }
 
     private void addDish(Dish a){

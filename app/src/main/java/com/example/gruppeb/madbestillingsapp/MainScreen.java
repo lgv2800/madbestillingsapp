@@ -154,7 +154,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                         }
                     }).show();
 
-            order.order(viewPager.getCurrentItem());
+            order.order(viewPager.getCurrentItem(), getApplication());
 
         }
 
