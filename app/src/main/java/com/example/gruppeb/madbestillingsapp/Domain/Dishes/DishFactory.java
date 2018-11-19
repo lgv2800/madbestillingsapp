@@ -7,34 +7,30 @@ import android.content.SharedPreferences;
 import com.example.gruppeb.madbestillingsapp.R;
 
 public class DishFactory {
-private SharedPreferences countPref;
-private SharedPreferences.Editor orderPref, countEdit;
 
-    public Dish createDish(int dishNumber, Context context){
+    public void createDish(int dishNumber, Context context){
 
 
         /*The order is assigned an unique count, which is incremented each time.
          *
          */
-        countPref = context.getSharedPreferences(context.getString(R.string.current_order_count),Context.MODE_PRIVATE);
-        countEdit = countPref.edit();
+        SharedPreferences orderPref =  context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderEdit = orderPref.edit();
 
-        int count = countPref.getInt("count",0);
+        int count = orderPref.getInt("count",0);
         int temp = count;
         temp++;
 
-        orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE).edit();
         Dish a;
         switch(dishNumber){
-            case 0: orderPref.putString(context.getString(R.string.page1_food_title),Integer.toString(count)).apply(); a = new DishOne(); return a;
-            case 1: orderPref.putString(context.getString(R.string.page2_food_title),Integer.toString(count)).apply(); a = new DishTwo(); return a;
-            case 2: orderPref.putString(context.getString(R.string.page3_food_title),Integer.toString(count)).apply(); a = new DishThree(); return a;
-            case 3: orderPref.putString(context.getString(R.string.page4_food_title),Integer.toString(count)).apply(); a = new DishFour(); return a;
-            case 4: orderPref.putString(context.getString(R.string.page5_food_title),Integer.toString(count)).apply(); a = new DishFive(); return a;
+            case 0: orderEdit.putString("id"+count, context.getString(R.string.page1_food_title)).apply(); a = new DishOne(); break;
+            case 1: orderEdit.putString("id"+count, context.getString(R.string.page2_food_title)).apply(); a = new DishTwo(); break;
+            case 2: orderEdit.putString("id"+count, context.getString(R.string.page3_food_title)).apply(); a = new DishThree(); break;
+            case 3: orderEdit.putString("id"+count, context.getString(R.string.page4_food_title)).apply(); a = new DishFour(); break;
+            case 4: orderEdit.putString("id"+count, context.getString(R.string.page5_food_title)).apply(); a = new DishFive(); break;
         }
 
-        countEdit.putInt("count", temp).apply();
+        orderEdit.putInt("count", temp).apply();
 
-        return null;
     }
 }
