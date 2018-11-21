@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainScreen" />
+        <activity android:name=".MainScreen"
+            android:theme="@style/AppTheme.NoActionbar"/>
         <activity android:name=".CartScreen"></activity>
     </application>
 

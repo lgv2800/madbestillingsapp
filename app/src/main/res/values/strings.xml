@@ -8,6 +8,10 @@
     <string name="ret1_name">Dyrlægens Natmad ret - body</string>
     <string name="ret2_name">Dyrlægens Natmad ret - body</string>
 
+    <!--open close navigation drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <!-- Menu -->
     <string name="menu_burgermenu">Menu</string>
     <string name="menu_shopping">Shop</string>
