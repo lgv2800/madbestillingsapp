@@ -21,13 +21,14 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
 //Azure database import statement
 import com.microsoft.windowsazure.mobileservices.*;
 
-public class MainScreen extends AppCompatActivity implements View.OnClickListener {
+public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType {
 
     //Azure database client
     //https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-android-get-started
@@ -36,6 +37,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     Toolbar mToolbar;
     FloatingActionButton fab;
     ViewPager viewPager;
+    private boolean isLight = false;
 
     Order order;
 
@@ -94,7 +96,12 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         return true;
     }
 
-        //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
+    @Override
+    public void setBreadType(boolean a) {
+        this.isLight = a;
+    }
+
+    //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
         class ViewPagerAdapter extends FragmentPagerAdapter {
             private final List<Fragment> mFragmentList = new ArrayList<>();
             private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -147,17 +154,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         if (v == fab) {
             Snackbar.make(v, R.string.action_added, Snackbar.LENGTH_LONG)
                     .setActionTextColor(getColor(R.color.white))
-                    .setAction(R.string.action_cart, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent openCart = new Intent(getApplicationContext(), CartScreen.class);
-                            startActivity(openCart);
-                        }
+                    .setAction(R.string.action_cart, v1 -> {
+                        Intent openCart = new Intent(getApplicationContext(), CartScreen.class);
+                        startActivity(openCart);
                     }).show();
 
-            order.order(viewPager.getCurrentItem(), getApplication());
+            order.order(viewPager.getCurrentItem(), isLight ,getApplication());
 
         }
 
         }
+
     }

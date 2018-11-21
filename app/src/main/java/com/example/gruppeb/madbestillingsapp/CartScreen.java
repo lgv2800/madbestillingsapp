@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +21,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     Toolbar mToolbarCart;
     ImageView mMainImage;
     ArrayList<String> orderItems;
+    ArrayList<String> orderItemsBreadType;
     ListView mListView;
 
 
@@ -65,7 +67,9 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         orderItems = new ArrayList<>();
         orderItems = mOrder.getOrder(getApplication());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1, orderItems);
-        mListView.setAdapter(adapter);
+        orderItemsBreadType = new ArrayList<>();
+        orderItemsBreadType = mOrder.getOrderItemsBreadType(getApplication());
+
+        mListView.setAdapter(new ArrayAdapter<>(this,R.layout.order_list, R.id.cart_list_title, orderItems));
     }
 }

@@ -1,5 +1,6 @@
 package com.example.gruppeb.madbestillingsapp.FoodFragments;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.chip.Chip;
@@ -11,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
+import com.example.gruppeb.madbestillingsapp.MainScreen;
 import com.example.gruppeb.madbestillingsapp.R;
 
-public class Page1 extends Fragment implements View.OnClickListener {
+public class Page1 extends Fragment implements View.OnClickListener{
 
     Chip mLight, mDark;
+    private BreadType listener;
 
     public Page1() {
         //empty constructor
@@ -43,13 +47,31 @@ public class Page1 extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(final View v){
         if (v == mLight) {
+            listener.setBreadType(true);
             mLight.setChecked(true);
             mDark.setChecked(false);
         }
         if (v == mDark) {
+            listener.setBreadType(false);
             mDark.setChecked(true);
             mLight.setChecked(false);
         }
 
     }
+
+    /**Gør det muligt at implementere et interface, som kan anvendes i Mainscreen.java, således der er lav coupling.
+     *
+     * https://stackoverflow.com/questions/12659747/call-an-activity-method-from-a-fragment
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (BreadType) context;
+        } catch (ClassCastException castException) {
+            //
+        }
+    }
+
 }
