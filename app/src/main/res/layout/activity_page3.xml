@@ -1,99 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/page3_card_view"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/page2_card_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
+            android:layout_gravity="center|top">
 
-            <ImageView
-                android:id="@+id/page3_image"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/food3" />
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/page3_title"
-                style="@style/CardView.title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/page3_image"
-                android:paddingStart="5dp"
-                android:text="@string/page3_food_main" />
+                <ImageView
+                    android:id="@+id/page3_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:background="@drawable/food3" />
 
-            <TextView
-                android:id="@+id/page1_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/page3_title"
-                android:paddingStart="5dp"
-                android:text="@string/page3_food_sub" />
+                <TextView
+                    android:id="@+id/page3_title"
+                    style="@style/CardView.title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page3_image"
+                    android:padding="8dp"
+                    android:text="@string/page3_food_main" />
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/page3_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page3_title"
+                    android:paddingLeft="8dp"
+                    android:text="@string/page3_food_sub" />
+                <View
+                    android:id="@+id/page3_dividerline"
+                    android:layout_width="350dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/page3_subtitle"
+                    android:layout_marginTop="10dp">
+                </View>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <!-- Brødtype -->
+                <TextView
+                    style="@style/CardView.accented"
+                    android:text="Brødtype"
+                    android:id="@+id/page3_breadtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page3_dividerline"
+                    android:paddingStart="16dp"
+                    android:paddingTop="16dp"
+                    />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="Lyst Brød"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.263" />
+                <LinearLayout
+                    android:id="@+id/page3_chiplayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_below="@id/page3_breadtype">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="8dp"
-            android:text="Mørkt Brød"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.263" />
+                    <android.support.design.chip.Chip
+                        android:id="@+id/page3_lightbread"
+                        style="@style/Theme.MaterialComponents.Light.NoActionBar"
+                        android:text="@string/breadtype_light"
+                        android:textAllCaps="true"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:checkable="true"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="130dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="88dp"
-            android:text="Antal Valgt:"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+                    <android.support.design.chip.Chip
+                        android:id="@+id/page3_darkbread"
+                        style="@style/Theme.MaterialComponents.Light.NoActionBar"
+                        android:text="@string/breadtype_dark"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="15sp"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:checkable="true"/>
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="81dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="80dp"
-            android:textSize="36sp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
-    </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/page3_amountlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/page3_chiplayout"
+                    android:padding="16dp">
 
+                    <TextView
+                        android:id="@+id/page3_amountchosen"
+                        style="@style/CardView.accented"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/page_amountchosen" />
+
+                    <TextView
+                        android:id="@+id/page3_amount"
+                        android:layout_width="81dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_horizontal"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.501"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.25"
+                        android:text="0" />
+
+                </android.support.constraint.ConstraintLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
 </LinearLayout>

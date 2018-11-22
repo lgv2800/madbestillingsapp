@@ -48,7 +48,7 @@ public class Order {
     }
 
     public ArrayList<String> getOrderItemsBreadType(Context context){
-        SharedPreferences orderPref = context.getSharedPreferences("curent_order_pref",Context.MODE_PRIVATE);
+        SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
         orderItemsBreadType = new ArrayList<>();
 
         int count = orderPref.getInt("count",0);

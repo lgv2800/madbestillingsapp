@@ -9,12 +9,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +27,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     ArrayList<String> orderItems;
     ArrayList<String> orderItemsBreadType;
     ListView mListView;
+
+    ArrayList<Map<String, String>> orderMap;
 
 
     @Override
@@ -70,6 +76,21 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         orderItemsBreadType = new ArrayList<>();
         orderItemsBreadType = mOrder.getOrderItemsBreadType(getApplication());
 
-        mListView.setAdapter(new ArrayAdapter<>(this,R.layout.order_list, R.id.cart_list_title, orderItems));
+        orderMap = new ArrayList<>();
+
+        generateMap();
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, orderMap, R.layout.order_list, new String[]{"title", "breadtype"}, new int[]{R.id.cart_list_title, R.id.cart_list_breadtype});
+
+        mListView.setAdapter(simpleAdapter);
+    }
+
+    private void generateMap(){
+        for (int i = 0; i < orderItems.size(); i++){
+            Map<String, String> listMap = new HashMap<>();
+            listMap.put("title", orderItems.get(i));
+            listMap.put("breadtype", orderItemsBreadType.get(i));
+            orderMap.add(listMap);
+        }
     }
 }
