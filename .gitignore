@@ -64,3 +64,16 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+.idea/misc.xml
+app/.DS_Store
+app/src/main/java/.DS_Store
+app/src/main/java/com/.DS_Store
+app/src/main/java/com/example/.DS_Store
+app/src/main/java/com/example/gruppeb/.DS_Store
+app/src/main/java/com/example/gruppeb/madbestillingsapp/.DS_Store
+app/src/main/res/.DS_Store
+gradle/.DS_Store
+app/src/main/java/com/example/gruppeb/madbestillingsapp/FoodFragments/.DS_Store
+app/src/main/.DS_Store
+app/src/.DS_Store
+.DS_Store
