@@ -42,6 +42,7 @@ public class Order {
         createOrderList(context);
         getOrderItemsBreadType(context);
         int arraySize = orderItems.size();
+        orderMap = new ArrayList<>();
         generateMap(arraySize);
         return orderMap;
     }
@@ -79,7 +80,6 @@ public class Order {
 
     private void generateMap(int arraySize){
         for (int i = 0; i < arraySize; i++){
-            orderMap = new ArrayList<>();
             Map<String, String> listMap = new HashMap<>();
             listMap.put("title", orderItems.get(i));
             listMap.put("breadtype", orderItemsBreadType.get(i));
