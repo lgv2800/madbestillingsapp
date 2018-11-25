@@ -70,27 +70,12 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     private void populateItemList(){
         Order mOrder = new Order();
-        orderItems = new ArrayList<>();
-        orderItems = mOrder.getOrder(getApplication());
 
-        orderItemsBreadType = new ArrayList<>();
-        orderItemsBreadType = mOrder.getOrderItemsBreadType(getApplication());
-
-        orderMap = new ArrayList<>();
-
-        generateMap();
+        orderMap = mOrder.getMap(this);
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, orderMap, R.layout.order_list, new String[]{"title", "breadtype"}, new int[]{R.id.cart_list_title, R.id.cart_list_breadtype});
 
         mListView.setAdapter(simpleAdapter);
     }
 
-    private void generateMap(){
-        for (int i = 0; i < orderItems.size(); i++){
-            Map<String, String> listMap = new HashMap<>();
-            listMap.put("title", orderItems.get(i));
-            listMap.put("breadtype", orderItemsBreadType.get(i));
-            orderMap.add(listMap);
-        }
-    }
 }

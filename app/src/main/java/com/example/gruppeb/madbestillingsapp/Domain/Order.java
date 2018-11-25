@@ -9,6 +9,8 @@ import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishFactory;
 import com.example.gruppeb.madbestillingsapp.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order {
 
@@ -16,6 +18,7 @@ public class Order {
     private ArrayList<String> orderItems;
     private ArrayList<String> orderItemsBreadType;
     private DishCounter counter = new DishCounter();
+    ArrayList<Map<String, String>> orderMap;
 
     public Order(){
         orderItems = new ArrayList<>();
@@ -35,6 +38,14 @@ public class Order {
         return orderItems;
     }
 
+    public ArrayList<Map<String, String>> getMap(Context context){
+        createOrderList(context);
+        getOrderItemsBreadType(context);
+        int arraySize = orderItems.size();
+        generateMap(arraySize);
+        return orderMap;
+    }
+
     private void createOrderList(Context context){
         SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref), Context.MODE_PRIVATE);
         orderItems = new ArrayList<>();
@@ -47,7 +58,7 @@ public class Order {
 
     }
 
-    public ArrayList<String> getOrderItemsBreadType(Context context){
+    private void getOrderItemsBreadType(Context context){
         SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
         orderItemsBreadType = new ArrayList<>();
 
@@ -64,8 +75,16 @@ public class Order {
                 orderItemsBreadType.add(context.getString(R.string.breadtype_dark));
             }
         }
+    }
 
-        return orderItemsBreadType;
+    private void generateMap(int arraySize){
+        for (int i = 0; i < arraySize; i++){
+            orderMap = new ArrayList<>();
+            Map<String, String> listMap = new HashMap<>();
+            listMap.put("title", orderItems.get(i));
+            listMap.put("breadtype", orderItemsBreadType.get(i));
+            orderMap.add(listMap);
+        }
     }
 
 }
