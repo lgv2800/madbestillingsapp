@@ -51,4 +51,5 @@
     <!-- SharedPreferences -->
     <string name="current_order_count">current_order_count</string>
     <string name="current_order_pref">current_order_pref</string>
+    <string name="cart_delete_all">Ryd alt</string>
 </resources>

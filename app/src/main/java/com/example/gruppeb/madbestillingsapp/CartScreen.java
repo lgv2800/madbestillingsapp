@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -24,11 +25,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     Toolbar mToolbarCart;
     ImageView mMainImage;
-    ArrayList<String> orderItems;
-    ArrayList<String> orderItemsBreadType;
     ListView mListView;
-
+    TextView mDeleteAll;
     ArrayList<Map<String, String>> orderMap;
+    Order mOrder;
 
 
     @Override
@@ -36,12 +36,18 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_screen);
         setTitle("Kurv");
+
+        mOrder = new Order();
         mListView = findViewById(R.id.cart_list);
 
         populateItemList();
 
         mMainImage = findViewById(R.id.cart_mainimage);
         mMainImage.setOnClickListener(this);
+
+
+        mDeleteAll = findViewById(R.id.cart_delete_all);
+        mDeleteAll.setOnClickListener(this);
 
         mToolbarCart = findViewById(R.id.my_CartToolbar);
         setSupportActionBar(mToolbarCart);
@@ -56,6 +62,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     //@Override
     public void onClick(View v) {
+        if ( v == mDeleteAll){
+            mOrder.clearOrder(this);
+            populateItemList();
+        }
     }
 
     //https://developer.android.com/training/appbar/actions#java
@@ -69,8 +79,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private void populateItemList(){
-        Order mOrder = new Order();
-
         orderMap = mOrder.getMap(this);
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, orderMap, R.layout.order_list, new String[]{"title", "breadtype"}, new int[]{R.id.cart_list_title, R.id.cart_list_breadtype});

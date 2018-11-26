@@ -3,8 +3,6 @@ package com.example.gruppeb.madbestillingsapp.Domain;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
-import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishCounter;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishFactory;
 import com.example.gruppeb.madbestillingsapp.R;
 
@@ -17,20 +15,19 @@ public class Order {
     private DishFactory factory = new DishFactory();
     private ArrayList<String> orderItems;
     private ArrayList<String> orderItemsBreadType;
-    private DishCounter counter = new DishCounter();
     ArrayList<Map<String, String>> orderMap;
 
     public Order(){
         orderItems = new ArrayList<>();
     }
 
-    public void clearOrder(){
-        orderItems.clear();
+    public void clearOrder(Context context){
+        SharedPreferences.Editor editor = context.getSharedPreferences(context.getString(R.string.current_order_pref),0).edit();
+        editor.clear().apply();
     }
 
     public void order(int a, boolean isLight, Context context){
         factory.createDish(a, isLight ,context);
-        counter.addDish(a);
     }
 
     public ArrayList<String> getOrder(Context context){
@@ -41,9 +38,8 @@ public class Order {
     public ArrayList<Map<String, String>> getMap(Context context){
         createOrderList(context);
         getOrderItemsBreadType(context);
-        int arraySize = orderItems.size();
         orderMap = new ArrayList<>();
-        generateMap(arraySize);
+        generateMap();
         return orderMap;
     }
 
@@ -78,8 +74,8 @@ public class Order {
         }
     }
 
-    private void generateMap(int arraySize){
-        for (int i = 0; i < arraySize; i++){
+    private void generateMap(){
+        for (int i = 0; i < orderItems.size(); i++){
             Map<String, String> listMap = new HashMap<>();
             listMap.put("title", orderItems.get(i));
             listMap.put("breadtype", orderItemsBreadType.get(i));
