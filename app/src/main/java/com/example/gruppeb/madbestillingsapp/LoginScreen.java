@@ -36,6 +36,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.Dish;
+import com.example.gruppeb.madbestillingsapp.Domain.DishOne;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -121,6 +123,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                         while (rs.next())
 
                         {
+                            //i = Placement of column in table
                             roomNumberQuery = rs.getString(2);
 
                             if (roomNumberQuery.equals(roomNumberString)) {

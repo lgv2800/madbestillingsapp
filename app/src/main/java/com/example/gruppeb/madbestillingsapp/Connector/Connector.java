@@ -13,11 +13,13 @@ public class Connector {
     String jdbcClass = "com.mysql.jdbc.Driver";
 
     /*
+    //Madbestilling root user
     String url = "jdbc:mysql://10.16.231.123:8889/Madbestilling_BallerupKommune";
     String username = "root";
     String password = "root";*/
 
-
+    //Madbestilling DB user
+    //String url = "jdbc:mysql://IP-address:PORT/DB_Name
     //String url = "jdbc:mysql://10.16.231.123:8889/Madbestilling_BallerupKommune";
     String url = "jdbc:mysql://192.168.0.43:8889/Madbestilling_BallerupKommune";
     String username = "madbestilling_ballerup";
