@@ -60,15 +60,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_login_screen);
 
         mLoginButton = findViewById(R.id.login_button);
-        //mLoginButton.setOnClickListener(this);
-
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
-                mloginAsyncTaskStatement.execute("");
-            }
-        });
+        mLoginButton.setOnClickListener(this);
 
         mRoomNumberEnterField = findViewById(R.id.login_number);
 
@@ -90,15 +82,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mConnector = new Connector();
     }
 
-    @Override
-    public void onClick(View v) {
-
-        if (v == mLoginButton) {
-            loginWithRoomNumber();
-        }
-    }
-
-
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
         //Database
         private String roomNumberString = mRoomNumberEnterField.getText().toString();
@@ -109,10 +92,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected void onPreExecute() {
-
-            progressDialog.setMessage("Loading...");
+            progressDialog.setMessage("Indlæser");
             progressDialog.show();
-
 
             super.onPreExecute();
         }
@@ -120,7 +101,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         @Override
         protected String doInBackground(String... params) {
             if (roomNumberString.trim().equals(""))
-                errorMessage = "Udfyld venligst feltet....";
+                errorMessage = "Udfyld venligst feltet";
             else {
                 try {
                     Connection con = mConnector.CONN();
@@ -128,32 +109,31 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                         errorMessage = "Tjek venligst din internet forbindelse";
                     } else {
 
-                        String query = "SELECT * FROM Orders WHERE roomNumber ='" + roomNumberString + "'";
+                        System.out.println("Forbindelse til DB er aktiv.");
 
+                        String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberString + "'";
 
                         Statement stmt = con.createStatement();
                         // stmt.executeUpdate(query);
-
 
                         ResultSet rs = stmt.executeQuery(query);
 
                         while (rs.next())
 
                         {
-                            roomNumberQuery = rs.getString(1);
+                            roomNumberQuery = rs.getString(2);
 
                             if (roomNumberQuery.equals(roomNumberString)) {
 
                                 isSuccess = true;
-                                errorMessage = "Login successfull";
+                                errorMessage = "Logget ind med rum-nr: " + roomNumberString;
 
                             } else
 
                                 isSuccess = false;
-
+                                //errorMessage = "Loginoplysninger er ukorrekt.";
 
                         }
-
 
                     }
                 } catch (Exception ex) {
@@ -168,7 +148,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
 
-
             if (isSuccess) {
 
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
@@ -177,7 +156,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                 startActivity(intent);
             }
-
 
             progressDialog.hide();
 
@@ -286,5 +264,14 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if (v == mLoginButton) {
+            //loginWithRoomNumber();
+            loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
+            mloginAsyncTaskStatement.execute();
+        }
+    }
 
 }

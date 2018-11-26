@@ -12,9 +12,16 @@ public class Connector {
 
     String jdbcClass = "com.mysql.jdbc.Driver";
 
-    String url = "jdbc:mysql://10.16.231.123/Madbestilling_BallerupKommune";
+    /*
+    String url = "jdbc:mysql://10.16.231.123:8889/Madbestilling_BallerupKommune";
     String username = "root";
-    String password = "root";
+    String password = "root";*/
+
+
+    //String url = "jdbc:mysql://10.16.231.123:8889/Madbestilling_BallerupKommune";
+    String url = "jdbc:mysql://192.168.0.43:8889/Madbestilling_BallerupKommune";
+    String username = "madbestilling_ballerup";
+    String password = "mdballerup";
 
     @SuppressLint("NewApi")
     public Connection CONN() {
