@@ -21,6 +21,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Context mContext;
     AlertDialog statusAlertDialog;
+
+    public static String recResult;
+
     public BackgroundWorker(Context backgroundWorkerContext) {
         mContext = backgroundWorkerContext;
     }
@@ -29,7 +32,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String type = params[0];
         //String login_url = "http://localhost:8888/Projekter/Madbestillingsapp%20-%20Webportal/userLogin.php";
-        String login_url = "http://192.168.0.129:8888/Projekter/Madbestillingsapp%20-%20Webportal/userLogin.php";
+        //String login_url = "http://192.168.0.129:8888/Projekter/Madbestillingsapp%20-%20Webportal/userLogin.php";
+        String login_url = "http://10.16.161.90:8888/Projekter/Madbestillingsapp%20-%20Webportal/userLogin.php";
 
         if (type.equals("login")) {
             try {
@@ -50,16 +54,16 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
+                recResult = "";
                 String line = "";
                 while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
+                    recResult += line;
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                return result;
+                return recResult;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -70,6 +74,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
 
         return null;
+        //return recResult;
     }
 
     @Override
@@ -79,11 +84,18 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        statusAlertDialog.setMessage(result);
+    protected void onPostExecute(String recResult) {
+        statusAlertDialog.setMessage(recResult);
         statusAlertDialog.show();
-        System.out.println(result);
+        System.out.println(recResult);
     }
+
+    public String getRecResult() {
+        return recResult;
+    }
+
+
+
 
     @Override
     protected void onProgressUpdate(Void... values) {
