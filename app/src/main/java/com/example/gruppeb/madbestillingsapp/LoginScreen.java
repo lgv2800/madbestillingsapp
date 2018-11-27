@@ -28,10 +28,7 @@ EditText mEnterField;
     public void onClick(View v) {
 
         if (v == mLoginButton){
-            String enteredValue = mEnterField.getText().toString();
-
             Intent i = new Intent(LoginScreen.this, MainScreen.class);
-            i.putExtra("credentials", enteredValue);
             startActivity(i);
         }
     }

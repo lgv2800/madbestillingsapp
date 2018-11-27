@@ -80,9 +80,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        String i = getIntent().getExtras().getString("credentials");
-        Toast.makeText(getApplicationContext(), i, Toast.LENGTH_SHORT).show();
-
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
         adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
@@ -104,6 +101,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
+
+        updateView();
     }
 
     @Override
@@ -208,6 +207,17 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             order.order(viewPager.getCurrentItem(), isLight ,getApplication());
 
         }
+
+        }
+
+        private void updateView(){
+            /**TODO
+             * Opdater antal rette bestilt vha. sharedpreference
+             */
+            int count = order.getCount(this);
+            /**
+             * Opdater kurvantal - husk animation
+             */
 
         }
 

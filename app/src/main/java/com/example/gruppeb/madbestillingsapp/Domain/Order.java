@@ -83,4 +83,9 @@ public class Order {
         }
     }
 
+    public int getCount(Context context){
+        SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
+        return orderPref.getInt("count",0);
+    }
+
 }
