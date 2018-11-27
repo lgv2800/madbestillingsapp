@@ -100,7 +100,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberString + "'";
+                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberString + "'";
+                        String query = " SELECT * FROM roomNumber WHERE roomNumber='" + roomNumberString + "'";
 
                         Statement stmt = con.createStatement();
                         // stmt.executeUpdate(query);
@@ -111,7 +112,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                         {
                             //i = Placement of column in table
-                            roomNumberQuery = rs.getString(2);
+                            roomNumberQuery = rs.getString(1);
 
                             if (roomNumberQuery.equals(roomNumberString)) {
 
