@@ -31,7 +31,7 @@
     <string name="page1_food_title">Skinke</string>
     <string name="page1_food_main">Skinkemad</string>
     <string name="page1_food_sub">Skinke, ærter og argurk</string>
-    
+
     <string name="page2_food_title">Æg og rejer</string>
     <string name="page2_food_main">Æggemad</string>
     <string name="page2_food_sub">Æg, rejer og salat</string>
@@ -52,4 +52,5 @@
     <string name="current_order_count">current_order_count</string>
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Ryd alt</string>
+    <string name="title_activity_my_orders_screen">Mine bestillinger</string>
 </resources>

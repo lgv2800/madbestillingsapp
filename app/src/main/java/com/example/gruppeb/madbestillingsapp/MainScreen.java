@@ -107,9 +107,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         switch (menuItem.getItemId()){
-            case R.id.nav_1:
+            case R.id.nav_myOrders:
                 //TO BE handled
                 //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new Option1Fragment()).commit();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new MyOrdersScreen()).commit();
+
+                Intent intent = new Intent(MainScreen.this, MyOrdersScreen.class);
+                intent.putExtra("roomNumber", roomNumberFromIntent);
+                startActivity(intent);
+
                         break;
             case R.id.nav_2:
                 //TO BE handled

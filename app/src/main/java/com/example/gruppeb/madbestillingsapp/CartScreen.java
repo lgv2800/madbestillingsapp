@@ -145,6 +145,13 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         private int roomNumberStringFromExtraToInt = Integer.parseInt(roomNumberStringFromExtra);
         //private String roomNumberStringFromExtra = roomNumberFromIntent; //getIntent().getStringExtra("roomNumber");
 
+
+        /*ArrayList <String> itemOrdered = new ArrayList<String>();
+        ArrayList <String> breadType = new ArrayList<String>();*/
+
+        //private String itemOrdered = new String[]{"Lys", "Mørk"};
+
+
         private boolean isSuccess = false;
 
         private String roomNumberQuery;
@@ -161,6 +168,11 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             /*
             for (int i = 0; i <= dishAmount,i++){
                 //Insert code for inseting into DB, by dish amount.
+            }*/
+
+            /*for (String i : itemOrdered) {
+                String itemOrdered = itemOrdered.get(i);
+                String breadType = breadType.get(i);
             }*/
 
             if (dishAmount < 0) //dishAmount.trim().equals("") || breadType.trim().equals("") || orderMenu.trim().equals(""))

@@ -35,11 +35,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
 
-    private String roomNumber;
-    private String type;
-    private Toast mToast;
-    private String recResult;
-
     //Database class
     Connector mConnector;
 
@@ -122,7 +117,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                             } else
 
                                 isSuccess = false;
-                            //errorMessage = "Loginoplysninger er ukorrekt.";
+                                //errorMessage = "Loginoplysninger er ukorrekt.";
 
                         }
 
