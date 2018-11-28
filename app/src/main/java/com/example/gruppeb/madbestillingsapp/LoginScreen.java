@@ -35,8 +35,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
 
-    //Database class
-    Connector mConnector;
+    Connector mConnector; //Database connector
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +116,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                             } else
 
                                 isSuccess = false;
-                                //errorMessage = "Loginoplysninger er ukorrekt.";
+                            //errorMessage = "Loginoplysninger er ukorrekt.";
 
                         }
 

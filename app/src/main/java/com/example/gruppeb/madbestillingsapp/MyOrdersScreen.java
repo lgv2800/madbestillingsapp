@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class MyOrdersScreen extends AppCompatActivity {
+public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbarOrders;
     TextView mNumberOfOrdersCountTextView;
@@ -32,8 +32,7 @@ public class MyOrdersScreen extends AppCompatActivity {
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
 
-    //Database class
-    Connector mConnector;
+    Connector mConnector; //Database connector
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +147,8 @@ public class MyOrdersScreen extends AppCompatActivity {
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
 
-            if (isSuccess) { ;
+            if (isSuccess) {
+                ;
                 //numberOfOrdersInDBStringFromQuery =
                 numberOfOrdersInDB = Integer.parseInt(numberOfOrdersInDBStringFromQuery);
                 mNumberOfOrdersCountTextView.setText("Antallet af ordre på rum-nr: " + roomNumberStringFromExtraToInt + " er: " + numberOfOrdersInDB);

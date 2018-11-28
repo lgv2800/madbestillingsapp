@@ -63,12 +63,12 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
 
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -91,7 +91,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras == null) {
+            if (extras == null) {
                 roomNumberFromIntent = null;
             } else {
                 roomNumberFromIntent = extras.getString("roomNumber");
@@ -106,17 +106,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_myOrders:
                 //TO BE handled
-                //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new Option1Fragment()).commit();
-                //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new MyOrdersScreen()).commit();
-
                 Intent intent = new Intent(MainScreen.this, MyOrdersScreen.class);
                 intent.putExtra("roomNumber", roomNumberFromIntent);
                 startActivity(intent);
-
-                        break;
+                break;
             case R.id.nav_2:
                 //TO BE handled
                 //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new Option2Fragment()).commit();
@@ -130,11 +126,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -151,34 +146,34 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
-        class ViewPagerAdapter extends FragmentPagerAdapter {
-            private final List<Fragment> mFragmentList = new ArrayList<>();
-            private final List<String> mFragmentTitleList = new ArrayList<>();
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-            public ViewPagerAdapter(FragmentManager manager) {
-                super(manager);
-            }
-
-            @Override
-            public Fragment getItem(int position) {
-                return mFragmentList.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return mFragmentList.size();
-            }
-
-            public void addFragment(Fragment fragment, String title) {
-                mFragmentList.add(fragment);
-                mFragmentTitleList.add(title);
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return mFragmentTitleList.get(position);
-            }
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 
     //https://developer.android.com/training/appbar/actions#java
     @Override
@@ -209,21 +204,21 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                         startActivity(openCart);
                     }).show();
 
-            order.order(viewPager.getCurrentItem(), isLight ,getApplication());
-
-        }
-
-        }
-
-        private void updateView(){
-            /**TODO
-             * Opdater antal rette bestilt vha. sharedpreference
-             */
-            int count = order.getCount(this);
-            /**
-             * Opdater kurvantal - husk animation
-             */
+            order.order(viewPager.getCurrentItem(), isLight, getApplication());
 
         }
 
     }
+
+    private void updateView() {
+        /**TODO
+         * Opdater antal rette bestilt vha. sharedpreference
+         */
+        int count = order.getCount(this);
+        /**
+         * Opdater kurvantal - husk animation
+         */
+
+    }
+
+}

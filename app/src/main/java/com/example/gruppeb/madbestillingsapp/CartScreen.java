@@ -44,13 +44,14 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     Order mOrder;
 
     private String roomNumberFromIntent;
+    private String roomNumberStringFromExtra;
+    private int roomNumberStringFromExtraToInt;
 
     Context mContext;
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
 
-    //Database class
-    Connector mConnector;
+    Connector mConnector; //Database connector
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 roomNumberFromIntent = null;
             } else {
                 roomNumberFromIntent = extras.getString("roomNumber");
+                roomNumberStringFromExtra = roomNumberFromIntent;
+                roomNumberStringFromExtraToInt = Integer.parseInt(roomNumberStringFromExtra);
             }
         } else {
             roomNumberFromIntent = (String) savedInstanceState.getSerializable("roomNumber");
@@ -130,6 +133,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     public class CartToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
+        private boolean isSuccess = false;
+        private String errorMessage = "";
 
         /*public CartToDBAsyncTaskStatement(Context mContext) {
             //mContext = this.Context;
@@ -140,22 +145,12 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         private int dishAmount = 1;
         private String breadType = "Lys";
         private String orderMenu = "Laks";
-        //private String roomNumberStringFromExtra = "890";
-        private String roomNumberStringFromExtra = roomNumberFromIntent;
-        private int roomNumberStringFromExtraToInt = Integer.parseInt(roomNumberStringFromExtra);
-        //private String roomNumberStringFromExtra = roomNumberFromIntent; //getIntent().getStringExtra("roomNumber");
-
 
         /*ArrayList <String> itemOrdered = new ArrayList<String>();
         ArrayList <String> breadType = new ArrayList<String>();*/
 
         //private String itemOrdered = new String[]{"Lys", "Mørk"};
 
-
-        private boolean isSuccess = false;
-
-        private String roomNumberQuery;
-        private String errorMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -175,7 +170,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 String breadType = breadType.get(i);
             }*/
 
-            if (dishAmount < 0) //dishAmount.trim().equals("") || breadType.trim().equals("") || orderMenu.trim().equals(""))
+            if (dishAmount < 0)
                 errorMessage = "Bestil venligst mindst én ret.";
             else {
                 try {
@@ -183,8 +178,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                     if (con == null) {
                         errorMessage = "Tjek venligst din internet forbindelse";
                     } else {
-                        //String query = " INSERT INTO Orders values('" + dishAmount + "','" + roomNumberStringFromExtra + "','" + passstr + "')";
-                        //String query = " INSERT INTO Orders values('" + roomNumberStringFromExtra + "','" + breadType + "','" + orderMenu + "')";
                         String query = " INSERT INTO Orders (roomNumber, orderMenu, breadType) values('" + roomNumberStringFromExtraToInt + "','" + orderMenu + "','" + breadType + "')";
 
                         Statement stmt = con.createStatement();
