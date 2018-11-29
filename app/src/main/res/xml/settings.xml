@@ -1,0 +1,59 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Indstillinger">
+
+        <EditTextPreference
+            android:title="Rum-nr"
+            android:summary="Rum-nr som anvendes til bestillinger."
+            android:key="roomNumberInput"
+            android:dialogTitle="Indtast rum-nr." />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Tilgængelighed">
+
+        <Preference
+            android:title="Skrifttypestørrelse"
+            android:summary="Ændrer størrelsen på skrifttypen i appen."
+            android:key="changeFont">
+        </Preference>
+
+        <SwitchPreference
+            android:title="Oplæser"
+            android:summary="Ændrer størrelsen på skrifttypen i appen."
+            android:key="changeVoiceOver" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Visning">
+
+        <ListPreference
+            android:title="Sprog"
+            android:summary="Skift appens sprog."
+            android:key="changeDisplayLanguage"
+            android:entries="@array/languagePickerEntries"
+            android:entryValues="@array/languagePickerValues">
+        </ListPreference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Om appen">
+        <Preference
+            android:title="Hjælp"
+            android:summary="Hjælp til Madbestillingsappen."
+            android:key="helpScreen">
+        </Preference>
+
+        <Preference
+            android:title="Om"
+            android:summary="Om Madbestillingsappen."
+            android:key="aboutScreen">
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

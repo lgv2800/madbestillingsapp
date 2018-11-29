@@ -7,9 +7,9 @@
         <item android:id="@+id/nav_myOrders"
             android:icon ="@drawable/ic_archive_black_24dp"
             android:title ="Mine bestillinger"/>
-        <item android:id="@+id/nav_2"
-            android:icon ="@drawable/ic_thumb_down"
-            android:title ="Option 2"/>
+        <item android:id="@+id/nav_mySettings"
+            android:icon ="@drawable/ic_settings_applications_black_24dp"
+            android:title ="Indstillinger"/>
     </group>
 
 </menu>

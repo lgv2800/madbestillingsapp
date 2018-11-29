@@ -27,7 +27,8 @@
         <activity
             android:name=".MyOrdersScreen"
             android:label="@string/title_activity_my_orders_screen"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SettingsScreen"></activity>
     </application>
 
 </manifest>

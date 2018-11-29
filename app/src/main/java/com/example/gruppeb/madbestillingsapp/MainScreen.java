@@ -109,13 +109,14 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         switch (menuItem.getItemId()) {
             case R.id.nav_myOrders:
                 //TO BE handled
-                Intent intent = new Intent(MainScreen.this, MyOrdersScreen.class);
-                intent.putExtra("roomNumber", roomNumberFromIntent);
-                startActivity(intent);
+                Intent openMyOrdersScreenIntent = new Intent(MainScreen.this, MyOrdersScreen.class);
+                openMyOrdersScreenIntent.putExtra("roomNumber", roomNumberFromIntent);
+                startActivity(openMyOrdersScreenIntent);
                 break;
-            case R.id.nav_2:
+            case R.id.nav_mySettings:
                 //TO BE handled
-                //getSupportFragmentManager().beginTransaction().replace(R.id.pager, new Option2Fragment()).commit();
+                Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
+                startActivity(openSettingsScreenIntent);
                 break;
 
         }
