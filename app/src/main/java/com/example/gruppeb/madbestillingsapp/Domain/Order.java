@@ -17,6 +17,8 @@ public class Order {
     private ArrayList<String> orderItemsBreadType;
     ArrayList<Map<String, String>> orderMap;
 
+    public static String ROOM_NUMBER;
+
     public Order(){
         orderItems = new ArrayList<>();
     }
@@ -33,6 +35,11 @@ public class Order {
     public ArrayList<String> getOrder(Context context){
         createOrderList(context);
         return orderItems;
+    }
+
+    public ArrayList<String> getBreadType(Context context){
+        getOrderItemsBreadType(context);
+        return orderItemsBreadType;
     }
 
     public ArrayList<Map<String, String>> getMap(Context context){

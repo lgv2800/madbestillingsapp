@@ -37,9 +37,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     ViewPager viewPager;
     private boolean isLight = false;
     private DrawerLayout drawer;
-
-    private String roomNumberFromIntent;
-
     Order order;
 
     @Override
@@ -89,17 +86,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                roomNumberFromIntent = null;
-            } else {
-                roomNumberFromIntent = extras.getString("roomNumber");
-            }
-        } else {
-            roomNumberFromIntent = (String) savedInstanceState.getSerializable("roomNumber");
-        }
-
         updateView();
     }
 
@@ -110,7 +96,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.nav_myOrders:
                 //TO BE handled
                 Intent openMyOrdersScreenIntent = new Intent(MainScreen.this, MyOrdersScreen.class);
-                openMyOrdersScreenIntent.putExtra("roomNumber", roomNumberFromIntent);
                 startActivity(openMyOrdersScreenIntent);
                 break;
             case R.id.nav_mySettings:
@@ -183,7 +168,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.shopping_cart:
                 // User chose the "Settings" item, show the app settings UI...
                 Intent openCart = new Intent(this, CartScreen.class);
-                openCart.putExtra("roomNumber", roomNumberFromIntent);
                 startActivity(openCart);
                 return true;
 

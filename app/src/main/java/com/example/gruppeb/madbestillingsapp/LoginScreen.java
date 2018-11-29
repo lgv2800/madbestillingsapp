@@ -25,6 +25,7 @@ import java.sql.Statement;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishOne;
+import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,7 +67,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         progressDialog = new ProgressDialog(this);
 
         //Database
-        mConnector = new Connector();
+        mConnector = new     Connector();
     }
 
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
@@ -129,12 +130,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
-
+            Order.ROOM_NUMBER = roomNumberString;
             if (isSuccess) {
 
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
-
-                intent.putExtra("roomNumber", roomNumberString);
 
                 startActivity(intent);
             }

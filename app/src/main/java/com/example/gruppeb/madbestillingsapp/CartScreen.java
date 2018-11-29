@@ -1,35 +1,26 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
+import com.example.gruppeb.madbestillingsapp.Domain.IDAO;
+import com.example.gruppeb.madbestillingsapp.Domain.CartDAO;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 //Database import statements
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 
@@ -42,10 +33,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     TextView mDeleteAll;
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
-
-    private String roomNumberFromIntent;
-    private String roomNumberStringFromExtra;
-    private int roomNumberStringFromExtraToInt;
 
     ProgressDialog progressDialog;
 
@@ -69,24 +56,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             populateItemList();
         }
 
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                roomNumberFromIntent = null;
-            } else {
-                roomNumberFromIntent = extras.getString("roomNumber");
-                roomNumberStringFromExtra = roomNumberFromIntent;
-                roomNumberStringFromExtraToInt = Integer.parseInt(roomNumberStringFromExtra);
-            }
-        } else {
-            roomNumberFromIntent = (String) savedInstanceState.getSerializable("roomNumber");
-        }
-
-        progressDialog = new ProgressDialog(this);
-
-        //Database
-        mConnector = new Connector();
-
     }
 
     //@Override
@@ -95,8 +64,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             mOrder.clearOrder(this);
             setEmptyView();
         } else if (v == mOrderCart) {
-            CartToDBAsyncTaskStatement mCartToDBAsyncTaskStatement = new CartToDBAsyncTaskStatement();
-            mCartToDBAsyncTaskStatement.execute();
+            IDAO dao = new CartDAO(mOrder.getOrder(this), mOrder.getBreadType(this));
+            dao.executeAction();
+            mOrder.clearOrder(this);
+            setEmptyView();
         }
     }
 
@@ -118,79 +89,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         mListView.setAdapter(simpleAdapter);
     }
 
-    public class CartToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
-        private boolean isSuccess = false;
-        private String errorMessage = "";
-
-        /*public CartToDBAsyncTaskStatement(Context mContext) {
-            //mContext = this.Context;
-        }*/
-
-        //Variables of dish
-        //private int dishAmount = Order.getCount(mContext);
-        private int dishAmount = 1;
-        private String breadType = "Lys";
-        private String orderMenu = "Laks";
-
-        /*ArrayList <String> itemOrdered = new ArrayList<String>();
-        ArrayList <String> breadType = new ArrayList<String>();*/
-
-        //private String itemOrdered = new String[]{"Lys", "Mørk"};
-
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog.setMessage("Indlæser");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            /*
-            for (int i = 0; i <= dishAmount,i++){
-                //Insert code for inseting into DB, by dish amount.
-            }*/
-
-            /*for (String i : itemOrdered) {
-                String itemOrdered = itemOrdered.get(i);
-                String breadType = breadType.get(i);
-            }*/
-
-            if (dishAmount < 0)
-                errorMessage = "Bestil venligst mindst én ret.";
-            else {
-                try {
-                    Connection con = mConnector.CONN();
-                    if (con == null) {
-                        errorMessage = "Tjek venligst din internet forbindelse";
-                    } else {
-                        String query = " INSERT INTO Orders (roomNumber, orderMenu, breadType) values('" + roomNumberStringFromExtraToInt + "','" + orderMenu + "','" + breadType + "')";
-
-                        Statement stmt = con.createStatement();
-                        stmt.executeUpdate(query);
-
-                        errorMessage = "Oprettelse af ordre var successfuldt";
-                        isSuccess = true;
-                    }
-                } catch (Exception ex) {
-                    isSuccess = false;
-                    errorMessage = "Exceptions" + ex;
-                }
-            }
-            return errorMessage;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
-
-            if (isSuccess) {
-                finish();
-            }
-
-            progressDialog.hide();
-        }
-    }
 
     private void findViewAndClickListener(){
         mMainImage = findViewById(R.id.cart_mainimage);
