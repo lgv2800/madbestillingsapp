@@ -29,7 +29,7 @@
                     android:id="@+id/page3_image"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:background="@drawable/food3" />
+                    android:background="@mipmap/food3" />
 
                 <TextView
                     android:id="@+id/page3_title"
