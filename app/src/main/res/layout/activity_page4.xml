@@ -75,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
+                    android:layout_marginBottom="25dp"
                     android:layout_below="@id/page4_breadtype">
 
                     <android.support.design.chip.Chip
@@ -102,40 +103,6 @@
                         android:checkable="true"/>
                 </LinearLayout>
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/page4_amountlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/page4_chiplayout"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/page4_amountchosen"
-                        style="@style/CardView.accented"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/page_amountchosen" />
-
-                    <TextView
-                        android:id="@+id/page4_amount"
-                        android:layout_width="81dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_horizontal"
-                        android:textSize="30sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.501"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.25"
-                        android:text="0" />
-
-                </android.support.constraint.ConstraintLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
     </ScrollView>
