@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -37,6 +38,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     ViewPager viewPager;
     private boolean isLight = false;
     private DrawerLayout drawer;
+    private TextView badgeCount;
     Order order;
 
     @Override
@@ -123,6 +125,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.shopping_cart);
+        View view = menuItem.getActionView();
+        badgeCount = view.findViewById(R.id.cart_badge);
+        badgeCount.setText(Integer.toString(0));
+        updateView();
+        view.setOnClickListener(v -> onOptionsItemSelected(menuItem));
         return true;
     }
 
@@ -190,20 +199,27 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     }).show();
 
             order.order(viewPager.getCurrentItem(), isLight, getApplication());
-
+            updateView();
         }
 
     }
 
-    private void updateView() {
-        /**TODO
-         * Opdater antal rette bestilt vha. sharedpreference
-         */
-        int count = order.getCount(this);
-        /**
-         * Opdater kurvantal - husk animation
-         */
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateView();
+    }
 
+    private void updateView() {
+        int count = order.getCount(this);
+        if (badgeCount != null) {
+            if (count == 0) {
+                badgeCount.setVisibility(View.GONE);
+            } else {
+                badgeCount.setText(Integer.toString(count));
+                badgeCount.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 }
