@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_myOrders"
-            android:icon ="@drawable/ic_archive_black_24dp"
-            android:title ="Mine bestillinger"/>
-        <item android:id="@+id/nav_mySettings"
-            android:icon ="@drawable/ic_settings_applications_black_24dp"
-            android:title ="Indstillinger"/>
-    </group>
+    <item android:title="Min profil">
+        <menu>
 
+            <group
+                android:id="@+id/menu_bottom1"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_myOrders"
+                    android:icon="@drawable/ic_archive_black_24dp"
+                    android:title="Mine bestillinger" />
+            </group>
+        </menu>
+    </item>
+
+
+    <item android:title="Indstillinger">
+        <menu>
+
+            <group
+                android:id="@+id/menu_bottom2"
+                android:checkableBehavior="none">
+                <item
+                    android:id="@+id/nav_mySettingsLanguage"
+                    android:icon="@drawable/ic_language_black_24dp"
+                    android:title="Sprog" />
+                <item
+                    android:id="@+id/nav_mySettingsVoiceOverSwitch"
+                    android:icon="@drawable/ic_record_voice_over_black_24dp"
+                    android:title="Oplæser"
+                    app:actionViewClass="android.widget.CheckBox"/>
+
+                <item
+                    android:id="@+id/nav_mySettings"
+                    android:icon="@drawable/ic_settings_applications_black_24dp"
+                    android:title="Øvrige indstillinger" />
+
+            </group>
+        </menu>
+    </item>
 </menu>
