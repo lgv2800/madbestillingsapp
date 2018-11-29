@@ -64,6 +64,7 @@
         app:rippleColor="@android:color/white"
         android:clickable="true"
         android:backgroundTint="@color/colorPrimary"
+        app:borderWidth="0dp"
         app:layout_anchor="@id/pager"
         app:layout_anchorGravity="bottom|right|end" />
 
