@@ -31,6 +31,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     Button mLoginButton;
     EditText mRoomNumberEnterField;
 
+    com.airbnb.lottie.LottieAnimationView loadingAnimation;
+
     Context mContext;
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
@@ -44,6 +46,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         mLoginButton = findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(this);
+
+        loadingAnimation = findViewById(R.id.login_animation_loading);
 
         mRoomNumberEnterField = findViewById(R.id.login_number);
 
@@ -74,15 +78,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         private String errorMessage = "";
 
         @Override
-        protected void onPreExecute() {
-            progressDialog.setMessage("Indlæser");
-            progressDialog.show();
-
-            super.onPreExecute();
-        }
-
-        @Override
         protected String doInBackground(String... params) {
+
             if (roomNumberString.trim().equals(""))
                 errorMessage = "Udfyld venligst feltet";
             else {
@@ -143,7 +140,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             }
 
             progressDialog.hide();
-
+            setAnimation(false);
         }
     }
 
@@ -152,8 +149,20 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         if (v == mLoginButton) {
+            setAnimation(true);
             loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
             mloginAsyncTaskStatement.execute();
+        }
+    }
+
+    private void setAnimation(Boolean a){
+        if (a){
+            mLoginButton.setVisibility(View.INVISIBLE);
+            loadingAnimation.setVisibility(View.VISIBLE);
+        }
+        if (!a){
+            mLoginButton.setVisibility(View.VISIBLE);
+            loadingAnimation.setVisibility(View.INVISIBLE);
         }
     }
 
