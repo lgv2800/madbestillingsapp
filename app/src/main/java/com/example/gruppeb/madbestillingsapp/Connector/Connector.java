@@ -12,18 +12,10 @@ public class Connector {
 
     String jdbcClass = "com.mysql.jdbc.Driver";
 
-    /*
-    //Madbestilling DB user local mysql server
-    //String url = "jdbc:mysql://IP-address:PORT/DB_Name
-    //String url = "jdbc:mysql://10.16.231.123:8889/Madbestilling_BallerupKommune";
-    String url = "jdbc:mysql://192.168.0.43:8889/Madbestilling_BallerupKommune";
-    String username = "madbestilling_ballerup";
-    String password = "mdballerup";*/
-
     //Amazon Web Server (AWS) RDS database
     String url = "jdbc:mysql://ahemdb.cug8phllmerd.eu-west-2.rds.amazonaws.com:3306/Madbestilling_BallerupKommune";
-    String username = "madbestilling_ballerup";
-    String password = "mdballerup";
+    String username = "balkom_madbestilling";
+    String password = "8yH1OEPeZVhp";
 
     @SuppressLint("NewApi")
     public Connection CONN() {
