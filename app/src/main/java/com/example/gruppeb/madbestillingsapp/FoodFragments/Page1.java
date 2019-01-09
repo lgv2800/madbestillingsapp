@@ -42,6 +42,9 @@ public class Page1 extends Fragment implements View.OnClickListener{
         mLight.setOnClickListener(this);
         mDark.setOnClickListener(this);
 
+        //default breadtype set checked
+        mDark.setChecked(true);
+
         return view;
     }
     @Override
