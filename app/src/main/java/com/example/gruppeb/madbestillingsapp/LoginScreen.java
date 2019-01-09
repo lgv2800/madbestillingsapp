@@ -1,16 +1,10 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,20 +19,12 @@ import java.sql.Statement;
 import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
-import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
-import com.example.gruppeb.madbestillingsapp.Domain.Dishes.DishOne;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
     Button mLoginButton;
-    EditText mRoomNumberEnterField;
-
-    com.airbnb.lottie.LottieAnimationView loadingAnimation;
-
-    Context mContext;
-    AlertDialog statusAlertDialog;
-    ProgressDialog progressDialog;
+    EditText mRoomNumberEnterField;com.airbnb.lottie.LottieAnimationView loadingAnimation;
 
     Connector mConnector; //Database connector
 
@@ -71,18 +57,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mRoomNumberEnterField = findViewById(R.id.login_number);
 
         //Allows for enter taps on keyboard to play round.
-        mRoomNumberEnterField.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    mLoginButton.performClick();
-                    return true;
-                }
-                return false;
+        mRoomNumberEnterField.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                mLoginButton.performClick();
+                return true;
             }
+            return false;
         });
-
-        progressDialog = new ProgressDialog(this);
 
         //Database
         mConnector = new     Connector();
@@ -98,7 +79,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected String doInBackground(String... params) {
-
             if (roomNumberString.trim().equals(""))
                 errorMessage = getString(R.string.login_login_message_fillvalue);
             else {
@@ -129,11 +109,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                                 isSuccess = true;
                                 errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
 
-                            } else
+                            } else {
 
                                 isSuccess = false;
-                            //errorMessage = "Loginoplysninger er ukorrekt.";
-
+                                errorMessage = getString(R.string.login_error_login);
+                            }
                         }
 
                     }
@@ -147,17 +127,19 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
-            Order.ROOM_NUMBER = roomNumberString;
             if (isSuccess) {
 
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
-
                 startActivity(intent);
+                setAnimation(false);
+                Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
+                Order.ROOM_NUMBER = roomNumberString;
             }
 
-            progressDialog.hide();
-            setAnimation(false);
+            if (!isSuccess){
+                setAnimation(false);
+            }
+
         }
     }
 
@@ -166,20 +148,20 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         if (v == mLoginButton) {
-            setAnimation(true);
             loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
             mloginAsyncTaskStatement.execute();
+            setAnimation(true);
         }
     }
 
     private void setAnimation(Boolean a){
         if (a){
-            mLoginButton.setVisibility(View.INVISIBLE);
             loadingAnimation.setVisibility(View.VISIBLE);
+            mLoginButton.setVisibility(View.INVISIBLE);
         }
         if (!a){
-            mLoginButton.setVisibility(View.VISIBLE);
             loadingAnimation.setVisibility(View.INVISIBLE);
+            mLoginButton.setVisibility(View.VISIBLE);
         }
     }
 
