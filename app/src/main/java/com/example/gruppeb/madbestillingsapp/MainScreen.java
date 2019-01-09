@@ -83,7 +83,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         drawer = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        //https://stackoverflow.com/a/38418531/8968120
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView roomNumberNavbar = (TextView) headerView.findViewById(R.id.nav_header_roomNumber);
+        roomNumberNavbar.setText("Rum-nr: " + Order.ROOM_NUMBER);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
