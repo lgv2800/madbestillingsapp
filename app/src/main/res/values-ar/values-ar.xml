@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arabic strings -->
+<resources>
+    <string name="app_name">تطبيق نظام الأغذية</string>
+    <string name="login_number_hint">الرقم</string>
+    <string name="login_login_button">الولوج</string>
+    <string name="login_login_message_errorhashappend">حدث خطأ</string>
+    <string name="login_login_message_checkinternet">تحقق من صحة الإتصال</string>
+    <string name="login_login_message_fillvalue">يرجى ملء الحقل</string>
+    <string name="login_login_message_loginsuccesswithroomnumber">تم تسجيل الدخول برقم الغرفة : </string>
+    <string name="my_orders_title">طلباتي</string>
+
+    <!--open close navigation drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Menu -->
+    <string name="menu_shopping">متجر</string>
+    <string name="cart_bestil">طلب</string>
+    <string name="breadtype_dark">داكن</string>
+    <string name="breadtype_light">فاتح</string>
+    <string name="bread_type">نوع الخبز</string>
+
+    <!-- Drawer menu -->
+    <string name="drawermenu_my_profile">ملفي الشخصي</string>
+    <string name="drawermenu_my_orders">طلباتي</string>
+    <string name="drawermenu_settings_language">اللغة</string>
+    <string name="drawermenu_settings_voiceover">التعليق الصوتي</string>
+    <string name="drawermenu_settings_miscsettings">إعدادات متنوعة</string>
+
+    <!-- Settings screen -->
+    <string name="settingsscreen_settings_roomNumber_Input_label">أدخل رقم الغرفة</string>
+    <string name="settingsscreen_settings_label">الإعدادات</string>
+    <string name="settingsscreen_settings_roomNumber">رقم الغرفة</string>
+    <string name="settingsscreen_settings_roomNumber_summary">رقم الغرفة الذي يستخدم لحجز الأطباق</string>
+    <string name="settingsscreen_accessibility_label">إمكانية الوصول</string>
+    <string name="settingsscreen_accessibility_fontsize">حجم الخط</string>
+    <string name="settingsscreen_accessibility_fontsize_summary">غير حجم الخط في التطبيق</string>
+    <string name="settingsscreen_accessibility_voiceover">التعليق الصوتي</string>
+    <string name="settingsscreen_accessibility_voiceover_summary">تفعيل التعليق الصوتي</string>
+    <string name="settingsscreen_display_label">العرض</string>
+    <string name="settingsscreen_display_language">اللغة</string>
+    <string name="settingsscreen_display_language_summary">غير لغة تطبيق</string>
+    <string name="settingsscreen_aboutapp_label">حول التطبيق</string>
+    <string name="settingsscreen_aboutapp_help">المساعدة</string>
+    <string name="settingsscreen_aboutapp_help_summary">المساعدة في تطبيق الغذاء</string>
+    <string name="settingsscreen_aboutapp_about">حول</string>
+    <string name="settingsscreen_aboutapp_about_summary">حول تطبيق الغذاء</string>
+
+    <!-- Main tekst -->
+    <string name="action_added">تم إضافة إلى العربة</string>
+    <string name="action_cart">عربة</string>
+    <string name="page_amountchosen">العدد المختار</string>
+
+    <!-- Food -->
+    <string name="page1_food_title">لحم خنزير</string>
+    <string name="page1_food_main">شطيرة لحم الخنزير</string>
+    <string name="page1_food_sub">لحم الخنزير والبازلاء والخيار</string>
+
+    <string name="page2_food_title">البيض والروبيان</string>
+    <string name="page2_food_main">شطيرة البيض</string>
+    <string name="page2_food_sub">البيض والروبيان والسلطة</string>
+
+    <string name="page3_food_title">الجمبري</string>
+    <string name="page3_food_main">شطيرة الجمبري</string>
+    <string name="page3_food_sub">الروبيان والشبت والبيض</string>
+
+    <string name="page4_food_title">السلمون</string>
+    <string name="page4_food_main">طعام سمك السلمون</string>
+    <string name="page4_food_sub">سمك السلمون والشبت والهليون</string>
+
+    <string name="page5_food_title">لحم خنزير</string>
+    <string name="page5_food_main">لحم خنزير</string>
+    <string name="page5_food_sub">لحم خنزير ،الفجل والسلطة</string>
+
+    <!-- SharedPreferences -->
+    <string name="current_order_pref">current_order_pref</string>
+    <string name="cart_delete_all">مسح</string>
+    <string name="title_activity_my_orders_screen">طلباتي</string>
+</resources>

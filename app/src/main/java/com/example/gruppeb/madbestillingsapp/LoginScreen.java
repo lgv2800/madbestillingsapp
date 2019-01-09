@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Dish;
@@ -43,6 +45,22 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        //https://blog.lokalise.co/android-app-localization/
+        // Create a new Locale object
+        Locale locale = new Locale("ar");
+        Locale.setDefault(locale);
+        // Create a new configuration object
+        Configuration config = new Configuration();
+        // Set the locale of the new configuration
+        config.locale = locale;
+        // Update the configuration of the Accplication context
+        getResources().updateConfiguration(
+                config,
+                getResources().getDisplayMetrics()
+        );*/
+
         setContentView(R.layout.activity_login_screen);
 
         mLoginButton = findViewById(R.id.login_button);
@@ -82,12 +100,12 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         protected String doInBackground(String... params) {
 
             if (roomNumberString.trim().equals(""))
-                errorMessage = "Udfyld venligst feltet";
+                errorMessage = getString(R.string.login_login_message_fillvalue);
             else {
                 try {
                     Connection con = mConnector.CONN();
                     if (con == null) {
-                        errorMessage = "Tjek venligst din internet forbindelse";
+                        errorMessage = getString(R.string.login_login_message_checkinternet);
                     } else {
 
                         System.out.println("Forbindelse til DB er aktiv.");
@@ -109,7 +127,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                             if (roomNumberQuery.equals(roomNumberString)) {
 
                                 isSuccess = true;
-                                errorMessage = "Logget ind med rum-nr: " + roomNumberString;
+                                errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
 
                             } else
 

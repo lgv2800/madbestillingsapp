@@ -1,58 +1,50 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
-        android:title="Indstillinger">
+    <PreferenceCategory android:title="@string/settingsscreen_settings_label">
 
         <EditTextPreference
-            android:title="Rum-nr"
-            android:summary="Rum-nr som anvendes til bestillinger."
+            android:dialogTitle="@string/settingsscreen_settings_roomNumber_Input_label"
             android:key="roomNumberInput"
-            android:dialogTitle="Indtast rum-nr." />
+            android:summary="@string/settingsscreen_settings_roomNumber_summary"
+            android:title="@string/settingsscreen_settings_roomNumber" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="Tilgængelighed">
+    <PreferenceCategory android:title="@string/settingsscreen_accessibility_label">
 
         <Preference
-            android:title="Skrifttypestørrelse"
-            android:summary="Ændrer størrelsen på skrifttypen i appen."
-            android:key="changeFont">
-        </Preference>
+            android:key="changeFont"
+            android:summary="@string/settingsscreen_accessibility_fontsize_summary"
+            android:title="@string/settingsscreen_accessibility_fontsize"></Preference>
 
         <SwitchPreference
-            android:title="Oplæser"
-            android:summary="Ændrer størrelsen på skrifttypen i appen."
-            android:key="changeVoiceOver" />
+            android:key="changeVoiceOver"
+            android:summary="@string/settingsscreen_accessibility_voiceover_summary"
+            android:title="@string/settingsscreen_accessibility_voiceover" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="Visning">
+    <PreferenceCategory android:title="@string/settingsscreen_display_label">
 
         <ListPreference
-            android:title="Sprog"
-            android:summary="Skift appens sprog."
-            android:key="changeDisplayLanguage"
             android:entries="@array/languagePickerEntries"
-            android:entryValues="@array/languagePickerValues">
-        </ListPreference>
+            android:entryValues="@array/languagePickerValues"
+            android:key="changeDisplayLanguage"
+            android:summary="@string/settingsscreen_display_language_summary"
+            android:title="@string/settingsscreen_display_language"></ListPreference>
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="Om appen">
+    <PreferenceCategory android:title="@string/settingsscreen_aboutapp_label">
         <Preference
-            android:title="Hjælp"
-            android:summary="Hjælp til Madbestillingsappen."
-            android:key="helpScreen">
-        </Preference>
+            android:key="helpScreen"
+            android:summary="@string/settingsscreen_aboutapp_help_summary"
+            android:title="@string/settingsscreen_aboutapp_help"></Preference>
 
         <Preference
-            android:title="Om"
-            android:summary="Om Madbestillingsappen."
-            android:key="aboutScreen">
-        </Preference>
+            android:key="aboutScreen"
+            android:summary="@string/settingsscreen_aboutapp_about_summary"
+            android:title="@string/settingsscreen_aboutapp_about"></Preference>
 
     </PreferenceCategory>
 

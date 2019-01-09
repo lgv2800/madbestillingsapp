@@ -1,6 +1,7 @@
 package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -44,6 +46,22 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        //https://blog.lokalise.co/android-app-localization/
+        // Create a new Locale object
+        Locale locale = new Locale("ar");
+        Locale.setDefault(locale);
+        // Create a new configuration object
+        Configuration config = new Configuration();
+        // Set the locale of the new configuration
+        config.locale = locale;
+        // Update the configuration of the Accplication context
+        getResources().updateConfiguration(
+                config,
+                getResources().getDisplayMetrics()
+        );*/
+
         setContentView(R.layout.activity_main_screen);
 
         //Order logic

@@ -38,6 +38,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders_screen);
+        setTitle(getString(R.string.my_orders_title));
 
         mToolbarOrders = findViewById(R.id.my_OrdersToolbar);
         setSupportActionBar(mToolbarOrders);

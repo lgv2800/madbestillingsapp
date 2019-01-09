@@ -2,6 +2,12 @@
     <string name="app_name">Madbestillingsapp</string>
     <string name="login_number_hint">Nummer</string>
     <string name="login_login_button">Login</string>
+    <string name="login_login_message_errorhashappend">Det er opstået en fejl</string>
+    <string name="login_login_message_checkinternet">Tjek venligst din internet forbindelse</string>
+    <string name="login_login_message_fillvalue">Udfyld venligst feltet</string>
+    <string name="login_login_message_loginsuccesswithroomnumber">Logget ind med rum-nr: </string>
+
+    <string name="my_orders_title">Mine bestillinger</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -12,6 +18,33 @@
     <string name="cart_bestil">bestil</string>
     <string name="breadtype_dark">MØRK</string>
     <string name="breadtype_light">LYS</string>
+    <string name="bread_type">Brødtype</string>
+
+    <!-- Drawer menu -->
+    <string name="drawermenu_my_profile">Min profil</string>
+    <string name="drawermenu_my_orders">Mine bestillinger</string>
+    <string name="drawermenu_settings_language">Sprog</string>
+    <string name="drawermenu_settings_voiceover">Oplæser</string>
+    <string name="drawermenu_settings_miscsettings">Øvrige indstillinger</string>
+
+    <!-- Settings screen -->
+    <string name="settingsscreen_settings_roomNumber_Input_label">Indtast rum-nr.</string>
+    <string name="settingsscreen_settings_label">Indstillinger</string>
+    <string name="settingsscreen_settings_roomNumber">Rum-nr</string>
+    <string name="settingsscreen_settings_roomNumber_summary">Rum-nr som anvendes til bestillinger.</string>
+    <string name="settingsscreen_accessibility_label">Tilgængelighed</string>
+    <string name="settingsscreen_accessibility_fontsize">Skrifttypestørrelse</string>
+    <string name="settingsscreen_accessibility_fontsize_summary">Ændrer størrelsen på skrifttypen i appen.</string>
+    <string name="settingsscreen_accessibility_voiceover">Oplæser</string>
+    <string name="settingsscreen_accessibility_voiceover_summary">Aktiver oplæser i appen.</string>
+    <string name="settingsscreen_display_label">Visning</string>
+    <string name="settingsscreen_display_language">Sprog</string>
+    <string name="settingsscreen_display_language_summary">Skift appens sprog.</string>
+    <string name="settingsscreen_aboutapp_label">Om appen</string>
+    <string name="settingsscreen_aboutapp_help">Hjælp</string>
+    <string name="settingsscreen_aboutapp_help_summary">Hjælp til Madbestillingsappen.</string>
+    <string name="settingsscreen_aboutapp_about">Om</string>
+    <string name="settingsscreen_aboutapp_about_summary">Om Madbestillingsappen.</string>
 
     <!-- Main tekst -->
     <string name="action_added">Tilføjet til kurv</string>

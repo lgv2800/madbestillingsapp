@@ -49,7 +49,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
         else {
             setContentView(R.layout.activity_cart_screen);
-            setTitle("Kurv");
+            setTitle(getString(R.string.action_cart));
 
             findViewAndClickListener();
 

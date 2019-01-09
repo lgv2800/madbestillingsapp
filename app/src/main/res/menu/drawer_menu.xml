@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <item android:title="Min profil">
+    <item android:title="@string/drawermenu_my_profile">
         <menu>
 
             <group
@@ -13,7 +13,7 @@
                 <item
                     android:id="@+id/nav_myOrders"
                     android:icon="@drawable/ic_archive_black_24dp"
-                    android:title="Mine bestillinger" />
+                    android:title="@string/drawermenu_my_orders" />
             </group>
         </menu>
     </item>
@@ -28,17 +28,17 @@
                 <item
                     android:id="@+id/nav_mySettingsLanguage"
                     android:icon="@drawable/ic_language_black_24dp"
-                    android:title="Sprog" />
+                    android:title="@string/drawermenu_settings_language" />
                 <item
                     android:id="@+id/nav_mySettingsVoiceOverSwitch"
                     android:icon="@drawable/ic_record_voice_over_black_24dp"
-                    android:title="Oplæser"
+                    android:title="@string/drawermenu_settings_voiceover"
                     app:actionViewClass="android.widget.CheckBox"/>
 
                 <item
                     android:id="@+id/nav_mySettings"
                     android:icon="@drawable/ic_settings_applications_black_24dp"
-                    android:title="Øvrige indstillinger" />
+                    android:title="@string/drawermenu_settings_miscsettings" />
 
             </group>
         </menu>
