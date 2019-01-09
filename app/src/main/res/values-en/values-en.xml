@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English strings -->
+<resources>
+    <string name="app_name">Madbestillingsapp</string>
+    <string name="login_number_hint">Room number</string>
+    <string name="login_login_button">Login</string>
+    <string name="login_login_message_errorhashappend">An error has occurred</string>
+    <string name="login_login_message_checkinternet">Check your internet connection</string>
+    <string name="login_login_message_fillvalue">Room number cannot be empty</string>
+    <string name="login_login_message_loginsuccesswithroomnumber">Logged in with room number: </string>
+
+    <string name="my_orders_title">My orders</string>
+
+    <!--open close navigation drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Menu -->
+    <string name="menu_shopping">Shop</string>
+    <string name="cart_bestil">Order</string>
+    <string name="breadtype_dark">Dark</string>
+    <string name="breadtype_light">Light</string>
+    <string name="bread_type">Breadtype</string>
+
+    <!-- Drawer menu -->
+    <string name="drawermenu_my_profile">My profile</string>
+    <string name="drawermenu_my_orders">My orders</string>
+    <string name="drawermenu_settings_language">Language</string>
+    <string name="drawermenu_settings_voiceover">Voice over</string>
+    <string name="drawermenu_settings_miscsettings">Miscellaneous settings</string>
+
+    <!-- Settings screen -->
+    <string name="settingsscreen_settings_roomNumber_Input_label">Input room number.</string>
+    <string name="settingsscreen_settings_label">Settings</string>
+    <string name="settingsscreen_settings_roomNumber">Room number</string>
+    <string name="settingsscreen_settings_roomNumber_summary">Room number used to make orders.</string>
+    <string name="settingsscreen_accessibility_label">Accessibility</string>
+    <string name="settingsscreen_accessibility_fontsize">Font size</string>
+    <string name="settingsscreen_accessibility_fontsize_summary">Changes the font size in app.</string>
+    <string name="settingsscreen_accessibility_voiceover">Voice over</string>
+    <string name="settingsscreen_accessibility_voiceover_summary">Activates voice over in app.</string>
+    <string name="settingsscreen_display_label">Display</string>
+    <string name="settingsscreen_display_language">Language</string>
+    <string name="settingsscreen_display_language_summary">Changes app language..</string>
+    <string name="settingsscreen_aboutapp_label">About app.</string>
+    <string name="settingsscreen_aboutapp_help">Help</string>
+    <string name="settingsscreen_aboutapp_help_summary">In app help.</string>
+    <string name="settingsscreen_aboutapp_about">About</string>
+    <string name="settingsscreen_aboutapp_about_summary">About Madbestillingsappen.</string>
+
+    <!-- Main tekst -->
+    <string name="action_added">Added to cart</string>
+    <string name="action_cart">Cart</string>
+    <string name="page_amountchosen">Amount chosen</string>
+
+    <!-- Food -->
+    <string name="page1_food_title">Ham</string>
+    <string name="page1_food_main">Ham sandwich</string>
+    <string name="page1_food_sub">Ham, peas and cucumber</string>
+
+    <string name="page2_food_title">Eggs and shrimps</string>
+    <string name="page2_food_main">Egg sandwich</string>
+    <string name="page2_food_sub">Eggs, shrimp and salad</string>
+
+    <string name="page3_food_title">Prawn</string>
+    <string name="page3_food_main">Prawn sandwich</string>
+    <string name="page3_food_sub">Shrimp, dill and eggs</string>
+
+    <string name="page4_food_title">Salmon</string>
+    <string name="page4_food_main">Salmon sandwich</string>
+    <string name="page4_food_sub">Salmon, dill and asparagus</string>
+
+    <string name="page5_food_title">Pork</string>
+    <string name="page5_food_main">Pork sandwich</string>
+    <string name="page5_food_sub">Hamburger, radishes and salad</string>
+
+    <!-- SharedPreferences -->
+    <string name="current_order_pref">current_order_pref</string>
+    <string name="cart_delete_all">Remove all</string>
+    <string name="title_activity_my_orders_screen">My orders</string>
+</resources>
