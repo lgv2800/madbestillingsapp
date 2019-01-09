@@ -1,8 +1,10 @@
 package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -65,7 +67,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 config,
                 getResources().getDisplayMetrics()
         );*/
-
         setContentView(R.layout.activity_main_screen);
 
         //Order logic
@@ -162,6 +163,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         updateView();
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

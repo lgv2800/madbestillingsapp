@@ -1,8 +1,10 @@
 package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -31,7 +33,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        playIntro();
         /*
         //https://blog.lokalise.co/android-app-localization/
         // Create a new Locale object
@@ -162,6 +164,16 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         if (!a){
             loadingAnimation.setVisibility(View.INVISIBLE);
             mLoginButton.setVisibility(View.VISIBLE);
+        }
+    }
+    private void playIntro() {
+        SharedPreferences sp = getSharedPreferences("first_time", MODE_PRIVATE);
+        if (!sp.getBoolean("first", false)) {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean("first", true);
+            editor.apply();
+            Intent intent = new Intent(LoginScreen.this, IntroActivity.class); // Call the AppIntro java class
+            startActivity(intent);
         }
     }
 

@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#505160</color>
     <color name="colorAccent">#598234</color>
 
+    <!-- Complimentary colours -->
+    <color name="colorComplementary1">#9e8a68</color>
+    <color name="colorComplementary2">#b2cdea</color>
+
+
     <color name="white">#fff</color>
     <color name="grey">#7e7e7e</color>
 </resources>
