@@ -43,4 +43,5 @@
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Ryd alt</string>
     <string name="title_activity_my_orders_screen">Mine bestillinger</string>
+    <string name="login_error_login">Fejl ved login - prøv igen</string>
 </resources>
