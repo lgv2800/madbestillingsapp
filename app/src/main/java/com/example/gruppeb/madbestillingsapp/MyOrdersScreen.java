@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -110,17 +111,17 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             if (conditionInt < 0)
-                errorMessage = "Der er sket en fejl.";
+                errorMessage = getString(R.string.login_login_message_errorhashappend);
             else {
                 try {
                     Connection con = mConnector.CONN();
                     if (con == null) {
-                        errorMessage = "Tjek venligst din internet forbindelse";
+                        errorMessage = getString(R.string.login_login_message_checkinternet);
                     } else {
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        String query = " SELECT COUNT(*) FROM Orders WHERE roomNumber='" + roomNumberStringFromExtraToInt + "'";
+                        String query = " SELECT COUNT(*) FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
 
                         Statement stmt = con.createStatement();
 
@@ -152,7 +153,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                 ;
                 //numberOfOrdersInDBStringFromQuery =
                 numberOfOrdersInDB = Integer.parseInt(numberOfOrdersInDBStringFromQuery);
-                mNumberOfOrdersCountTextView.setText("Antallet af ordre på rum-nr: " + roomNumberStringFromExtraToInt + " er: " + numberOfOrdersInDB);
+                mNumberOfOrdersCountTextView.setText("Antallet af ordre på rum-nr: " + Order.ROOM_NUMBER + " er: " + numberOfOrdersInDB);
             }
 
             progressDialog.hide();
@@ -182,12 +183,12 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                 try {
                     Connection con = mConnector.CONN();
                     if (con == null) {
-                        errorMessage = "Tjek venligst din internet forbindelse";
+                        errorMessage = getString(R.string.login_login_message_checkinternet);
                     } else {
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberStringFromExtraToInt + "'";
+                        String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
 
                         Statement stmt = con.createStatement();
 

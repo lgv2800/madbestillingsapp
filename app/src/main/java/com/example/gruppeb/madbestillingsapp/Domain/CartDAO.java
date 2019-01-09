@@ -14,14 +14,14 @@ public class CartDAO implements IDAO {
     ArrayList<String> orderItem;
     ArrayList<String> breadType;
 
-    public CartDAO(ArrayList<String> orderItem, ArrayList<String> breadType){
-        this.orderItem=orderItem;
-        this.breadType=breadType;
+    public CartDAO(ArrayList<String> orderItem, ArrayList<String> breadType) {
+        this.orderItem = orderItem;
+        this.breadType = breadType;
 
     }
 
     @Override
-    public void executeAction(){
+    public void executeAction() {
         mConnector = new Connector();
         CartToDBAsyncTaskStatement mCartToDBAsyncTaskStatement = new CartToDBAsyncTaskStatement();
         mCartToDBAsyncTaskStatement.execute();
@@ -48,28 +48,28 @@ public class CartDAO implements IDAO {
 
         @Override
         protected String doInBackground(String... params) {
-            for (int i = 0 ; i<breadType.size(); i++) {
+            for (int i = 0; i < breadType.size(); i++) {
                 breadColor = breadType.get(i);
                 orderMenu = orderItem.get(i);
 
-                    try {
-                        Connection con = mConnector.CONN();
-                        if (con == null) {
+                try {
+                    Connection con = mConnector.CONN();
+                    if (con == null) {
 
-                        } else {
-                            String query = " INSERT INTO Orders (roomNumber, orderMenu, breadType) values('" + Order.ROOM_NUMBER + "','" + orderMenu + "','" + breadColor + "')";
+                    } else {
+                        String query = " INSERT INTO Orders (roomNumber, orderMenu, breadType) values('" + Order.ROOM_NUMBER + "','" + orderMenu + "','" + breadColor + "')";
 
-                            Statement stmt = con.createStatement();
-                            stmt.executeUpdate(query);
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(query);
 
-                            isSuccess = true;
-                        }
-                    } catch (Exception ex) {
-                        isSuccess = false;
+                        isSuccess = true;
                     }
+                } catch (Exception ex) {
+                    isSuccess = false;
                 }
-                return null;
             }
+            return null;
         }
-
     }
+
+}
