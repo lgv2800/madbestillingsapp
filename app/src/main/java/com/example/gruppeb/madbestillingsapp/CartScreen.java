@@ -29,7 +29,7 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbarCart;
-    ImageView mMainImage;
+    //ImageView mMainImage;
     ListView mListView;
     Button mOrderCart;
     TextView mDeleteAll;
@@ -69,7 +69,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                     })
                     .show();
         }
-        
+
     }
 
     //@Override
@@ -106,8 +106,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
 
     private void findViewAndClickListener() {
-        mMainImage = findViewById(R.id.cart_mainimage);
-        mMainImage.setOnClickListener(this);
+        //mMainImage = findViewById(R.id.cart_mainimage);
+        //mMainImage.setOnClickListener(this);
         mListView = findViewById(R.id.cart_list);
         mDeleteAll = findViewById(R.id.cart_delete_all);
         mDeleteAll.setOnClickListener(this);

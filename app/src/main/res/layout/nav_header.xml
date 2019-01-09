@@ -4,11 +4,23 @@
     android:layout_height="176dp"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:paddingLeft="30dp">
+    android:paddingLeft="15dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/nav_header_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="150dp"
+        android:text="Rum-nr"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white" />
+
+    <!--
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ballerup" />
+        android:src="@drawable/ballerup" /> -->
+
 
 </LinearLayout>
