@@ -26,7 +26,8 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
     Button mLoginButton;
-    EditText mRoomNumberEnterField;com.airbnb.lottie.LottieAnimationView loadingAnimation;
+    EditText mRoomNumberEnterField;
+    com.airbnb.lottie.LottieAnimationView loadingAnimation;
 
     Connector mConnector; //Database connector
 
@@ -68,7 +69,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         });
 
         //Database
-        mConnector = new     Connector();
+        mConnector = new Connector();
     }
 
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
@@ -138,7 +139,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 Order.ROOM_NUMBER = roomNumberString;
             }
 
-            if (!isSuccess){
+            if (!isSuccess) {
                 setAnimation(false);
             }
 
@@ -156,16 +157,17 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    private void setAnimation(Boolean a){
-        if (a){
+    private void setAnimation(Boolean a) {
+        if (a) {
             loadingAnimation.setVisibility(View.VISIBLE);
             mLoginButton.setVisibility(View.INVISIBLE);
         }
-        if (!a){
+        if (!a) {
             loadingAnimation.setVisibility(View.INVISIBLE);
             mLoginButton.setVisibility(View.VISIBLE);
         }
     }
+
     private void playIntro() {
         SharedPreferences sp = getSharedPreferences("first_time", MODE_PRIVATE);
         if (!sp.getBoolean("first", false)) {

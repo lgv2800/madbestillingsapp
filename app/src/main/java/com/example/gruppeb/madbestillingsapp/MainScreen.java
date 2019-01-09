@@ -90,6 +90,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        SharedPreferences sp = getSharedPreferences("first_time_guide", MODE_PRIVATE);
+        if (!sp.getBoolean("first", false)) {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean("first", true);
+            editor.apply();
+            playGuide();
+        }
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
@@ -97,6 +104,25 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        //Add fragments here
+        adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
+        adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
+        adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
+        adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
+        adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
+        viewPager.setAdapter(adapter);
+
+        //Add tabs
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
+        updateView();
+    }
+
+    private void playGuide() {
         new MaterialTapTargetPrompt.Builder(MainScreen.this)
                 .setTarget(R.id.tabs)
                 .setPrimaryText("Første trin - vælg ret")
@@ -161,25 +187,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     }
                 })
                 .show();
-
-        //Add fragments here
-        adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
-        adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
-        adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
-        adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
-        adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
-        viewPager.setAdapter(adapter);
-
-        //Add tabs
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
-
-        updateView();
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

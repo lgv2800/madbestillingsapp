@@ -1,6 +1,7 @@
 package com.example.gruppeb.madbestillingsapp;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -51,25 +52,36 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
             populateItemList();
 
-            new MaterialTapTargetPrompt.Builder(CartScreen.this)
-                    //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
-                    .setTarget(R.id.button_order)
-                    .setPrimaryText("Sidste trin - bestil maden")
-                    .setSecondaryText("Klik på bestil knappen for at afsende dine bestillinger.")
-                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                    .setPromptBackground(new RectanglePromptBackground())
-                    .setPromptFocal(new RectanglePromptFocal())
-                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                        @Override
-                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                // User has pressed the prompt target
-                            }
-                        }
-                    })
-                    .show();
+            SharedPreferences sp = getSharedPreferences("first_time_guide_cart", MODE_PRIVATE);
+            if (!sp.getBoolean("first", false)) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("first", true);
+                editor.apply();
+                playGuide_cart();
+            }
+
         }
 
+    }
+
+    private void playGuide_cart() {
+        new MaterialTapTargetPrompt.Builder(CartScreen.this)
+                //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
+                .setTarget(R.id.button_order)
+                .setPrimaryText("Sidste trin - bestil maden")
+                .setSecondaryText("Klik på bestil knappen for at afsende dine bestillinger.")
+                .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                .setPromptBackground(new RectanglePromptBackground())
+                .setPromptFocal(new RectanglePromptFocal())
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                    @Override
+                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                            // User has pressed the prompt target
+                        }
+                    }
+                })
+                .show();
     }
 
     //@Override
