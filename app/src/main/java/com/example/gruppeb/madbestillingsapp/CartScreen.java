@@ -21,6 +21,10 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import java.util.ArrayList;
 import java.util.Map;
 
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
+
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,17 +41,59 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
 
         mOrder = new Order();
-        if (mOrder.getCount(this)==0){
+        if (mOrder.getCount(this) == 0) {
             setEmptyView();
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_cart_screen);
             setTitle(getString(R.string.action_cart));
 
             findViewAndClickListener();
 
             populateItemList();
+
+            /*
+            new MaterialTapTargetPrompt.Builder(CartScreen.this)
+                    //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
+                    .setTarget(R.id.cart_delete_all)
+                    .setPrimaryText("For at tilføje retter til kurven.")
+                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                    .setSecondaryText("Text to display on the second line")
+                    .setPromptBackground(new RectanglePromptBackground())
+                    .setPromptFocal(new RectanglePromptFocal())
+                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+                    {
+                        @Override
+                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+                        {
+                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+                            {
+                                // User has pressed the prompt target
+
+
+                            }
+                        }
+                    })
+                    .show();*/
+
+            new MaterialTapTargetPrompt.Builder(CartScreen.this)
+                    //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
+                    .setTarget(R.id.button_order)
+                    .setPrimaryText("Sidste trin - bestil maden.")
+                    .setSecondaryText("Klik på bestil knappen for at afsende din bestillinger.")
+                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                    .setPromptBackground(new RectanglePromptBackground())
+                    .setPromptFocal(new RectanglePromptFocal())
+                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                        @Override
+                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                // User has pressed the prompt target
+                            }
+                        }
+                    })
+                    .show();
         }
+
 
     }
 
@@ -84,7 +130,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    private void findViewAndClickListener(){
+    private void findViewAndClickListener() {
         mMainImage = findViewById(R.id.cart_mainimage);
         mMainImage.setOnClickListener(this);
         mListView = findViewById(R.id.cart_list);
@@ -96,14 +142,14 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         createToolBar();
     }
 
-    private void setEmptyView(){
-            setContentView(R.layout.activity_cart_screen_empty);
-            com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
-            animation.setOnClickListener(v -> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
-            createToolBar();
+    private void setEmptyView() {
+        setContentView(R.layout.activity_cart_screen_empty);
+        com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
+        animation.setOnClickListener(v -> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
+        createToolBar();
     }
 
-    private void orderComplete(){
+    private void orderComplete() {
         setContentView(R.layout.activity_cart_screen_empty);
         com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
         animation.loop(false);
@@ -111,7 +157,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         final Handler handler = new Handler();
         handler.postDelayed(() -> setEmptyView(), 1300);
     }
-    private void createToolBar(){
+
+    private void createToolBar() {
         mToolbarCart = findViewById(R.id.my_CartToolbar);
         setSupportActionBar(mToolbarCart);
 

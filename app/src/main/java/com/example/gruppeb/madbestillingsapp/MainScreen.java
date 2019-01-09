@@ -33,6 +33,10 @@ import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
+
 public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType, NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar mToolbar;
@@ -90,6 +94,56 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        new MaterialTapTargetPrompt.Builder(MainScreen.this)
+                .setTarget(R.id.tabs)
+                .setPrimaryText("Første trin - vælg ret.")
+                .setSecondaryText("Text to display on the second line")
+                .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                .setPromptBackground(new RectanglePromptBackground())
+                .setPromptFocal(new RectanglePromptFocal())
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                    @Override
+                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                            // User has pressed the prompt target
+
+                            new MaterialTapTargetPrompt.Builder(MainScreen.this)
+                                    .setTarget(R.id.page1_chiplayout)
+                                    .setPrimaryText("Andet trin - vælg brødtype.")
+                                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                                    .setPromptBackground(new RectanglePromptBackground())
+                                    .setPromptFocal(new RectanglePromptFocal())
+                                    .setSecondaryText("Text to display on the second line")
+                                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                                        @Override
+                                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                                // User has pressed the prompt target
+
+                                                new MaterialTapTargetPrompt.Builder(MainScreen.this)
+                                                        .setTarget(R.id.fab)
+                                                        .setPrimaryText("Tredje trin - tilføj til kurv.")
+                                                        .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                                                        .setSecondaryText("Text to display on the second line")
+                                                        .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                                                            @Override
+                                                            public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                                                                if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                                                    // User has pressed the prompt target
+                                                                }
+                                                            }
+                                                        })
+                                                        .show();
+                                            }
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                })
+                .show();
+
 
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
@@ -223,7 +277,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         updateView();
     }

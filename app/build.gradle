@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'mysql:mysql-connector-java:5.1.23'
     implementation 'com.airbnb.android:lottie:2.7.0'
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:2.14.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
