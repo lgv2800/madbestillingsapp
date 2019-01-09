@@ -29,7 +29,7 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbarCart;
-    ImageView mMainImage;
+    //ImageView mMainImage;
     ListView mListView;
     Button mOrderCart;
     TextView mDeleteAll;
@@ -51,35 +51,11 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
             populateItemList();
 
-            /*
-            new MaterialTapTargetPrompt.Builder(CartScreen.this)
-                    //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
-                    .setTarget(R.id.cart_delete_all)
-                    .setPrimaryText("For at tilføje retter til kurven.")
-                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                    .setSecondaryText("Text to display on the second line")
-                    .setPromptBackground(new RectanglePromptBackground())
-                    .setPromptFocal(new RectanglePromptFocal())
-                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
-                    {
-                        @Override
-                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
-                        {
-                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
-                            {
-                                // User has pressed the prompt target
-
-
-                            }
-                        }
-                    })
-                    .show();*/
-
             new MaterialTapTargetPrompt.Builder(CartScreen.this)
                     //.setIcon(R.drawable.ic_shopping_cart_white_24dp)
                     .setTarget(R.id.button_order)
-                    .setPrimaryText("Sidste trin - bestil maden.")
-                    .setSecondaryText("Klik på bestil knappen for at afsende din bestillinger.")
+                    .setPrimaryText("Sidste trin - bestil maden")
+                    .setSecondaryText("Klik på bestil knappen for at afsende dine bestillinger.")
                     .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                     .setPromptBackground(new RectanglePromptBackground())
                     .setPromptFocal(new RectanglePromptFocal())
@@ -93,7 +69,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                     })
                     .show();
         }
-
 
     }
 
@@ -131,8 +106,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
 
     private void findViewAndClickListener() {
-        mMainImage = findViewById(R.id.cart_mainimage);
-        mMainImage.setOnClickListener(this);
+        //mMainImage = findViewById(R.id.cart_mainimage);
+        //mMainImage.setOnClickListener(this);
         mListView = findViewById(R.id.cart_list);
         mDeleteAll = findViewById(R.id.cart_delete_all);
         mDeleteAll.setOnClickListener(this);
