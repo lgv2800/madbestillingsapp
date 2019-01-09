@@ -8,13 +8,25 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <TextView
-        android:id="@+id/nav_header_textView"
+        android:id="@+id/nav_header_institut"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="70dp"
+        android:text="Ballerup kommune"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/nav_header_roomNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="150dp"
+        android:paddingTop="25dp"
         android:text="Rum-nr"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
     <!--
     <ImageView
