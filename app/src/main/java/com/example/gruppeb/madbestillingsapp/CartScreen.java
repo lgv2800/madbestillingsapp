@@ -2,6 +2,7 @@ package com.example.gruppeb.madbestillingsapp;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -20,9 +21,6 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import java.util.ArrayList;
 import java.util.Map;
 
-//Database import statements
-
-import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,10 +32,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
 
-    ProgressDialog progressDialog;
-
-    Connector mConnector; //Database connector
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +40,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         if (mOrder.getCount(this)==0){
             setEmptyView();
         }
-
         else {
             setContentView(R.layout.activity_cart_screen);
             setTitle("Kurv");
@@ -67,9 +60,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             IDAO dao = new CartDAO(mOrder.getOrder(this), mOrder.getBreadType(this));
             dao.executeAction();
             mOrder.clearOrder(this);
-            setEmptyView();
+            orderComplete();
         }
     }
+
 
     //https://developer.android.com/training/appbar/actions#java
     @Override
@@ -103,12 +97,20 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private void setEmptyView(){
-        setContentView(R.layout.activity_cart_screen_empty);
-        com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
-        animation.setOnClickListener(v-> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
-        createToolBar();
+            setContentView(R.layout.activity_cart_screen_empty);
+            com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
+            animation.setOnClickListener(v -> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
+            createToolBar();
     }
 
+    private void orderComplete(){
+        setContentView(R.layout.activity_cart_screen_empty);
+        com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
+        animation.loop(false);
+        animation.setAnimation(R.raw.success);
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> setEmptyView(), 1300);
+    }
     private void createToolBar(){
         mToolbarCart = findViewById(R.id.my_CartToolbar);
         setSupportActionBar(mToolbarCart);
