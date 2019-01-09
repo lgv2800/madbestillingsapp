@@ -34,6 +34,7 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
@@ -97,8 +98,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         new MaterialTapTargetPrompt.Builder(MainScreen.this)
                 .setTarget(R.id.tabs)
-                .setPrimaryText("Første trin - vælg ret.")
-                .setSecondaryText("Text to display on the second line")
+                .setPrimaryText("Første trin - vælg ret")
+                .setSecondaryText("Vælg den ønskede ret ved at swipe til højre")
                 .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
@@ -110,11 +111,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
                             new MaterialTapTargetPrompt.Builder(MainScreen.this)
                                     .setTarget(R.id.page1_chiplayout)
-                                    .setPrimaryText("Andet trin - vælg brødtype.")
+                                    .setPrimaryText("Andet trin - vælg brødtype")
                                     .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                                     .setPromptBackground(new RectanglePromptBackground())
                                     .setPromptFocal(new RectanglePromptFocal())
-                                    .setSecondaryText("Text to display on the second line")
+                                    .setSecondaryText("Vælg den ønskede brødtype")
                                     .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                                         @Override
                                         public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
@@ -123,14 +124,30 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
                                                 new MaterialTapTargetPrompt.Builder(MainScreen.this)
                                                         .setTarget(R.id.fab)
-                                                        .setPrimaryText("Tredje trin - tilføj til kurv.")
+                                                        .setPrimaryText("Tredje trin - tilføj til kurv")
                                                         .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                                        .setSecondaryText("Text to display on the second line")
+                                                        .setSecondaryText("Tilføj retten til kurven")
                                                         .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                                                             @Override
                                                             public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
                                                                 if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
                                                                     // User has pressed the prompt target
+
+                                                                    new MaterialTapTargetPrompt.Builder(MainScreen.this)
+                                                                            .setTarget(R.id.shopping_cart)
+                                                                            .setIcon(R.drawable.ic_shopping_cart_white_24dp)
+                                                                            .setPrimaryText("Fjerde trin - gå til kurv")
+                                                                            .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                                                                            .setSecondaryText("Åbn kurven for at se dine bestillinger")
+                                                                            .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                                                                                @Override
+                                                                                public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
+                                                                                    if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                                                                        // User has pressed the prompt target
+                                                                                    }
+                                                                                }
+                                                                            })
+                                                                            .show();
                                                                 }
                                                             }
                                                         })
@@ -143,7 +160,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     }
                 })
                 .show();
-
 
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
