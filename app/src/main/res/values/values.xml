@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="languagePickerEntries">
-        <item>Dansk</item>
-        <item>Engelsk</item>
-        <item>Arabisk</item>
+        <item>@string/language_danish</item>
+        <item>@string/language_english</item>
+        <item>@string/language_arabic</item>
     </string-array>
     <string-array name="languagePickerValues">
         <item>da</item>
