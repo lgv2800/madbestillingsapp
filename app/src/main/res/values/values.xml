@@ -6,8 +6,8 @@
         <item>Arabisk</item>
     </string-array>
     <string-array name="languagePickerValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>da</item>
+        <item>en</item>
+        <item>ar</item>
     </string-array>
 </resources>

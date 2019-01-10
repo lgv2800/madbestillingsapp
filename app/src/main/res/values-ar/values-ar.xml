@@ -14,6 +14,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Sprog -->
+    <string name="language_danish">دانماركي</string>
+    <string name="language_english">الإنجليزية</string>
+    <string name="language_arabic">العربية</string>
+
     <!-- Menu -->
     <string name="menu_shopping">متجر</string>
     <string name="cart_bestil">طلب</string>
@@ -22,6 +27,8 @@
     <string name="bread_type">نوع الخبز</string>
 
     <!-- Drawer menu -->
+    <string name="drawermenu_header_institut">بلدية باليروب</string>
+    <string name="drawermenu_header_roomNumber">رقم الغرفة : </string>
     <string name="drawermenu_my_profile">ملفي الشخصي</string>
     <string name="drawermenu_my_orders">طلباتي</string>
     <string name="drawermenu_settings_language">اللغة</string>

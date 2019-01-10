@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:paddingTop="70dp"
-        android:text="Ballerup kommune"
+        android:text="@string/drawermenu_header_institut"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
         android:textSize="25dp"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="25dp"
-        android:text="Rum-nr"
+        android:text="@string/drawermenu_header_roomNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
         android:textSize="20dp" />

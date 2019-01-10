@@ -54,20 +54,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-        //https://blog.lokalise.co/android-app-localization/
-        // Create a new Locale object
-        Locale locale = new Locale("ar");
-        Locale.setDefault(locale);
-        // Create a new configuration object
-        Configuration config = new Configuration();
-        // Set the locale of the new configuration
-        config.locale = locale;
-        // Update the configuration of the Accplication context
-        getResources().updateConfiguration(
-                config,
-                getResources().getDisplayMetrics()
-        );*/
         setContentView(R.layout.activity_main_screen);
 
         //Order logic
@@ -87,7 +73,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView roomNumberNavbar = (TextView) headerView.findViewById(R.id.nav_header_roomNumber);
-        roomNumberNavbar.setText("Rum-nr: " + Order.ROOM_NUMBER);
+        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + Order.ROOM_NUMBER);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

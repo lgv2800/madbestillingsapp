@@ -1,5 +1,6 @@
 package com.example.gruppeb.madbestillingsapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -25,9 +26,12 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
+    private String languageFromSharedPrefs;
     Button mLoginButton;
     EditText mRoomNumberEnterField;
     com.airbnb.lottie.LottieAnimationView loadingAnimation;
+
+    SharedPreferences settingsSharedPreferences;
 
     Connector mConnector; //Database connector
 
@@ -35,10 +39,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         playIntro();
-        /*
+
+        settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
+        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
+
         //https://blog.lokalise.co/android-app-localization/
         // Create a new Locale object
-        Locale locale = new Locale("ar");
+        Locale locale = new Locale(languageFromSharedPrefs);
         Locale.setDefault(locale);
         // Create a new configuration object
         Configuration config = new Configuration();
@@ -48,7 +55,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         getResources().updateConfiguration(
                 config,
                 getResources().getDisplayMetrics()
-        );*/
+        );
 
         setContentView(R.layout.activity_login_screen);
 

@@ -2,6 +2,7 @@ package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
@@ -10,11 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.Reader;
+
 public class SettingsScreen extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 
     private Preference languagePicker;
     private Preference aboutScreen;
     private Preference voiceOverSwitch;
+    private ListPreference listPreference;
 
     private Boolean voiceOverStatus;
 
@@ -28,14 +33,32 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
 
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
 
-        languagePicker = findPreference("changeDisplayLanguage");
-        languagePicker.setOnPreferenceClickListener(this);
-
         aboutScreen = findPreference("aboutScreen");
         aboutScreen.setOnPreferenceClickListener(this);
 
         voiceOverSwitch = findPreference("changeVoiceOver");
         voiceOverSwitch.setOnPreferenceClickListener(this);
+
+        //https://stackoverflow.com/a/8155029/8968120
+        listPreference = (ListPreference) findPreference("changeDisplayLanguage");
+        if (listPreference.getValue() == null) {
+            listPreference.setValueIndex(0);
+        }
+        listPreference.setSummary(listPreference.getValue().toString());
+        listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                preference.setSummary(newValue.toString());
+
+                editorSettings = settingsSharedPreferences.edit();
+                editorSettings.putString("languagePref", newValue.toString());
+                editorSettings.apply();
+
+                System.out.print(newValue.toString());
+
+                return true;
+            }
+        });
     }
 
     @Override

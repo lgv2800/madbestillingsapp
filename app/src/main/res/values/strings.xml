@@ -13,6 +13,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Sprog -->
+    <string name="language_danish">Dansk</string>
+    <string name="language_english">Engelsk</string>
+    <string name="language_arabic">Arabisk</string>
+
     <!-- Menu -->
     <string name="menu_shopping">Shop</string>
     <string name="cart_bestil">bestil</string>
@@ -21,6 +26,8 @@
     <string name="bread_type">Brødtype</string>
 
     <!-- Drawer menu -->
+    <string name="drawermenu_header_institut">Ballerup Kommune</string>
+    <string name="drawermenu_header_roomNumber">Rum-nr: </string>
     <string name="drawermenu_my_profile">Min profil</string>
     <string name="drawermenu_my_orders">Mine bestillinger</string>
     <string name="drawermenu_settings_language">Sprog</string>
