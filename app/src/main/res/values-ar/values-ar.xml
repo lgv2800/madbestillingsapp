@@ -14,10 +14,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Sprog -->
+    <!-- Language -->
     <string name="language_danish">دانماركي</string>
     <string name="language_english">الإنجليزية</string>
     <string name="language_arabic">العربية</string>
+
+    <!-- Onboard screen -->
+    <string name="onboard_first_title">اطلب الافطار</string>
+    <string name="onboard_first_desc">يمكنك طلب من الهاتف الذكي أو الكمبيوتر اللوحي.</string>
+    <string name="onboard_second_title">تأثير</string>
+    <string name="onboard_second_desc">يمكنك اختيار الحق ونوع الخبز.</string>
+    <string name="onboard_third_title">قائمة اليوم</string>
+    <string name="onboard_third_desc">يمكنك رؤية القائمة لهذه الليلة.</string>
 
     <!-- Intro guide -->
     <string name="intro_guide_first_step_title">الخطوة الأولى - اختر الطبق</string>

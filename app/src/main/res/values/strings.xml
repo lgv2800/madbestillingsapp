@@ -13,10 +13,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Sprog -->
+    <!-- Language -->
     <string name="language_danish">Dansk</string>
     <string name="language_english">Engelsk</string>
     <string name="language_arabic">Arabisk</string>
+
+    <!-- Onboard screen -->
+    <string name="onboard_first_title">Bestil frokost</string>
+    <string name="onboard_first_desc">Du kan bestille fra din smartphone eller tablet.</string>
+    <string name="onboard_second_title">Indflydelse</string>
+    <string name="onboard_second_desc">Du kan vælge ret og brødtype.</string>
+    <string name="onboard_third_title">Dagens menu</string>
+    <string name="onboard_third_desc">Du kan se menuen for i aften.</string>
 
     <!-- Intro guide -->
     <string name="intro_guide_first_step_title">Første trin - vælg ret</string>

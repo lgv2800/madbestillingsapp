@@ -15,10 +15,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Sprog -->
+    <!-- Language -->
     <string name="language_danish">Danish</string>
     <string name="language_english">English</string>
     <string name="language_arabic">Arabic</string>
+
+    <!-- Onboard screen -->
+    <string name="onboard_first_title">Order breakfast</string>
+    <string name="onboard_first_desc">You can order from your smartphone or tablet.</string>
+    <string name="onboard_second_title">Influence</string>
+    <string name="onboard_second_desc">You can choose the right and type of bread.</string>
+    <string name="onboard_third_title">Menu of the day</string>
+    <string name="onboard_third_desc">You can see the menu for tonight.</string>
 
     <!-- Intro guide -->
     <string name="intro_guide_first_step_title">First step - choose dish</string>

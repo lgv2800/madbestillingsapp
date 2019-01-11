@@ -16,7 +16,7 @@ import com.github.paolorotolo.appintro.model.SliderPage;
 
 /**
  * Skelet fra https://github.com/PaoloRotolo/AppIntro
- *
+ * <p>
  * Billeder lånt af Pixabay.com og Wikimedia.org (fri deling, både privat og kommercielt)
  */
 public class IntroActivity extends AppIntro2 {
@@ -27,26 +27,26 @@ public class IntroActivity extends AppIntro2 {
 
         /**
          * i det følgende produceres siderne automatisk vha. klassen SampleSlides konstruktør
-          */
+         */
 
 
         SliderPage sliderPage = new SliderPage();
-        sliderPage.setTitle("Bestil frokost");
-        sliderPage.setDescription("Du kan bestille fra din smartphone eller tablet.");
+        sliderPage.setTitle(getString(R.string.onboard_first_title));
+        sliderPage.setDescription(getString(R.string.onboard_first_desc));
         sliderPage.setImageDrawable(R.mipmap.oboard_food1);
         sliderPage.setBgColor(getColor(R.color.colorComplementary1));
         addSlide(AppIntroFragment.newInstance(sliderPage));
 
         SliderPage sliderPage1 = new SliderPage();
-        sliderPage1.setTitle("Indflydelse");
-        sliderPage1.setDescription("Du kan vælge ret og brødtype.");
+        sliderPage1.setTitle(getString(R.string.onboard_second_title));
+        sliderPage1.setDescription(getString(R.string.onboard_second_desc));
         sliderPage1.setImageDrawable(R.mipmap.onboard_food3);
         sliderPage1.setBgColor(getColor(R.color.colorPrimaryDark));
         addSlide(AppIntroFragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
-        sliderPage2.setTitle("Dagens menu");
-        sliderPage2.setDescription("Du kan se menuen for i aften.");
+        sliderPage2.setTitle(getString(R.string.onboard_third_title));
+        sliderPage2.setDescription(getString(R.string.onboard_third_desc));
         sliderPage2.setImageDrawable(R.mipmap.onboard_food2);
         sliderPage2.setBgColor(getColor(R.color.colorComplementary2));
         addSlide(AppIntroFragment.newInstance(sliderPage2));
