@@ -19,6 +19,18 @@
     <string name="language_english">الإنجليزية</string>
     <string name="language_arabic">العربية</string>
 
+    <!-- Intro guide -->
+    <string name="intro_guide_first_step_title">الخطوة الأولى - اختر الطبق</string>
+    <string name="intro_guide_first_step_desc">حدد الطبق المطلوب عن طريق التمرير سريعًا إلى اليمين</string>
+    <string name="intro_guide_second_step_title">الخطوة الثانية - حدد نوع الخبز</string>
+    <string name="intro_guide_second_step_desc">حدد نوع الخبز المطلوب</string>
+    <string name="intro_guide_third_step_title">الخطوة الثالثة - إضافة إلى السلة</string>
+    <string name="intro_guide_third_step_desc">أضف الحق إلى السلة</string>
+    <string name="intro_guide_fourth_step_title">الخطوة الرابعة - اذهب إلى السلة</string>
+    <string name="intro_guide_fourth_step_desc">افتح السلة لترى طلباتك</string>
+    <string name="intro_guide_last_step_title">الخطوة الأخيرة - طلب الطعام</string>
+    <string name="intro_guide_last_step_desc">انقر على زر الطلب لإرسال طلباتك</string>
+
     <!-- Menu -->
     <string name="menu_shopping">متجر</string>
     <string name="cart_bestil">طلب</string>

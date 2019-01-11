@@ -20,6 +20,18 @@
     <string name="language_english">English</string>
     <string name="language_arabic">Arabic</string>
 
+    <!-- Intro guide -->
+    <string name="intro_guide_first_step_title">First step - choose dish</string>
+    <string name="intro_guide_first_step_desc">Select the desired dish by swiping to the right</string>
+    <string name="intro_guide_second_step_title">Second step - choose breadtype</string>
+    <string name="intro_guide_second_step_desc">Select the desired bread type</string>
+    <string name="intro_guide_third_step_title">Third step - add to basket</string>
+    <string name="intro_guide_third_step_desc">Add the right to the basket</string>
+    <string name="intro_guide_fourth_step_title">Fourth step - go to basket</string>
+    <string name="intro_guide_fourth_step_desc">Open the basket to see your orders</string>
+    <string name="intro_guide_last_step_title">Last step - order the food</string>
+    <string name="intro_guide_last_step_desc">Click the order button to send your orders</string>
+
     <!-- Menu -->
     <string name="menu_shopping">Shop</string>
     <string name="cart_bestil">Order</string>

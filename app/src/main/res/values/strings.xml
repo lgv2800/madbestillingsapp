@@ -18,6 +18,18 @@
     <string name="language_english">Engelsk</string>
     <string name="language_arabic">Arabisk</string>
 
+    <!-- Intro guide -->
+    <string name="intro_guide_first_step_title">Første trin - vælg ret</string>
+    <string name="intro_guide_first_step_desc">Vælg den ønskede ret ved at swipe til højre</string>
+    <string name="intro_guide_second_step_title">Andet trin - vælg brødtype</string>
+    <string name="intro_guide_second_step_desc">Vælg den ønskede brødtype</string>
+    <string name="intro_guide_third_step_title">Tredje trin - tilføj til kurv</string>
+    <string name="intro_guide_third_step_desc">Tilføj retten til kurven</string>
+    <string name="intro_guide_fourth_step_title">Fjerde trin - gå til kurv</string>
+    <string name="intro_guide_fourth_step_desc">Åbn kurven for at se dine bestillinger</string>
+    <string name="intro_guide_last_step_title">Sidste trin - bestil maden</string>
+    <string name="intro_guide_last_step_desc">Klik på bestil knappen for at afsende dine bestillinger.</string>
+
     <!-- Menu -->
     <string name="menu_shopping">Shop</string>
     <string name="cart_bestil">bestil</string>

@@ -115,8 +115,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private void playGuide() {
         new MaterialTapTargetPrompt.Builder(MainScreen.this)
                 .setTarget(R.id.tabs)
-                .setPrimaryText("Første trin - vælg ret")
-                .setSecondaryText("Vælg den ønskede ret ved at swipe til højre")
+                .setPrimaryText(getString(R.string.intro_guide_first_step_title))
+                .setSecondaryText(getString(R.string.intro_guide_first_step_desc))
                 .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
@@ -128,11 +128,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
                             new MaterialTapTargetPrompt.Builder(MainScreen.this)
                                     .setTarget(R.id.page1_chiplayout)
-                                    .setPrimaryText("Andet trin - vælg brødtype")
+                                    .setPrimaryText(getString(R.string.intro_guide_second_step_title))
                                     .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                                     .setPromptBackground(new RectanglePromptBackground())
                                     .setPromptFocal(new RectanglePromptFocal())
-                                    .setSecondaryText("Vælg den ønskede brødtype")
+                                    .setSecondaryText(getString(R.string.intro_guide_second_step_desc))
                                     .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                                         @Override
                                         public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
@@ -141,9 +141,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
                                                 new MaterialTapTargetPrompt.Builder(MainScreen.this)
                                                         .setTarget(R.id.fab)
-                                                        .setPrimaryText("Tredje trin - tilføj til kurv")
+                                                        .setPrimaryText(getString(R.string.intro_guide_third_step_title))
                                                         .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                                        .setSecondaryText("Tilføj retten til kurven")
+                                                        .setSecondaryText(getString(R.string.intro_guide_third_step_desc))
                                                         .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                                                             @Override
                                                             public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
@@ -153,9 +153,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                                                                     new MaterialTapTargetPrompt.Builder(MainScreen.this)
                                                                             .setTarget(R.id.shopping_cart)
                                                                             .setIcon(R.drawable.ic_shopping_cart_white_24dp)
-                                                                            .setPrimaryText("Fjerde trin - gå til kurv")
+                                                                            .setPrimaryText(getString(R.string.intro_guide_fourth_step_title))
                                                                             .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                                                            .setSecondaryText("Åbn kurven for at se dine bestillinger")
+                                                                            .setSecondaryText(getString(R.string.intro_guide_fourth_step_desc))
                                                                             .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
                                                                                 @Override
                                                                                 public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
