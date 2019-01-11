@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,8 @@ import java.io.Reader;
 
 public class SettingsScreen extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 
-    private Preference languagePicker;
     private Preference aboutScreen;
+    private Preference roomNumberInput;
     private Preference voiceOverSwitch;
     private ListPreference listPreference;
 
@@ -38,6 +39,9 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
 
         voiceOverSwitch = findPreference("changeVoiceOver");
         voiceOverSwitch.setOnPreferenceClickListener(this);
+
+        roomNumberInput = findPreference("roomNumberInput");
+        roomNumberInput.setOnPreferenceClickListener(this);
 
         //https://stackoverflow.com/a/8155029/8968120
         listPreference = (ListPreference) findPreference("changeDisplayLanguage");
@@ -68,6 +72,10 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
             voiceOverStatusSwitch();
         }
 
+        if (preference == roomNumberInput) {
+            roomNumberInput();
+        }
+
         return true;
     }
 
@@ -96,5 +104,16 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
         dlgAlert.setMessage("Madbestillingsappen er udviklet af Gruppe B, ITØ 2018.");
         dlgAlert.setTitle("Om appen");
         dlgAlert.create().show();
+    }
+
+    private void roomNumberInput() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String roomNumberFromPrefsManager = preferences.getString("roomNumberInput", "");
+
+        editorSettings = settingsSharedPreferences.edit();
+        editorSettings.putString("roomNumberInput", roomNumberFromPrefsManager);
+        editorSettings.apply();
+        editorSettings.commit();
+        System.out.println(roomNumberFromPrefsManager);
     }
 }

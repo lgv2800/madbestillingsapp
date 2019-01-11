@@ -6,7 +6,8 @@
             android:dialogTitle="@string/settingsscreen_settings_roomNumber_Input_label"
             android:key="roomNumberInput"
             android:summary="@string/settingsscreen_settings_roomNumber_summary"
-            android:title="@string/settingsscreen_settings_roomNumber" />
+            android:title="@string/settingsscreen_settings_roomNumber"
+            android:inputType="number" />
 
     </PreferenceCategory>
 
