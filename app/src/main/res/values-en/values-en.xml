@@ -8,6 +8,7 @@
     <string name="login_login_message_checkinternet">Check your internet connection</string>
     <string name="login_login_message_fillvalue">Room number cannot be empty</string>
     <string name="login_login_message_loginsuccesswithroomnumber">Logged in with room number: </string>
+    <string name="login_login_checkbox_rememberroomnumber">Remember room number?</string>
 
     <string name="my_orders_title">My orders</string>
 

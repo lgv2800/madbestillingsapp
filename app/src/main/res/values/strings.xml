@@ -6,6 +6,7 @@
     <string name="login_login_message_checkinternet">Tjek venligst din internet forbindelse</string>
     <string name="login_login_message_fillvalue">Udfyld venligst feltet</string>
     <string name="login_login_message_loginsuccesswithroomnumber">Logget ind med rum-nr: </string>
+    <string name="login_login_checkbox_rememberroomnumber">Husk dette rum nr?</string>
 
     <string name="my_orders_title">Mine bestillinger</string>
 

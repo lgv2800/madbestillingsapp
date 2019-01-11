@@ -129,7 +129,7 @@
         android:buttonTint="@color/white"
         android:checked="false"
         android:duplicateParentState="false"
-        android:text="Husk dette rum nr?"
+        android:text="@string/login_login_checkbox_rememberroomnumber"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="bold"

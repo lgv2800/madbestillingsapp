@@ -3,11 +3,12 @@
 <resources>
     <string name="app_name">تطبيق نظام الأغذية</string>
     <string name="login_number_hint">الرقم</string>
-    <string name="login_login_button">الولوج</string>
+    <string name="login_login_button">الدخول</string>
     <string name="login_login_message_errorhashappend">حدث خطأ</string>
     <string name="login_login_message_checkinternet">تحقق من صحة الإتصال</string>
     <string name="login_login_message_fillvalue">يرجى ملء الحقل</string>
     <string name="login_login_message_loginsuccesswithroomnumber">تم تسجيل الدخول برقم الغرفة : </string>
+    <string name="login_login_checkbox_rememberroomnumber">تذكر رقم الغرفة؟</string>
     <string name="my_orders_title">طلباتي</string>
 
     <!--open close navigation drawer-->
