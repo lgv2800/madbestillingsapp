@@ -12,7 +12,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +30,22 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     private String languageFromLocalgetDefault;
     private String languageFromSharedPrefs;
+    private String mRoomNumberFromSharedPrefs;
+
+    private Boolean mBooleanRememberRoomNumber;
+    private Boolean mBooleanRememberRoomNumberFromSharedPrefs;
+    private CheckBox mCheckBoxRememberRoomNumber;
+
+    private ImageView mImageViewFlagDanish;
+    private ImageView mImageViewFlagEnglish;
+    private ImageView mImageViewFlagArabic;
+
     Button mLoginButton;
     EditText mRoomNumberEnterField;
     com.airbnb.lottie.LottieAnimationView loadingAnimation;
 
     SharedPreferences settingsSharedPreferences;
+    SharedPreferences.Editor editorSettings;
 
     Connector mConnector; //Database connector
 
@@ -69,6 +82,52 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mLoginButton.setOnClickListener(this);
 
         loadingAnimation = findViewById(R.id.login_animation_loading);
+
+        mCheckBoxRememberRoomNumber = findViewById(R.id.checkBox_rememberRoomNumber);
+
+        mBooleanRememberRoomNumberFromSharedPrefs = settingsSharedPreferences.getBoolean("checkBoxRoomNumber", false);
+        mRoomNumberFromSharedPrefs = settingsSharedPreferences.getString("roomNumberInput", "");
+
+        if (mBooleanRememberRoomNumberFromSharedPrefs == true) {
+            Intent intent = new Intent(this, MainScreen.class);
+            this.startActivity(intent);
+            this.finishActivity(0);
+            System.out.println(mRoomNumberFromSharedPrefs);
+            Order.ROOM_NUMBER = mRoomNumberFromSharedPrefs;
+        }
+
+        mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
+        mImageViewFlagDanish.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Det valgte sprog er dansk.", Toast.LENGTH_SHORT).show();
+
+                editorSettings = settingsSharedPreferences.edit();
+                editorSettings.putString("languagePref", "da");
+                editorSettings.apply();
+            }
+        });
+
+        mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
+        mImageViewFlagEnglish.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Det valgte sprog er engelsk.", Toast.LENGTH_SHORT).show();
+
+                editorSettings = settingsSharedPreferences.edit();
+                editorSettings.putString("languagePref", "en");
+                editorSettings.apply();
+            }
+        });
+
+        mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
+        mImageViewFlagArabic.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Det valgte sprog er arabisk.", Toast.LENGTH_SHORT).show();
+
+                editorSettings = settingsSharedPreferences.edit();
+                editorSettings.putString("languagePref", "ar");
+                editorSettings.apply();
+            }
+        });
 
         mRoomNumberEnterField = findViewById(R.id.login_number);
 
@@ -166,6 +225,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         if (v == mLoginButton) {
             loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
             mloginAsyncTaskStatement.execute();
+
+            if (mCheckBoxRememberRoomNumber.isChecked()) {
+                Toast.makeText(getBaseContext(), "Rum nr huskes.", Toast.LENGTH_SHORT).show();
+                mBooleanRememberRoomNumber = true;
+                setCheckBoxRememberRoomNumber();
+            }
+
             setAnimation(true);
         }
     }
@@ -179,6 +245,19 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             loadingAnimation.setVisibility(View.INVISIBLE);
             mLoginButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void setCheckBoxRememberRoomNumber() {
+        settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
+
+        editorSettings = settingsSharedPreferences.edit();
+        editorSettings.putBoolean("checkBoxRoomNumber", mBooleanRememberRoomNumber);
+        editorSettings.putString("roomNumberInput", Order.ROOM_NUMBER);
+        editorSettings.apply();
+        editorSettings.commit();
+
+        System.out.println(mBooleanRememberRoomNumber);
+
     }
 
     private void playIntro() {
