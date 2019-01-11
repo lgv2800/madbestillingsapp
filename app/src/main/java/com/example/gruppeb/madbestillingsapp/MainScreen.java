@@ -111,7 +111,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         updateView();
     }
-
+    
     private void playGuide() {
         new MaterialTapTargetPrompt.Builder(MainScreen.this)
                 .setTarget(R.id.tabs)
