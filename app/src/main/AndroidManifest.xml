@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LoginScreen"
+        <activity
+            android:name=".LoginScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,23 +25,24 @@
         </activity>
         <activity
             android:name=".MainScreen"
-            android:theme="@style/AppTheme"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity android:name=".CartScreen" />
         <activity
             android:name=".MyOrdersScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".SettingsScreen"
+        <activity
+            android:name=".SettingsScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".IntroActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".IntroActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="aae01a62dd6acb92f05d6f60d3b838043ebaee1f" />

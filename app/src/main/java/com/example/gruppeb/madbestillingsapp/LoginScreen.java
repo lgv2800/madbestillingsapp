@@ -39,6 +39,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         playIntro();
 
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);

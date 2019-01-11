@@ -31,10 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 
+import io.fabric.sdk.android.Fabric;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
@@ -53,6 +55,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main_screen);
 
@@ -111,7 +115,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         updateView();
     }
-    
+
     private void playGuide() {
         new MaterialTapTargetPrompt.Builder(MainScreen.this)
                 .setTarget(R.id.tabs)
