@@ -26,6 +26,7 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
+    private String languageFromLocalgetDefault;
     private String languageFromSharedPrefs;
     Button mLoginButton;
     EditText mRoomNumberEnterField;
@@ -41,7 +42,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         playIntro();
 
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
-        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
+
+        languageFromLocalgetDefault = Locale.getDefault().getLanguage();
+
+        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", languageFromLocalgetDefault);
+        //languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
 
         //https://blog.lokalise.co/android-app-localization/
         // Create a new Locale object
