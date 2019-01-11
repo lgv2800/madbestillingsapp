@@ -45,19 +45,16 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
             listPreference.setValueIndex(0);
         }
         listPreference.setSummary(listPreference.getValue().toString());
-        listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                preference.setSummary(newValue.toString());
+        listPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            preference.setSummary(newValue.toString());
 
-                editorSettings = settingsSharedPreferences.edit();
-                editorSettings.putString("languagePref", newValue.toString());
-                editorSettings.apply();
+            editorSettings = settingsSharedPreferences.edit();
+            editorSettings.putString("languagePref", newValue.toString());
+            editorSettings.apply();
 
-                System.out.print(newValue.toString());
+            System.out.print(newValue.toString());
 
-                return true;
-            }
+            return true;
         });
     }
 
@@ -77,22 +74,19 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
     private void voiceOverStatusSwitch() {
         SwitchPreference soundSwitch = (SwitchPreference) findPreference("soundEffectsSwitch");
         if (soundSwitch != null) {
-            soundSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    voiceOverStatus = settingsSharedPreferences.getBoolean("soundPref", true);
+            soundSwitch.setOnPreferenceChangeListener((preference, o) -> {
+                voiceOverStatus = settingsSharedPreferences.getBoolean("soundPref", true);
 
-                    if (voiceOverStatus) {
-                        editorSettings = settingsSharedPreferences.edit();
-                        editorSettings.putBoolean("soundPref", voiceOverStatus);
-                        editorSettings.apply();
-                    } else {
-                        editorSettings = settingsSharedPreferences.edit();
-                        editorSettings.putBoolean("soundPref", voiceOverStatus);
-                        editorSettings.apply();
-                    }
-                    return true;
+                if (voiceOverStatus) {
+                    editorSettings = settingsSharedPreferences.edit();
+                    editorSettings.putBoolean("soundPref", voiceOverStatus);
+                    editorSettings.apply();
+                } else {
+                    editorSettings = settingsSharedPreferences.edit();
+                    editorSettings.putBoolean("soundPref", voiceOverStatus);
+                    editorSettings.apply();
                 }
+                return true;
             });
         }
     }

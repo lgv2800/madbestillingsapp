@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Madbestillingsapp</string>
     <string name="login_number_hint">Nummer</string>
     <string name="login_login_button">Login</string>
@@ -83,5 +83,9 @@
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Ryd alt</string>
     <string name="title_activity_my_orders_screen">Mine bestillinger</string>
-    <string name="login_error_login">Fejl ved login - prøv igen</string>
+    <string name="login_error_login" tools:ignore="MissingTranslation">Fejl ved login - prøv igen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" tools:ignore="MissingTranslation">Hello blank fragment</string>
+    <string name="pref_settings" tools:ignore="MissingTranslation">settingsPref</string>
 </resources>
