@@ -80,10 +80,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        SharedPreferences sp = getSharedPreferences("first_time_guide", MODE_PRIVATE);
-        if (!sp.getBoolean("first", false)) {
+        SharedPreferences sp = getSharedPreferences("first_time", MODE_PRIVATE);
+        if (!sp.getBoolean("first_prompt", false)) {
             SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("first", true);
+            editor.putBoolean("first_prompt", true);
             editor.apply();
             playGuide();
         }

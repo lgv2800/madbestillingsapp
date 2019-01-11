@@ -177,9 +177,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     private void playIntro() {
         SharedPreferences sp = getSharedPreferences("first_time", MODE_PRIVATE);
-        if (!sp.getBoolean("first", false)) {
+        if (!sp.getBoolean("first_onboard", false)) {
             SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("first", true);
+            editor.putBoolean("first_onboard", true);
             editor.apply();
             Intent intent = new Intent(LoginScreen.this, IntroActivity.class); // Call the AppIntro java class
             startActivity(intent);
