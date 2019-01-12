@@ -3,6 +3,7 @@ package com.example.gruppeb.madbestillingsapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -283,12 +284,14 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == fab) {
-            Snackbar.make(v, R.string.action_added, Snackbar.LENGTH_LONG)
-                    .setActionTextColor(getColor(R.color.white))
-                    .setAction(R.string.action_cart, v1 -> {
-                        Intent openCart = new Intent(getApplicationContext(), CartScreen.class);
-                        startActivity(openCart);
-                    }).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Snackbar.make(v, R.string.action_added, Snackbar.LENGTH_LONG)
+                        .setActionTextColor(getColor(R.color.white))
+                        .setAction(R.string.action_cart, v1 -> {
+                            Intent openCart = new Intent(getApplicationContext(), CartScreen.class);
+                            startActivity(openCart);
+                        }).show();
+            }
 
             order.order(viewPager.getCurrentItem(), isLight, getApplication());
             updateView();

@@ -15,7 +15,7 @@
         android:text="@string/drawermenu_header_institut"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -26,7 +26,7 @@
         android:text="@string/drawermenu_header_roomNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <!--
     <ImageView
