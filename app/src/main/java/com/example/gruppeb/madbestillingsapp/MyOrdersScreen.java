@@ -76,7 +76,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         MyOrdersScreen.MyOrdersListAsyncTaskStatement mMyOrdersListAsyncTaskStatement = new MyOrdersScreen.MyOrdersListAsyncTaskStatement();
         mMyOrdersListAsyncTaskStatement.execute();
     }
-
+    
     //@Override
     public void onClick(View v) {
         //if (v == mDeleteAll) {
