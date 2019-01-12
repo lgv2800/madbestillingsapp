@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -24,6 +25,8 @@ import java.sql.Statement;
 import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
+import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +43,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private ImageView mImageViewFlagEnglish;
     private ImageView mImageViewFlagArabic;
 
+    private final String TAG = "LoginScreen";
+
     Button mLoginButton;
     EditText mRoomNumberEnterField;
     com.airbnb.lottie.LottieAnimationView loadingAnimation;
@@ -55,8 +60,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         playIntro();
 
+        LanguageController mLanguageController = new LanguageController();
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
-
         languageFromLocalgetDefault = Locale.getDefault().getLanguage();
 
         languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", languageFromLocalgetDefault);
@@ -97,36 +102,21 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         }
 
         mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
-        mImageViewFlagDanish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Det valgte sprog er dansk.", Toast.LENGTH_SHORT).show();
-
-                editorSettings = settingsSharedPreferences.edit();
-                editorSettings.putString("languagePref", "da");
-                editorSettings.apply();
-            }
+        mImageViewFlagDanish.setOnClickListener(v -> {
+            Log.d(TAG, "Language changed to da");
+            mLanguageController.changeLanguage("da", this);
         });
 
         mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
-        mImageViewFlagEnglish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Det valgte sprog er engelsk.", Toast.LENGTH_SHORT).show();
-
-                editorSettings = settingsSharedPreferences.edit();
-                editorSettings.putString("languagePref", "en");
-                editorSettings.apply();
-            }
+        mImageViewFlagEnglish.setOnClickListener(v -> {
+            Log.d(TAG, "Language changed to en");
+            mLanguageController.changeLanguage("en", this);
         });
 
         mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
-        mImageViewFlagArabic.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Det valgte sprog er arabisk.", Toast.LENGTH_SHORT).show();
-
-                editorSettings = settingsSharedPreferences.edit();
-                editorSettings.putString("languagePref", "ar");
-                editorSettings.apply();
-            }
+        mImageViewFlagArabic.setOnClickListener(v -> {
+            Log.d(TAG, "Language changed to ar");
+            mLanguageController.changeLanguage("ar", this);
         });
 
         mRoomNumberEnterField = findViewById(R.id.login_number);
@@ -143,6 +133,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         //Database
         mConnector = new Connector();
     }
+
 
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
         //Database
