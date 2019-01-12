@@ -31,17 +31,12 @@ import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
-    private String languageFromLocalgetDefault;
-    private String languageFromSharedPrefs;
-    private String mRoomNumberFromSharedPrefs;
+    private String languageFromLocalgetDefault, languageFromSharedPrefs, mRoomNumberFromSharedPrefs;
 
-    private Boolean mBooleanRememberRoomNumber;
-    private Boolean mBooleanRememberRoomNumberFromSharedPrefs;
+    private Boolean mBooleanRememberRoomNumber, mBooleanRememberRoomNumberFromSharedPrefs;
     private CheckBox mCheckBoxRememberRoomNumber;
 
-    private ImageView mImageViewFlagDanish;
-    private ImageView mImageViewFlagEnglish;
-    private ImageView mImageViewFlagArabic;
+    private ImageView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
 
     private final String TAG = "LoginScreen";
 
