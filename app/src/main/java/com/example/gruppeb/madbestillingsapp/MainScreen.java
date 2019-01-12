@@ -62,6 +62,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         //Order logic
         order = new Order();
+        IntroGuide intro = new IntroGuide();
 
         //Add viewpager
         viewPager = findViewById(R.id.pager);
@@ -74,9 +75,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         drawer = findViewById(R.id.drawer_layout);
 
         //https://stackoverflow.com/a/38418531/8968120
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        TextView roomNumberNavbar = (TextView) headerView.findViewById(R.id.nav_header_roomNumber);
+        TextView roomNumberNavbar = headerView.findViewById(R.id.nav_header_roomNumber);
         roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + Order.ROOM_NUMBER);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -89,7 +90,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean("first_prompt", true);
             editor.apply();
-            playGuide();
+            intro.playGuide(this, MainScreen.this);
         }
 
         if (getSupportActionBar() != null) {
@@ -114,73 +115,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab.setOnClickListener(this);
 
         updateView();
-    }
-
-    private void playGuide() {
-        new MaterialTapTargetPrompt.Builder(MainScreen.this)
-                .setTarget(R.id.tabs)
-                .setPrimaryText(getString(R.string.intro_guide_first_step_title))
-                .setSecondaryText(getString(R.string.intro_guide_first_step_desc))
-                .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                .setPromptBackground(new RectanglePromptBackground())
-                .setPromptFocal(new RectanglePromptFocal())
-                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                    @Override
-                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                            // User has pressed the prompt target
-
-                            new MaterialTapTargetPrompt.Builder(MainScreen.this)
-                                    .setTarget(R.id.page1_chiplayout)
-                                    .setPrimaryText(getString(R.string.intro_guide_second_step_title))
-                                    .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                    .setPromptBackground(new RectanglePromptBackground())
-                                    .setPromptFocal(new RectanglePromptFocal())
-                                    .setSecondaryText(getString(R.string.intro_guide_second_step_desc))
-                                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                                        @Override
-                                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                                // User has pressed the prompt target
-
-                                                new MaterialTapTargetPrompt.Builder(MainScreen.this)
-                                                        .setTarget(R.id.fab)
-                                                        .setPrimaryText(getString(R.string.intro_guide_third_step_title))
-                                                        .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                                        .setSecondaryText(getString(R.string.intro_guide_third_step_desc))
-                                                        .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                                                            @Override
-                                                            public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                                                                if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                                                    // User has pressed the prompt target
-
-                                                                    new MaterialTapTargetPrompt.Builder(MainScreen.this)
-                                                                            .setTarget(R.id.shopping_cart)
-                                                                            .setIcon(R.drawable.ic_shopping_cart_white_24dp)
-                                                                            .setPrimaryText(getString(R.string.intro_guide_fourth_step_title))
-                                                                            .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
-                                                                            .setSecondaryText(getString(R.string.intro_guide_fourth_step_desc))
-                                                                            .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                                                                                @Override
-                                                                                public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                                                                                    if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                                                                        // User has pressed the prompt target
-                                                                                    }
-                                                                                }
-                                                                            })
-                                                                            .show();
-                                                                }
-                                                            }
-                                                        })
-                                                        .show();
-                                            }
-                                        }
-                                    })
-                                    .show();
-                        }
-                    }
-                })
-                .show();
     }
 
     @Override

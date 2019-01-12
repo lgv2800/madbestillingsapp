@@ -23,11 +23,11 @@ public class DishFactory {
 
         Dish a;
         switch(dishNumber){
-            case 0: orderEdit.putString("id"+count, context.getString(R.string.page1_food_title)).putBoolean("light_bread"+count, isLight).apply(); a = new DishOne(); break;
-            case 1: orderEdit.putString("id"+count, context.getString(R.string.page2_food_title)).putBoolean("light_bread"+count, isLight).apply(); a = new DishTwo(); break;
-            case 2: orderEdit.putString("id"+count, context.getString(R.string.page3_food_title)).putBoolean("light_bread"+count, isLight).apply(); a = new DishThree(); break;
-            case 3: orderEdit.putString("id"+count, context.getString(R.string.page4_food_title)).putBoolean("light_bread"+count, isLight).apply(); a = new DishFour(); break;
-            case 4: orderEdit.putString("id"+count, context.getString(R.string.page5_food_title)).putBoolean("light_bread"+count, isLight).apply(); a = new DishFive(); break;
+            case 0: orderEdit.putString("id"+count, context.getString(R.string.page1_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
+            case 1: orderEdit.putString("id"+count, context.getString(R.string.page2_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
+            case 2: orderEdit.putString("id"+count, context.getString(R.string.page3_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
+            case 3: orderEdit.putString("id"+count, context.getString(R.string.page4_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
+            case 4: orderEdit.putString("id"+count, context.getString(R.string.page5_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
         }
 
         orderEdit.putInt("count", temp).apply();

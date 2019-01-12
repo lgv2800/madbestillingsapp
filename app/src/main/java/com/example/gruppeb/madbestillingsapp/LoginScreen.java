@@ -51,6 +51,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     SharedPreferences settingsSharedPreferences;
     SharedPreferences.Editor editorSettings;
+    LanguageController mLanguageController;
 
     Connector mConnector; //Database connector
 
@@ -60,7 +61,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         playIntro();
 
-        LanguageController mLanguageController = new LanguageController();
+        mLanguageController = new LanguageController();
+
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
         languageFromLocalgetDefault = Locale.getDefault().getLanguage();
 
@@ -83,44 +85,20 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         setContentView(R.layout.activity_login_screen);
 
-        mLoginButton = findViewById(R.id.login_button);
-        mLoginButton.setOnClickListener(this);
+        findViews();
+        addOnClickListeners();
 
-        loadingAnimation = findViewById(R.id.login_animation_loading);
-
-        mCheckBoxRememberRoomNumber = findViewById(R.id.checkBox_rememberRoomNumber);
 
         mBooleanRememberRoomNumberFromSharedPrefs = settingsSharedPreferences.getBoolean("checkBoxRoomNumber", false);
         mRoomNumberFromSharedPrefs = settingsSharedPreferences.getString("roomNumberInput", "");
 
-        if (mBooleanRememberRoomNumberFromSharedPrefs == true) {
+        if (mBooleanRememberRoomNumberFromSharedPrefs) {
             Intent intent = new Intent(this, MainScreen.class);
             this.startActivity(intent);
             this.finishActivity(0);
             System.out.println(mRoomNumberFromSharedPrefs);
             Order.ROOM_NUMBER = mRoomNumberFromSharedPrefs;
         }
-
-        mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
-        mImageViewFlagDanish.setOnClickListener(v -> {
-            Log.d(TAG, "Language changed to da");
-            mLanguageController.changeLanguage("da", this);
-        });
-
-        mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
-        mImageViewFlagEnglish.setOnClickListener(v -> {
-            Log.d(TAG, "Language changed to en");
-            mLanguageController.changeLanguage("en", this);
-        });
-
-        mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
-        mImageViewFlagArabic.setOnClickListener(v -> {
-            Log.d(TAG, "Language changed to ar");
-            mLanguageController.changeLanguage("ar", this);
-        });
-
-        mRoomNumberEnterField = findViewById(R.id.login_number);
-
         //Allows for enter taps on keyboard to play round.
         mRoomNumberEnterField.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -132,6 +110,24 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         //Database
         mConnector = new Connector();
+    }
+
+    private void addOnClickListeners() {
+        mLoginButton.setOnClickListener(this);
+
+        mImageViewFlagArabic.setOnClickListener(this);
+        mImageViewFlagDanish.setOnClickListener(this);
+        mImageViewFlagEnglish.setOnClickListener(this);
+    }
+
+    private void findViews() {
+        mLoginButton = findViewById(R.id.login_button);
+        loadingAnimation = findViewById(R.id.login_animation_loading);
+        mCheckBoxRememberRoomNumber = findViewById(R.id.checkBox_rememberRoomNumber);
+        mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
+        mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
+        mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
+        mRoomNumberEnterField = findViewById(R.id.login_number);
     }
 
 
@@ -225,6 +221,21 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
             setAnimation(true);
         }
+
+        if (v == mImageViewFlagArabic){
+            Log.d(TAG, "Language changed to ar");
+            mLanguageController.changeLanguage("ar", this);
+        }
+
+        if (v == mImageViewFlagDanish){
+            Log.d(TAG, "Language changed to da");
+            mLanguageController.changeLanguage("da", this);
+        }
+
+        if (v == mImageViewFlagEnglish){
+            Log.d(TAG, "Language changed to en");
+            mLanguageController.changeLanguage("en", this);
+        }
     }
 
     private void setAnimation(Boolean a) {
@@ -248,7 +259,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         editorSettings.commit();
 
         System.out.println(mBooleanRememberRoomNumber);
-
     }
 
     private void playIntro() {
