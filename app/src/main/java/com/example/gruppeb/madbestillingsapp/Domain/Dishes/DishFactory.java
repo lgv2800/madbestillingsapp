@@ -21,7 +21,6 @@ public class DishFactory {
         int temp = count;
         temp++;
 
-        Dish a;
         switch(dishNumber){
             case 0: orderEdit.putString("id"+count, context.getString(R.string.page1_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
             case 1: orderEdit.putString("id"+count, context.getString(R.string.page2_food_title)).putBoolean("light_bread"+count, isLight).apply(); break;
