@@ -57,7 +57,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Fabric.with(this, new Crashlytics());
+        //https://docs.google.com/document/d/10H-RIjr2M6xhAIlb52mhRZdbc4dtuCgcdJBDlPAr_mM/edit#
+        boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+        if (!EMULATOR) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         setContentView(R.layout.activity_main_screen);
 
