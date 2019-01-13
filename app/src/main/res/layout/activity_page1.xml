@@ -88,6 +88,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
+                app:chipCornerRadius="20dp"
                 android:checkable="true"/>
 
             <android.support.design.chip.Chip
@@ -100,6 +101,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
+                app:chipCornerRadius="20dp"
                 android:checkable="true"/>
             </LinearLayout>
 
