@@ -29,20 +29,20 @@
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="@string/app_name"
-                app:titleTextColor="@android:color/white" />
+                app:titleTextColor="@color/colorPrimaryDark" />
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:elevation="4dp"
                 android:minHeight="?attr/actionBarSize"
                 app:tabIndicatorColor="@color/colorPrimaryDark"
                 app:tabIndicatorHeight="2dp"
                 app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/colorPrimary"
-                app:tabTextColor="@color/grey" />
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabTextColor="@color/colorTextTab" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.view.ViewPager
@@ -51,6 +51,7 @@
             android:layout_height="match_parent"
             app:layout_anchor="@id/main_appbarlayout"
             app:layout_anchorGravity="top"
+            android:background="@color/colorPrimary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.FloatingActionButton
