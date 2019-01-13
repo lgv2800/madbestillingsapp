@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -25,7 +23,6 @@ import java.sql.Statement;
 import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
-import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
@@ -36,7 +33,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private Boolean mBooleanRememberRoomNumber, mBooleanRememberRoomNumberFromSharedPrefs;
     private CheckBox mCheckBoxRememberRoomNumber;
 
-    private ImageView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
+    private TextView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
 
     private final String TAG = "LoginScreen";
 
@@ -119,9 +116,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mLoginButton = findViewById(R.id.login_button);
         loadingAnimation = findViewById(R.id.login_animation_loading);
         mCheckBoxRememberRoomNumber = findViewById(R.id.checkBox_rememberRoomNumber);
-        mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
-        mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
-        mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
+        mImageViewFlagDanish = findViewById(R.id.login_language_danish);
+        mImageViewFlagEnglish = findViewById(R.id.login_language_english);
+        mImageViewFlagArabic = findViewById(R.id.login_language_arabic);
         mRoomNumberEnterField = findViewById(R.id.login_number);
     }
 

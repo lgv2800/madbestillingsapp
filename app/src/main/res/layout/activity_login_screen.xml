@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@mipmap/login_background"
     tools:context=".LoginScreen">
 
     <ImageView
@@ -31,42 +31,43 @@
         android:text="@string/app_name"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/montserrat_bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView_flag_danish"
+        app:layout_constraintBottom_toTopOf="@+id/login_language_danish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        style="@style/accent_text"
+
         android:id="@+id/login_number"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="340dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/edittext_design"
         android:gravity="center"
         android:hint="@string/login_number_hint"
         android:inputType="number"
         android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        style="@style/bold_text"
         android:id="@+id/login_button"
-        android:layout_width="180dp"
-        android:layout_height="55dp"
+        style="@style/bold_text"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_design"
         android:elevation="4dp"
-        android:textColor="@color/white"
         android:text="@string/login_login_button"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_number" />
 
@@ -86,59 +87,61 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading" />
 
-    <ImageView
-        android:id="@+id/imageView_flag_danish"
+    <TextView
+        android:id="@+id/login_language_danish"
+        style="@style/normal_text"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="21dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="80dp"
         android:layout_marginEnd="51dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="Dansk"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_flag_english"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_title"
-        app:srcCompat="@mipmap/flag_danish" />
+        app:layout_constraintEnd_toStartOf="@+id/login_language_english"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView_flag_english"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <TextView
+        android:id="@+id/login_language_english"
+        style="@style/normal_text"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView_flag_arabic"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_flag_arabic"
-        app:layout_constraintStart_toEndOf="@+id/imageView_flag_danish"
-        app:layout_constraintTop_toTopOf="@+id/imageView_flag_arabic"
-        app:srcCompat="@mipmap/flag_english" />
+        android:layout_marginBottom="28dp"
+        android:text="English"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/login_language_arabic"
+        app:layout_constraintStart_toEndOf="@+id/login_language_danish" />
 
-    <ImageView
-        android:id="@+id/imageView_flag_arabic"
+    <TextView
+        android:id="@+id/login_language_arabic"
+        style="@style/normal_text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="28dp"
+        android:text=" العربية"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView_flag_english"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_rememberRoomNumber"
-        app:srcCompat="@mipmap/flag_uae" />
+        app:layout_constraintStart_toEndOf="@+id/login_language_english" />
 
     <CheckBox
-        style="@style/bold_text"
         android:id="@+id/checkBox_rememberRoomNumber"
+        style="@style/bold_text"
         android:layout_width="215dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="49dp"
+        android:layout_marginBottom="8dp"
         android:buttonTint="@color/colorPrimaryDark"
         android:checked="false"
         android:duplicateParentState="false"
         android:text="@string/login_login_checkbox_rememberroomnumber"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/imageView_flag_arabic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_ballerup_logo2" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.338" />
 
 </android.support.constraint.ConstraintLayout>
