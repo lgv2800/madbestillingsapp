@@ -1,8 +1,11 @@
 package com.example.gruppeb.madbestillingsapp;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -23,12 +26,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,14 +39,12 @@ import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
+import com.kosalgeek.asynctask.AsyncResponse;
+import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 import io.fabric.sdk.android.Fabric;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
-import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
-public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType, NavigationView.OnNavigationItemSelectedListener {
+public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType, NavigationView.OnNavigationItemSelectedListener, AsyncResponse {
 
     Toolbar mToolbar;
     FloatingActionButton fab;
@@ -65,10 +66,14 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         setContentView(R.layout.activity_main_screen);
 
+        //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
+        PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
+        postResponseAsyncTask.execute("http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php");
+
         //Order logic
         order = new Order();
         IntroGuide intro = new IntroGuide();
-
+        
         //Add viewpager
         viewPager = findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -171,6 +176,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         this.isLight = a;
     }
 
+    @Override
+    public void processFinish(String result) {
+        //Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+    }
+
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -199,6 +209,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+
     }
 
     //https://developer.android.com/training/appbar/actions#java
