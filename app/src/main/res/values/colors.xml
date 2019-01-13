@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#68829E</color>
-    <color name="colorPrimaryDark">#505160</color>
-    <color name="colorAccent">#598234</color>
+    <color name="colorPrimary">#fffbe6</color>
+    <color name="colorPrimaryDark">#356859</color>
+    <color name="colorAccent">#fd5523</color>
+    <color name="colorTextTab">#37966f</color>
+    <color name="colorCardView">#b9e4c9</color>
 
     <!-- Complimentary colours -->
     <color name="colorComplementary1">#9e8a68</color>
