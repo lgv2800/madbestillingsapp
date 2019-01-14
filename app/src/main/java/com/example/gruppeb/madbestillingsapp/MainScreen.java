@@ -39,6 +39,8 @@ import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
+import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
+import com.kosalgeek.android.json.JsonConverter;
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
@@ -53,6 +55,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private DrawerLayout drawer;
     private TextView badgeCount;
     Order order;
+
+    ArrayList<String> dishNamesJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //Order logic
         order = new Order();
         IntroGuide intro = new IntroGuide();
-        
+
         //Add viewpager
         viewPager = findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -108,14 +112,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
+        
+        /*
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
         adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
         adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
         adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
         adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);*/
 
         //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
@@ -125,6 +130,35 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab.setOnClickListener(this);
 
         updateView();
+    }
+
+    @Override
+    public void processFinish(String result) {
+        //Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+
+        ArrayList<DishJSON> dishJSONList =
+                new JsonConverter<DishJSON>().toArrayList(result, DishJSON.class);
+
+        dishNamesJSON = new ArrayList<String>();
+        for(DishJSON value: dishJSONList) {
+            dishNamesJSON.add(value.daNameLangDA);
+            System.out.println(value.daNameLangDA);
+        }
+
+        //Add fragments here
+        //Add viewpager
+        viewPager = findViewById(R.id.pager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        for (String dishNameJSONString : dishNamesJSON){
+
+            adapter.addFragment(new Page1(), dishNameJSONString);
+           /* adapter.addFragment(new Page2(), dishNameJSONString);
+            adapter.addFragment(new Page3(), dishNameJSONString);
+            adapter.addFragment(new Page4(), dishNameJSONString);
+            adapter.addFragment(new Page5(), dishNameJSONString);*/
+            viewPager.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -174,11 +208,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public void setBreadType(boolean a) {
         this.isLight = a;
-    }
-
-    @Override
-    public void processFinish(String result) {
-        //Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
