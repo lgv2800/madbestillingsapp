@@ -12,12 +12,13 @@
         android:id="@+id/my_CartToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="4dp"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="@color/colorPrimaryDark"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -34,17 +35,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_CartToolbar">
 
-        <!--
-        <ImageView
-            android:id="@+id/cart_mainimage"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ballerup" /> -->
 
         <ListView
+            android:background="@android:color/transparent"
             android:id="@+id/cart_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:dividerHeight="5dp"
+            android:divider="@null">
 
         </ListView>
     </LinearLayout>
@@ -55,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/cart_delete_all"
         app:layout_constraintBottom_toTopOf="@+id/button_order"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,13 +61,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        style="@style/bold_text"
+        android:textColor="@color/white"
         android:id="@+id/button_order"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/button_design"
         android:text="@string/cart_bestil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
