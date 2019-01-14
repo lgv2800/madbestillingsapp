@@ -12,7 +12,7 @@ class IntroGuide {
                 .setTarget(R.id.tabs)
                 .setPrimaryText(context.getString(R.string.intro_guide_first_step_title))
                 .setSecondaryText(context.getString(R.string.intro_guide_first_step_desc))
-                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimary))
+                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimaryDark))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
                 .setPromptStateChangeListener((prompt, state) -> {
@@ -22,7 +22,7 @@ class IntroGuide {
                         new MaterialTapTargetPrompt.Builder(mainScreen)
                                 .setTarget(R.id.page1_chiplayout)
                                 .setPrimaryText(context.getString(R.string.intro_guide_second_step_title))
-                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimary))
+                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimaryDark))
                                 .setPromptBackground(new RectanglePromptBackground())
                                 .setPromptFocal(new RectanglePromptFocal())
                                 .setSecondaryText(context.getString(R.string.intro_guide_second_step_desc))
@@ -33,7 +33,7 @@ class IntroGuide {
                                         new MaterialTapTargetPrompt.Builder(mainScreen)
                                                 .setTarget(R.id.fab)
                                                 .setPrimaryText(context.getString(R.string.intro_guide_third_step_title))
-                                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimary))
+                                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimaryDark))
                                                 .setSecondaryText(context.getString(R.string.intro_guide_third_step_desc))
                                                 .setPromptStateChangeListener((prompt12, state12) -> {
                                                     if (state12 == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
@@ -43,7 +43,7 @@ class IntroGuide {
                                                                 .setTarget(R.id.shopping_cart)
                                                                 .setIcon(R.drawable.ic_shopping_cart_white_24dp)
                                                                 .setPrimaryText(context.getString(R.string.intro_guide_fourth_step_title))
-                                                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimary))
+                                                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimaryDark))
                                                                 .setSecondaryText(context.getString(R.string.intro_guide_fourth_step_desc))
                                                                 .setPromptStateChangeListener((prompt1, state1) -> {
                                                                     if (state1 == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {

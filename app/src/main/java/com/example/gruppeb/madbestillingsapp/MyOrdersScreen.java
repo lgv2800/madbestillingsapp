@@ -9,9 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
@@ -29,7 +31,9 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     private int roomNumberStringFromExtraToInt;
     private int numberOfOrdersInDB;
 
-    Context mContext;
+    private ImageView page1_image;
+
+    Context mContext = MyOrdersScreen.this;
     AlertDialog statusAlertDialog;
     ProgressDialog progressDialog;
 
@@ -75,8 +79,9 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
         MyOrdersScreen.MyOrdersListAsyncTaskStatement mMyOrdersListAsyncTaskStatement = new MyOrdersScreen.MyOrdersListAsyncTaskStatement();
         mMyOrdersListAsyncTaskStatement.execute();
+
     }
-    
+
     //@Override
     public void onClick(View v) {
         //if (v == mDeleteAll) {

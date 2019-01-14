@@ -70,7 +70,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 .setTarget(R.id.button_order)
                 .setPrimaryText(getString(R.string.intro_guide_last_step_title))
                 .setSecondaryText(getString(R.string.intro_guide_last_step_desc))
-                .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                .setBackgroundColour(getResources().getColor(R.color.colorPrimaryDark))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
                 .setPromptStateChangeListener((prompt, state) -> {

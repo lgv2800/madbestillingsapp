@@ -1,9 +1,12 @@
 package com.example.gruppeb.madbestillingsapp;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -14,9 +17,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +36,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -60,7 +67,16 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private TextView badgeCount;
     Order order;
 
+    private Context mContext = MainScreen.this;
+
+    private ImageView page1_image;
+    private ImageView page2_image;
+    private ImageView page3_image;
+    private ImageView page4_image;
+    private ImageView page5_image;
+
     ArrayList<String> dishNamesJSON;
+    ArrayList<String> dishImagesJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +90,19 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         setContentView(R.layout.activity_main_screen);
 
+        //ImageViews
+        /*
+        page1_image = findViewById(R.id.page1_image);
+        page2_image = (ImageView) findViewById(R.id.page2_image);
+        page3_image = (ImageView) findViewById(R.id.page3_image);
+        page4_image = (ImageView) findViewById(R.id.page4_image);
+        page5_image = (ImageView) findViewById(R.id.page5_image);*/
+
+        /*
         //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
         postResponseAsyncTask.execute("http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php");
+        */
 
         //Order logic
         order = new Order();
@@ -116,15 +142,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        
-        /*
+
+
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
         adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
         adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
         adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
         adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
-        viewPager.setAdapter(adapter);*/
+        viewPager.setAdapter(adapter);
 
         //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
@@ -140,29 +166,47 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     public void processFinish(String result) {
         //Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 
+        /*
         ArrayList<DishJSON> dishJSONList =
                 new JsonConverter<DishJSON>().toArrayList(result, DishJSON.class);
 
         dishNamesJSON = new ArrayList<String>();
-        for(DishJSON value: dishJSONList) {
+        dishImagesJSON = new ArrayList<String>();
+        for (DishJSON value : dishJSONList) {
             dishNamesJSON.add(value.daNameLangDA);
-            System.out.println(value.daNameLangDA);
+            dishImagesJSON.add(value.daMenuImage);
         }
 
-        //Add fragments here
         //Add viewpager
         viewPager = findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        for (String dishNameJSONString : dishNamesJSON){
+        page1_image = findViewById(R.id.page1_image);
 
+        for (String dishNameJSONString : dishNamesJSON) {
+
+            //Add fragments here
             adapter.addFragment(new Page1(), dishNameJSONString);
-           /* adapter.addFragment(new Page2(), dishNameJSONString);
-            adapter.addFragment(new Page3(), dishNameJSONString);
-            adapter.addFragment(new Page4(), dishNameJSONString);
-            adapter.addFragment(new Page5(), dishNameJSONString);*/
+            //adapter.addFragment(new Page2(), dishNameJSONString);
+            //adapter.addFragment(new Page3(), dishNameJSONString);
+            //adapter.addFragment(new Page4(), dishNameJSONString);
+            //adapter.addFragment(new Page5(), dishNameJSONString);
             viewPager.setAdapter(adapter);
         }
+
+        String internetURL = "";
+
+        //Set image
+        Glide
+                .with(this)
+                .load(internetURL)
+                .into(page1_image);
+
+        //Set name
+
+        //Set description
+
+        */
     }
 
     @Override
