@@ -109,4 +109,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" tools:ignore="MissingTranslation">Hello blank fragment</string>
     <string name="pref_settings" tools:ignore="MissingTranslation">settingsPref</string>
+    <string name="cart_screen_empty_text">Kurven er tom</string>
 </resources>

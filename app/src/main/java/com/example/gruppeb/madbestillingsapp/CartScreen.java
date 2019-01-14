@@ -33,7 +33,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     //ImageView mMainImage;
     ListView mListView;
     Button mOrderCart;
-    TextView mDeleteAll;
+    TextView mDeleteAll, mEmptyText;
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
 
@@ -73,12 +73,9 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
-                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                    @Override
-                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                            // User has pressed the prompt target
-                        }
+                .setPromptStateChangeListener((prompt, state) -> {
+                    if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                        // User has pressed the prompt target
                     }
                 })
                 .show();
@@ -131,6 +128,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     private void setEmptyView() {
         setContentView(R.layout.activity_cart_screen_empty);
+        mEmptyText =  findViewById(R.id.cart_empty_text);
+        mEmptyText.setText(getString(R.string.cart_screen_empty_text));
         com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
         animation.setOnClickListener(v -> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
         createToolBar();
