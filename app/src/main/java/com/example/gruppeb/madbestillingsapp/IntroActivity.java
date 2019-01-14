@@ -34,21 +34,21 @@ public class IntroActivity extends AppIntro2 {
         sliderPage.setTitle(getString(R.string.onboard_first_title));
         sliderPage.setDescription(getString(R.string.onboard_first_desc));
         sliderPage.setImageDrawable(R.mipmap.oboard_food1);
-        sliderPage.setBgColor(getColor(R.color.colorComplementary1));
+        sliderPage.setBgColor(getResources().getColor(R.color.colorComplementary1));
         addSlide(AppIntroFragment.newInstance(sliderPage));
 
         SliderPage sliderPage1 = new SliderPage();
         sliderPage1.setTitle(getString(R.string.onboard_second_title));
         sliderPage1.setDescription(getString(R.string.onboard_second_desc));
         sliderPage1.setImageDrawable(R.mipmap.onboard_food3);
-        sliderPage1.setBgColor(getColor(R.color.colorPrimaryDark));
+        sliderPage1.setBgColor(getResources().getColor(R.color.colorComplementary2));
         addSlide(AppIntroFragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
         sliderPage2.setTitle(getString(R.string.onboard_third_title));
         sliderPage2.setDescription(getString(R.string.onboard_third_desc));
         sliderPage2.setImageDrawable(R.mipmap.onboard_food2);
-        sliderPage2.setBgColor(getColor(R.color.colorComplementary2));
+        sliderPage2.setBgColor(getResources().getColor(R.color.colorPrimaryDark));
         addSlide(AppIntroFragment.newInstance(sliderPage2));
 
         // OPTIONAL METHODS
