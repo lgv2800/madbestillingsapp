@@ -26,6 +26,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -241,7 +245,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                             startActivity(openCart);
                         }).show();
             }
-
+            //https://stackoverflow.com/questions/31891062/animate-the-cart-icon-on-button-click
+            ScaleAnimation scale = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
+            scale.setDuration(500);
+            scale.setInterpolator(new OvershootInterpolator());
+            badgeCount.startAnimation(scale);
             order.order(viewPager.getCurrentItem(), isLight, getApplication());
             updateView();
         }
