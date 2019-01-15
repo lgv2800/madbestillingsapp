@@ -214,20 +214,23 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             setAnimation(true);
         }
 
-        if (v == mImageViewFlagArabic){
-            Log.d(TAG, "Language changed to ar");
-            mLanguageController.changeLanguage("ar", this);
-        }
+            if (v == mImageViewFlagArabic) {
+                Log.d(TAG, "Language changed to ar");
+                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+                mLanguageController.changeLanguage("ar", this);
+            }
 
-        if (v == mImageViewFlagDanish){
-            Log.d(TAG, "Language changed to da");
-            mLanguageController.changeLanguage("da", this);
-        }
+            if (v == mImageViewFlagDanish) {
+                Log.d(TAG, "Language changed to da");
+                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+                mLanguageController.changeLanguage("da", this);
+            }
 
-        if (v == mImageViewFlagEnglish){
-            Log.d(TAG, "Language changed to en");
-            mLanguageController.changeLanguage("en", this);
-        }
+            if (v == mImageViewFlagEnglish) {
+                Log.d(TAG, "Language changed to en");
+                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+                mLanguageController.changeLanguage("en", this);
+            }
     }
 
     private void setAnimation(Boolean a) {
