@@ -48,6 +48,7 @@ import java.util.Locale;
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
+import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
@@ -68,12 +69,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     Order order;
 
     private Context mContext = MainScreen.this;
-
-    private ImageView page1_image;
-    private ImageView page2_image;
-    private ImageView page3_image;
-    private ImageView page4_image;
-    private ImageView page5_image;
+    ViewPagerAdapter adapter;
 
     ArrayList<String> dishNamesJSON;
     ArrayList<String> dishImagesJSON;
@@ -110,7 +106,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         //Add viewpager
         viewPager = findViewById(R.id.pager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add toolbar
         mToolbar = findViewById(R.id.my_toolbar);
@@ -143,7 +139,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-
+        /*
         //Add fragments here
         adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
         adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
@@ -151,6 +147,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
         adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
         viewPager.setAdapter(adapter);
+        */
+
+        fragmentGenerator();
+
 
         //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
@@ -160,6 +160,26 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab.setOnClickListener(this);
 
         updateView();
+    }
+
+    private void fragmentGenerator() {
+        ArrayList<String> fooList = new ArrayList<>();
+        fooList.add("hej");
+        fooList.add("hej");
+        fooList.add("hej");
+        fooList.add("hej");
+
+        for(int i = 0; i < fooList.size(); i++) {
+            String title = "teststring";
+            String description = "testdesc";
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            bundle.putString("description", description);
+            FragmentPage fragment = new FragmentPage();
+            fragment.setArguments(bundle);
+            adapter.addFragment(fragment, title);
+            viewPager.setAdapter(adapter);
+        }
     }
 
     @Override
