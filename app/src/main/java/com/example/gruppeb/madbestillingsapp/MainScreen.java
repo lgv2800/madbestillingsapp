@@ -294,11 +294,12 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
 
+                    /*
                     //Set image
                     Glide
                             .with(this)
                             .load(internetURL)
-                            .into(imageView_page1);
+                            .into(imageView_page1);*/
                 }
                 ;
                 break;
