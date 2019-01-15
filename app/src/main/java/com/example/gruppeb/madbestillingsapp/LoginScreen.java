@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,10 +77,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         );
 
         setContentView(R.layout.activity_login_screen);
-
+    
         findViews();
         addOnClickListeners();
-
+        updateChosenLanguage();
 
         mBooleanRememberRoomNumberFromSharedPrefs = settingsSharedPreferences.getBoolean("checkBoxRoomNumber", false);
         mRoomNumberFromSharedPrefs = settingsSharedPreferences.getString("roomNumberInput", "");
@@ -102,6 +103,22 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         //Database
         mConnector = new Connector();
+    }
+
+    /**
+     * TODO: Den ændrer ikke til bold. ved ikke helt hvorfor. Har også prøvet setTextSize, men den ændrer heller intet
+     */
+    private void updateChosenLanguage() {
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+        mImageViewFlagArabic.setTypeface(null, Typeface.NORMAL);
+        mImageViewFlagEnglish.setTypeface(null, Typeface.NORMAL);
+        mImageViewFlagDanish.setTypeface(null, Typeface.NORMAL);
+        switch (languageFromSharedPrefs){
+            case "ar" : mImageViewFlagArabic.setTypeface(boldTypeface); break;
+            case "en" : mImageViewFlagArabic.setTypeface(boldTypeface); break;
+            case "da" :mImageViewFlagArabic.setTypeface(boldTypeface); break;
+
+        }
     }
 
     private void addOnClickListeners() {
@@ -162,11 +179,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                                 isSuccess = true;
                                 errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
+                                con.close();
 
                             } else {
 
                                 isSuccess = false;
                                 errorMessage = getString(R.string.login_error_login);
+                                con.close();
                             }
                         }
 
@@ -218,18 +237,21 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 Log.d(TAG, "Language changed to ar");
                 Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
                 mLanguageController.changeLanguage("ar", this);
+                updateChosenLanguage();
             }
 
             if (v == mImageViewFlagDanish) {
                 Log.d(TAG, "Language changed to da");
                 Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
                 mLanguageController.changeLanguage("da", this);
+                updateChosenLanguage();
             }
 
             if (v == mImageViewFlagEnglish) {
                 Log.d(TAG, "Language changed to en");
                 Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
                 mLanguageController.changeLanguage("en", this);
+                updateChosenLanguage();
             }
     }
 
