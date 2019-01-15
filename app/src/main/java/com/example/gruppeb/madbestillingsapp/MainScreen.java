@@ -66,12 +66,24 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private boolean isLight = false;
     private DrawerLayout drawer;
     private TextView badgeCount;
+    private ImageView imageView_page1;
     Order order;
+
+    private String languageFromSharedPrefs;
+    SharedPreferences settingsSharedPreferences;
 
     private Context mContext = MainScreen.this;
     ViewPagerAdapter adapter;
 
-    ArrayList<String> dishNamesJSON;
+    ArrayList<String> dishNamesJSON_DA;
+    ArrayList<String> dishDescriptionJSON_DA;
+
+    ArrayList<String> dishNamesJSON_EN;
+    ArrayList<String> dishDescriptionJSON_EN;
+
+    ArrayList<String> dishNamesJSON_AR;
+    ArrayList<String> dishDescriptionJSON_AR;
+
     ArrayList<String> dishImagesJSON;
 
     @Override
@@ -86,19 +98,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         setContentView(R.layout.activity_main_screen);
 
-        //ImageViews
-        /*
-        page1_image = findViewById(R.id.page1_image);
-        page2_image = (ImageView) findViewById(R.id.page2_image);
-        page3_image = (ImageView) findViewById(R.id.page3_image);
-        page4_image = (ImageView) findViewById(R.id.page4_image);
-        page5_image = (ImageView) findViewById(R.id.page5_image);*/
-
-        /*
         //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
         postResponseAsyncTask.execute("http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php");
-        */
+
+        imageView_page1 = findViewById(R.id.page1_image);
 
         //Order logic
         order = new Order();
@@ -139,19 +143,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        /*
-        //Add fragments here
-        adapter.addFragment(new Page1(), getString(R.string.page1_food_title));
-        adapter.addFragment(new Page2(), getString(R.string.page2_food_title));
-        adapter.addFragment(new Page3(), getString(R.string.page3_food_title));
-        adapter.addFragment(new Page4(), getString(R.string.page4_food_title));
-        adapter.addFragment(new Page5(), getString(R.string.page5_food_title));
-        viewPager.setAdapter(adapter);
-        */
-
-        fragmentGenerator();
-
-
         //Add tabs
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -162,71 +153,134 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         updateView();
     }
 
-    private void fragmentGenerator() {
-        ArrayList<String> fooList = new ArrayList<>();
-        fooList.add("hej");
-        fooList.add("hej");
-        fooList.add("hej");
-        fooList.add("hej");
-
-        for(int i = 0; i < fooList.size(); i++) {
-            String title = "teststring";
-            String description = "testdesc";
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-            bundle.putString("description", description);
-            FragmentPage fragment = new FragmentPage();
-            fragment.setArguments(bundle);
-            adapter.addFragment(fragment, title);
-            viewPager.setAdapter(adapter);
-        }
-    }
-
     @Override
     public void processFinish(String result) {
-        //Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-
-        /*
         ArrayList<DishJSON> dishJSONList =
                 new JsonConverter<DishJSON>().toArrayList(result, DishJSON.class);
 
-        dishNamesJSON = new ArrayList<String>();
         dishImagesJSON = new ArrayList<String>();
+
+        dishNamesJSON_DA = new ArrayList<String>();
+        dishDescriptionJSON_DA = new ArrayList<String>();
+
+        dishNamesJSON_EN = new ArrayList<String>();
+        dishDescriptionJSON_EN = new ArrayList<String>();
+
+        dishNamesJSON_AR = new ArrayList<String>();
+        dishDescriptionJSON_AR = new ArrayList<String>();
+
         for (DishJSON value : dishJSONList) {
-            dishNamesJSON.add(value.daNameLangDA);
+            dishNamesJSON_DA.add(value.daNameLangDA);
+            dishDescriptionJSON_DA.add(value.daDescriptionLangDA);
+
+            dishNamesJSON_EN.add(value.daNameLangEN);
+            dishDescriptionJSON_EN.add(value.daDescriptionLangEN);
+
+            dishNamesJSON_AR.add(value.daNameLangAR);
+            dishDescriptionJSON_AR.add(value.daDescriptionLangAR);
+
             dishImagesJSON.add(value.daMenuImage);
         }
 
-        //Add viewpager
-        viewPager = findViewById(R.id.pager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        fragmentGenerator();
+    }
 
-        page1_image = findViewById(R.id.page1_image);
+    private void fragmentGenerator() {
 
-        for (String dishNameJSONString : dishNamesJSON) {
+        settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
+        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
 
-            //Add fragments here
-            adapter.addFragment(new Page1(), dishNameJSONString);
-            //adapter.addFragment(new Page2(), dishNameJSONString);
-            //adapter.addFragment(new Page3(), dishNameJSONString);
-            //adapter.addFragment(new Page4(), dishNameJSONString);
-            //adapter.addFragment(new Page5(), dishNameJSONString);
-            viewPager.setAdapter(adapter);
+        switch (languageFromSharedPrefs) {
+            case "da":
+                for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
+                    String title = dishNamesJSON_DA.get(i);
+                    String description = dishDescriptionJSON_DA.get(i);
+                    String internetURL = dishImagesJSON.get(i);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("description", description);
+                    FragmentPage fragment = new FragmentPage();
+                    fragment.setArguments(bundle);
+                    adapter.addFragment(fragment, title);
+                    viewPager.setAdapter(adapter);
+
+                    /*
+                    //Set image
+                    Glide
+                            .with(this)
+                            .load(internetURL)
+                            .into(imageView_page1);
+                    */
+                }
+                ;
+                break;
+            case "en":
+                for (int i = 0; i < dishNamesJSON_EN.size(); i++) {
+                    String title = dishNamesJSON_EN.get(i);
+                    String description = dishDescriptionJSON_EN.get(i);
+                    String internetURL = dishImagesJSON.get(i);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("description", description);
+                    FragmentPage fragment = new FragmentPage();
+                    fragment.setArguments(bundle);
+                    adapter.addFragment(fragment, title);
+                    viewPager.setAdapter(adapter);
+
+                    /*
+                    //Set image
+                    Glide
+                            .with(this)
+                            .load(internetURL)
+                            .into(imageView_page1);*/
+                }
+                ;
+                break;
+            case "ar":
+                for (int i = 0; i < dishNamesJSON_AR.size(); i++) {
+                    String title = dishNamesJSON_AR.get(i);
+                    String description = dishDescriptionJSON_AR.get(i);
+                    String internetURL = dishImagesJSON.get(i);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("description", description);
+                    FragmentPage fragment = new FragmentPage();
+                    fragment.setArguments(bundle);
+                    adapter.addFragment(fragment, title);
+                    viewPager.setAdapter(adapter);
+
+                    /*
+                    //Set image
+                    Glide
+                            .with(this)
+                            .load(internetURL)
+                            .into(imageView_page1);*/
+                }
+                ;
+                break;
+            default:
+                for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
+                    String title = dishNamesJSON_DA.get(i);
+                    String description = dishDescriptionJSON_DA.get(i);
+                    String internetURL = dishImagesJSON.get(i);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("description", description);
+                    FragmentPage fragment = new FragmentPage();
+                    fragment.setArguments(bundle);
+                    adapter.addFragment(fragment, title);
+                    viewPager.setAdapter(adapter);
+
+                    //Set image
+                    Glide
+                            .with(this)
+                            .load(internetURL)
+                            .into(imageView_page1);
+                }
+                ;
+                break;
         }
 
-        String internetURL = "";
-
-        //Set image
-        Glide
-                .with(this)
-                .load(internetURL)
-                .into(page1_image);
-
-        //Set name
-
-        //Set description
-
-        */
     }
 
     @Override

@@ -77,7 +77,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         );
 
         setContentView(R.layout.activity_login_screen);
-    
+
         findViews();
         addOnClickListeners();
         updateChosenLanguage();
@@ -113,10 +113,16 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mImageViewFlagArabic.setTypeface(null, Typeface.NORMAL);
         mImageViewFlagEnglish.setTypeface(null, Typeface.NORMAL);
         mImageViewFlagDanish.setTypeface(null, Typeface.NORMAL);
-        switch (languageFromSharedPrefs){
-            case "ar" : mImageViewFlagArabic.setTypeface(boldTypeface); break;
-            case "en" : mImageViewFlagArabic.setTypeface(boldTypeface); break;
-            case "da" :mImageViewFlagArabic.setTypeface(boldTypeface); break;
+        switch (languageFromSharedPrefs) {
+            case "ar":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
+            case "en":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
+            case "da":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
 
         }
     }
@@ -179,13 +185,12 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                                 isSuccess = true;
                                 errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
-                                con.close();
 
                             } else {
 
                                 isSuccess = false;
                                 errorMessage = getString(R.string.login_error_login);
-                                con.close();
+
                             }
                         }
 
@@ -233,26 +238,29 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             setAnimation(true);
         }
 
-            if (v == mImageViewFlagArabic) {
-                Log.d(TAG, "Language changed to ar");
-                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
-                mLanguageController.changeLanguage("ar", this);
-                updateChosenLanguage();
-            }
+        if (v == mImageViewFlagArabic) {
+            Log.d(TAG, "Language changed to ar");
+            mLanguageController.changeLanguage("ar", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+        }
 
-            if (v == mImageViewFlagDanish) {
-                Log.d(TAG, "Language changed to da");
-                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
-                mLanguageController.changeLanguage("da", this);
-                updateChosenLanguage();
-            }
+        if (v == mImageViewFlagDanish) {
+            Log.d(TAG, "Language changed to da");
+            mLanguageController.changeLanguage("da", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+        }
 
-            if (v == mImageViewFlagEnglish) {
-                Log.d(TAG, "Language changed to en");
-                Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
-                mLanguageController.changeLanguage("en", this);
-                updateChosenLanguage();
-            }
+        if (v == mImageViewFlagEnglish) {
+            Log.d(TAG, "Language changed to en");
+            mLanguageController.changeLanguage("en", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setAnimation(Boolean a) {

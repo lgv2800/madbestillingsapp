@@ -102,6 +102,8 @@
     <string name="page5_food_main">Pork sandwich</string>
     <string name="page5_food_sub">Hamburger, radishes and salad</string>
 
+    <string name="language_changed_setting">Language changed. Please restart application.</string>
+
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Remove all</string>

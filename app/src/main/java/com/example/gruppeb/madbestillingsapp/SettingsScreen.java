@@ -56,6 +56,27 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
             editorSettings.putString("languagePref", newValue.toString());
             editorSettings.apply();
 
+            switch (newValue.toString()) {
+                case "da":
+                    Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+                    ;
+                    break;
+                case "en":
+                    Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
+                    ;
+                    break;
+                case "ar":
+                    Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
+
+                    ;
+                    break;
+                default:
+                    Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+                    ;
+                    break;
+
+        }
+
             System.out.print(newValue.toString());
 
             return true;

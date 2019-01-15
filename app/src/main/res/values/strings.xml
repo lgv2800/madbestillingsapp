@@ -100,6 +100,8 @@
     <string name="page5_food_main">Hamburgerryg</string>
     <string name="page5_food_sub">Hamburgerryg, radisser og salat</string>
 
+    <string name="language_changed_setting">Sprog ændret. Genstart venligst applikationen.</string>
+
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Ryd alt</string>
@@ -110,5 +112,4 @@
     <string name="hello_blank_fragment" tools:ignore="MissingTranslation">Hello blank fragment</string>
     <string name="pref_settings" tools:ignore="MissingTranslation">settingsPref</string>
     <string name="cart_screen_empty_text">Kurven er tom</string>
-    <string name="language_changed_setting">Sprog ændret. Virker efter genstart</string>
 </resources>

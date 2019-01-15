@@ -101,6 +101,8 @@
     <string name="page5_food_main">لحم خنزير</string>
     <string name="page5_food_sub">لحم خنزير ،الفجل والسلطة</string>
 
+    <string name="language_changed_setting">تغيرت اللغة. يرجى إعادة تشغيل التطبيق.</string>
+
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">مسح</string>
