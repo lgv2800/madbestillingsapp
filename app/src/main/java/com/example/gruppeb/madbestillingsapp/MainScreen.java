@@ -115,16 +115,24 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //https://developer.android.com/reference/android/speech/tts/TextToSpeech
         //https://stackoverflow.com/questions/3058919/text-to-speechtts-android
         //https://android-developers.googleblog.com/2009/09/introduction-to-text-to-speech-in.html
+        //https://stacktips.com/tutorials/android/android-texttospeech-example
         mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int TTS_Status) {
                 if (TTS_Status == TextToSpeech.SUCCESS) {
-                    int TTS_Language = mTextToSpeech.setLanguage(new Locale(languageFromSharedPrefs, ""));
+                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(languageFromSharedPrefs, ""));
 
-                    mTextToSpeech.speak(getString(R.string.startup_welcome),TextToSpeech.QUEUE_FLUSH,null,null);
-
+                    if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("error", "This Language is not supported");
+                    }
+                } else {
+                    Log.e("error", "Initialization Failed!");
                 }
+
+                mTextToSpeech.speak(getString(R.string.startup_welcome), TextToSpeech.QUEUE_FLUSH, null, null);
+
             }
+
         });
 
         imageView_page1 = findViewById(R.id.page1_image);
