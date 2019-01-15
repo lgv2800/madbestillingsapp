@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,6 +29,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,15 +77,17 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private Context mContext = MainScreen.this;
     ViewPagerAdapter adapter;
 
+    TextToSpeech mTextToSpeech;
+
+    //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
     ArrayList<String> dishNamesJSON_DA;
     ArrayList<String> dishDescriptionJSON_DA;
-
     ArrayList<String> dishNamesJSON_EN;
     ArrayList<String> dishDescriptionJSON_EN;
-
     ArrayList<String> dishNamesJSON_AR;
     ArrayList<String> dishDescriptionJSON_AR;
 
+    //ArrayList for dishImagesJSON.
     ArrayList<String> dishImagesJSON;
 
     @Override
@@ -98,9 +102,30 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         setContentView(R.layout.activity_main_screen);
 
+        //Shared preferences
+        settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
+        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
+
         //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
         postResponseAsyncTask.execute("http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php");
+
+        //Text To Speech stuff
+        //https://www.tutorialspoint.com/android/android_text_to_speech.htm
+        //https://developer.android.com/reference/android/speech/tts/TextToSpeech
+        //https://stackoverflow.com/questions/3058919/text-to-speechtts-android
+        //https://android-developers.googleblog.com/2009/09/introduction-to-text-to-speech-in.html
+        mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int TTS_Status) {
+                if (TTS_Status == TextToSpeech.SUCCESS) {
+                    int TTS_Language = mTextToSpeech.setLanguage(new Locale(languageFromSharedPrefs, ""));
+
+                    mTextToSpeech.speak(getString(R.string.startup_welcome),TextToSpeech.QUEUE_FLUSH,null,null);
+
+                }
+            }
+        });
 
         imageView_page1 = findViewById(R.id.page1_image);
 
@@ -186,8 +211,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private void fragmentGenerator() {
-
-        settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
         languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
 
         switch (languageFromSharedPrefs) {

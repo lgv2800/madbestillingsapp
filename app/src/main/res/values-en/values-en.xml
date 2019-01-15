@@ -103,6 +103,7 @@
     <string name="page5_food_sub">Hamburger, radishes and salad</string>
 
     <string name="language_changed_setting">Language changed. Please restart application.</string>
+    <string name="startup_welcome">Welcome.</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>

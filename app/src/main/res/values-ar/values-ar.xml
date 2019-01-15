@@ -102,6 +102,7 @@
     <string name="page5_food_sub">لحم خنزير ،الفجل والسلطة</string>
 
     <string name="language_changed_setting">تغيرت اللغة. يرجى إعادة تشغيل التطبيق.</string>
+    <string name="startup_welcome">أهلا بك</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>

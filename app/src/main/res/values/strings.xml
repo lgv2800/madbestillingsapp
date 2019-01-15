@@ -101,6 +101,7 @@
     <string name="page5_food_sub">Hamburgerryg, radisser og salat</string>
 
     <string name="language_changed_setting">Sprog ændret. Genstart venligst applikationen.</string>
+    <string name="startup_welcome">Velkommen.</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>
