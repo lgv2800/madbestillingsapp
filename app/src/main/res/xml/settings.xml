@@ -2,21 +2,22 @@
 
     <PreferenceCategory android:title="@string/settingsscreen_settings_label">
 
+        <Preference
+            android:key="logOutScreen"
+            android:summary="@string/settingsscreen_logout_summary"
+            android:title="@string/settingsscreen_logout_label"></Preference>
+
+        <!--
         <EditTextPreference
             android:dialogTitle="@string/settingsscreen_settings_roomNumber_Input_label"
+            android:inputType="number"
             android:key="roomNumberInput"
             android:summary="@string/settingsscreen_settings_roomNumber_summary"
-            android:title="@string/settingsscreen_settings_roomNumber"
-            android:inputType="number" />
+            android:title="@string/settingsscreen_settings_roomNumber" /> -->
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settingsscreen_accessibility_label">
-
-        <Preference
-            android:key="changeFont"
-            android:summary="@string/settingsscreen_accessibility_fontsize_summary"
-            android:title="@string/settingsscreen_accessibility_fontsize"></Preference>
 
         <SwitchPreference
             android:key="changeVoiceOver"
@@ -37,10 +38,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settingsscreen_aboutapp_label">
+        <!--
         <Preference
             android:key="helpScreen"
             android:summary="@string/settingsscreen_aboutapp_help_summary"
-            android:title="@string/settingsscreen_aboutapp_help"></Preference>
+            android:title="@string/settingsscreen_aboutapp_help"></Preference>-->
 
         <Preference
             android:key="aboutScreen"

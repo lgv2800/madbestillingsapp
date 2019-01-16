@@ -53,6 +53,10 @@
     <string name="drawermenu_header_roomNumber">Room Number: </string>
     <string name="drawermenu_my_profile">My profile</string>
     <string name="drawermenu_my_orders">My orders</string>
+    <string name="drawermenu_help_title">Help</string>
+    <string name="drawermenu_help_callassistance">Request help</string>
+    <string name="drawermenu_menu_title">Menu</string>
+    <string name="drawermenu_menu_evening">Aftens menu</string>
     <string name="drawermenu_settings_language">Language</string>
     <string name="drawermenu_settings_voiceover">Voice over</string>
     <string name="drawermenu_settings_miscsettings">Miscellaneous settings</string>
@@ -73,6 +77,8 @@
     <string name="settingsscreen_aboutapp_label">About app.</string>
     <string name="settingsscreen_aboutapp_help">Help</string>
     <string name="settingsscreen_aboutapp_help_summary">In app help.</string>
+    <string name="settingsscreen_logout_label">Log out</string>
+    <string name="settingsscreen_logout_summary">Log out of Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">About</string>
     <string name="settingsscreen_aboutapp_about_summary">About Madbestillingsappen.</string>
 

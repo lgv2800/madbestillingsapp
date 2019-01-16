@@ -50,6 +50,10 @@
     <string name="drawermenu_header_institut">Ballerup Kommune</string>
     <string name="drawermenu_header_roomNumber">Rum-nr: </string>
     <string name="drawermenu_my_profile">Min profil</string>
+    <string name="drawermenu_menu_title">Menu</string>
+    <string name="drawermenu_help_title">Hjælp</string>
+    <string name="drawermenu_help_callassistance">Tilkald hjælp</string>
+    <string name="drawermenu_menu_evening">Aftens menu</string>
     <string name="drawermenu_my_orders">Mine bestillinger</string>
     <string name="drawermenu_settings_language">Sprog</string>
     <string name="drawermenu_settings_voiceover">Oplæser</string>
@@ -71,6 +75,8 @@
     <string name="settingsscreen_aboutapp_label">Om appen</string>
     <string name="settingsscreen_aboutapp_help">Hjælp</string>
     <string name="settingsscreen_aboutapp_help_summary">Hjælp til Madbestillingsappen.</string>
+    <string name="settingsscreen_logout_label">Log ud</string>
+    <string name="settingsscreen_logout_summary">Log ud af Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">Om</string>
     <string name="settingsscreen_aboutapp_about_summary">Om Madbestillingsappen.</string>
 

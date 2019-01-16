@@ -51,7 +51,11 @@
     <string name="drawermenu_header_institut">بلدية باليروب</string>
     <string name="drawermenu_header_roomNumber">رقم الغرفة : </string>
     <string name="drawermenu_my_profile">ملفي الشخصي</string>
+    <string name="drawermenu_menu_title">Menu</string>
+    <string name="drawermenu_menu_evening">Aftens menu</string>
     <string name="drawermenu_my_orders">طلباتي</string>
+    <string name="drawermenu_help_title">المساعدة</string>
+    <string name="drawermenu_help_callassistance">أطلب المساعدة</string>
     <string name="drawermenu_settings_language">اللغة</string>
     <string name="drawermenu_settings_voiceover">التعليق الصوتي</string>
     <string name="drawermenu_settings_miscsettings">إعدادات متنوعة</string>
@@ -72,6 +76,8 @@
     <string name="settingsscreen_aboutapp_label">حول التطبيق</string>
     <string name="settingsscreen_aboutapp_help">المساعدة</string>
     <string name="settingsscreen_aboutapp_help_summary">المساعدة في تطبيق الغذاء</string>
+    <string name="settingsscreen_logout_label">Log ud</string>
+    <string name="settingsscreen_logout_summary">Log ud af Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">حول</string>
     <string name="settingsscreen_aboutapp_about_summary">حول تطبيق الغذاء</string>
 

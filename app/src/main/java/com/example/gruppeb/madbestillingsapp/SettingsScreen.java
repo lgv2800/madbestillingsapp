@@ -40,8 +40,9 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
         voiceOverSwitch = findPreference("changeVoiceOver");
         voiceOverSwitch.setOnPreferenceClickListener(this);
 
+        /*
         roomNumberInput = findPreference("roomNumberInput");
-        roomNumberInput.setOnPreferenceClickListener(this);
+        roomNumberInput.setOnPreferenceClickListener(this);*/
 
         //https://stackoverflow.com/a/8155029/8968120
         listPreference = (ListPreference) findPreference("changeDisplayLanguage");

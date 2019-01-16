@@ -42,6 +42,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +52,7 @@ import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
+import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -89,6 +93,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     //ArrayList for dishImagesJSON.
     ArrayList<String> dishImagesJSON;
+
+    Connector mConnector; //Database connector
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,12 +306,26 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 Intent openMyOrdersScreenIntent = new Intent(MainScreen.this, MyOrdersScreen.class);
                 startActivity(openMyOrdersScreenIntent);
                 break;
-            case R.id.nav_mySettings:
+            case R.id.nav_myEveningMenu:
+                //TO BE handled
+                Intent openEveningMenuScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
+                startActivity(openEveningMenuScreenIntent);
+                break;
+            case R.id.nav_myHelp:
+                //TO BE handled
+                helpCaseToDBAsyncTaskStatement helpCaseToDBAsyncTaskStatement = new helpCaseToDBAsyncTaskStatement();
+                helpCaseToDBAsyncTaskStatement.execute();
+                break;
+            case R.id.nav_mySettingsLanguage:
+                //TO BE handled
+                /*Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
+                startActivity(openSettingsScreenIntent);*/
+                break;
+            case R.id.nav_mySettingsVoiceOverSwitch:
                 //TO BE handled
                 Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
                 startActivity(openSettingsScreenIntent);
                 break;
-
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -319,6 +339,30 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private class helpCaseToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
+        Connection con;
+
+        private boolean isSuccess = false;
+        private String errorMessage = "";
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                con = mConnector.CONN();
+                String query = " INSERT INTO HelpCase (roomNumber) values('" + Order.ROOM_NUMBER + "')";
+
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(query);
+
+                isSuccess = true;
+                con.close();
+            } catch (Exception ex) {
+                isSuccess = false;
+            }
+            return null;
         }
     }
 
