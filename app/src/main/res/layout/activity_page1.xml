@@ -32,8 +32,7 @@
             <ImageView
                 android:id="@+id/page1_image"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:background="@mipmap/food1" />
+                android:layout_height="175dp" />
 
             <TextView
                 android:id="@+id/page1_title"

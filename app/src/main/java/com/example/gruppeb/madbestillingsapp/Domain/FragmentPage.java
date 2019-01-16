@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.gruppeb.madbestillingsapp.R;
 
 public class FragmentPage extends Fragment implements View.OnClickListener {
@@ -19,7 +20,7 @@ public class FragmentPage extends Fragment implements View.OnClickListener {
     private BreadType listener;
     private String title;
     private String description;
-    @DrawableRes int image;
+    private String image;
 
     TextView mTitle, mDescription;
     ImageView mImageView;
@@ -61,10 +62,16 @@ public class FragmentPage extends Fragment implements View.OnClickListener {
     private void modifyView() {
         title = getArguments().getString("title");
         description = getArguments().getString("description");
-        image = getArguments().getInt("image");
+        image = getArguments().getString("image");
         mTitle.setText(title);
+
         mDescription.setText(description);
         //mImage set image
+        //Set image
+        Glide
+                .with(this)
+                .load(image)
+                .into(mImageView);
     }
 
     @Override

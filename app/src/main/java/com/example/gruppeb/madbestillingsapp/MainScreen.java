@@ -116,6 +116,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //https://stackoverflow.com/questions/3058919/text-to-speechtts-android
         //https://android-developers.googleblog.com/2009/09/introduction-to-text-to-speech-in.html
         //https://stacktips.com/tutorials/android/android-texttospeech-example
+
         mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int TTS_Status) {
@@ -129,7 +130,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     Log.e("error", "Initialization Failed!");
                 }
 
-                mTextToSpeech.speak(getString(R.string.startup_welcome), TextToSpeech.QUEUE_FLUSH, null, null);
+                //mTextToSpeech.speak(getString(R.string.startup_welcome), TextToSpeech.QUEUE_FLUSH, null, null);
 
             }
 
@@ -230,18 +231,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("description", description);
+                    bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
-
-                    /*
-                    //Set image
-                    Glide
-                            .with(this)
-                            .load(internetURL)
-                            .into(imageView_page1);
-                    */
                 }
                 ;
                 break;
@@ -253,17 +247,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("description", description);
+                    bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
-
-                    /*
-                    //Set image
-                    Glide
-                            .with(this)
-                            .load(internetURL)
-                            .into(imageView_page1);*/
                 }
                 ;
                 break;
@@ -275,17 +263,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("description", description);
+                    bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
-
-                    /*
-                    //Set image
-                    Glide
-                            .with(this)
-                            .load(internetURL)
-                            .into(imageView_page1);*/
                 }
                 ;
                 break;
@@ -297,17 +279,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("description", description);
+                    bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
-
-                    /*
-                    //Set image
-                    Glide
-                            .with(this)
-                            .load(internetURL)
-                            .into(imageView_page1);*/
                 }
                 ;
                 break;
