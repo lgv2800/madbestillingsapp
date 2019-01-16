@@ -1,22 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/settingsscreen_settings_label">
-
-        <Preference
-            android:key="logOutScreen"
-            android:summary="@string/settingsscreen_logout_summary"
-            android:title="@string/settingsscreen_logout_label"></Preference>
-
-        <!--
-        <EditTextPreference
-            android:dialogTitle="@string/settingsscreen_settings_roomNumber_Input_label"
-            android:inputType="number"
-            android:key="roomNumberInput"
-            android:summary="@string/settingsscreen_settings_roomNumber_summary"
-            android:title="@string/settingsscreen_settings_roomNumber" /> -->
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/settingsscreen_accessibility_label">
 
         <SwitchPreference
