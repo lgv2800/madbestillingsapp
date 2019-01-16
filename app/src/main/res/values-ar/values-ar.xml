@@ -50,7 +50,7 @@
 
     <!-- Drawer menu -->
     <string name="drawermenu_header_institut">بلدية باليروب</string>
-    <string name="drawermenu_header_roomNumber">رقم الغرفة : </string>
+    <string name="drawermenu_header_roomNumber">رقم الغرفة</string>
     <string name="drawermenu_my_profile">ملفي الشخصي</string>
     <string name="drawermenu_menu_title">القائمة</string>
     <string name="drawermenu_menu_evening">القائمة المسائية</string>

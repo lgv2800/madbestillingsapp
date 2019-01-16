@@ -39,6 +39,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,6 +87,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private Context mContext = MainScreen.this;
     ViewPagerAdapter adapter;
 
+    private CheckBox mCheckBoxVoiceOver;
+    private Boolean mBooleanVoiceOverIfChecked;
     TextToSpeech mTextToSpeech;
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
@@ -119,7 +122,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //https://stackoverflow.com/questions/3058919/text-to-speechtts-android
         //https://android-developers.googleblog.com/2009/09/introduction-to-text-to-speech-in.html
         //https://stacktips.com/tutorials/android/android-texttospeech-example
-
         mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int TTS_Status) {
@@ -159,7 +161,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView roomNumberNavbar = headerView.findViewById(R.id.nav_header_roomNumber);
-        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + Order.ROOM_NUMBER);
+        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + " " + Order.ROOM_NUMBER);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -240,7 +242,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
                 }
-                ;
                 break;
             case "en":
                 for (int i = 0; i < dishNamesJSON_EN.size(); i++) {
@@ -256,7 +257,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
                 }
-                ;
                 break;
             case "ar":
                 for (int i = 0; i < dishNamesJSON_AR.size(); i++) {
@@ -272,7 +272,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
                 }
-                ;
                 break;
             default:
                 for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
@@ -288,7 +287,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     adapter.addFragment(fragment, title);
                     viewPager.setAdapter(adapter);
                 }
-                ;
                 break;
         }
 
@@ -392,6 +390,17 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 break;
         }
     }
+
+    private void VoiceOverChangedToast() {
+        if (mBooleanVoiceOverIfChecked) {
+            // Do your coding
+            Toast.makeText(this, "VoiceOver er slået til.", Toast.LENGTH_SHORT).show();
+        } else {
+            // Do your coding
+            Toast.makeText(this, "VoiceOver er slået fra.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

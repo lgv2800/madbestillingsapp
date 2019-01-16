@@ -9,24 +9,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settingsscreen_display_label">
-
-        <ListPreference
-            android:entries="@array/languagePickerEntries"
-            android:entryValues="@array/languagePickerValues"
-            android:key="changeDisplayLanguage"
-            android:summary="@string/settingsscreen_display_language_summary"
-            android:title="@string/settingsscreen_display_language"></ListPreference>
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/settingsscreen_aboutapp_label">
-        <!--
-        <Preference
-            android:key="helpScreen"
-            android:summary="@string/settingsscreen_aboutapp_help_summary"
-            android:title="@string/settingsscreen_aboutapp_help"></Preference>-->
-
         <Preference
             android:key="aboutScreen"
             android:summary="@string/settingsscreen_aboutapp_about_summary"

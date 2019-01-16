@@ -18,9 +18,7 @@ import java.io.Reader;
 public class SettingsScreen extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 
     private Preference aboutScreen;
-    private Preference roomNumberInput;
     private Preference voiceOverSwitch;
-    private ListPreference listPreference;
 
     private Boolean voiceOverStatus;
 
@@ -39,49 +37,6 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
 
         voiceOverSwitch = findPreference("changeVoiceOver");
         voiceOverSwitch.setOnPreferenceClickListener(this);
-
-        /*
-        roomNumberInput = findPreference("roomNumberInput");
-        roomNumberInput.setOnPreferenceClickListener(this);*/
-
-        //https://stackoverflow.com/a/8155029/8968120
-        listPreference = (ListPreference) findPreference("changeDisplayLanguage");
-        if (listPreference.getValue() == null) {
-            listPreference.setValueIndex(0);
-        }
-        listPreference.setSummary(listPreference.getValue().toString());
-        listPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(newValue.toString());
-
-            editorSettings = settingsSharedPreferences.edit();
-            editorSettings.putString("languagePref", newValue.toString());
-            editorSettings.apply();
-
-            switch (newValue.toString()) {
-                case "da":
-                    Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
-                    ;
-                    break;
-                case "en":
-                    Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
-                    ;
-                    break;
-                case "ar":
-                    Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
-
-                    ;
-                    break;
-                default:
-                    Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
-                    ;
-                    break;
-
-        }
-
-            System.out.print(newValue.toString());
-
-            return true;
-        });
     }
 
     @Override
@@ -92,10 +47,6 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
 
         if (preference == voiceOverSwitch) {
             voiceOverStatusSwitch();
-        }
-
-        if (preference == roomNumberInput) {
-            roomNumberInput();
         }
 
         return true;
@@ -128,14 +79,4 @@ public class SettingsScreen extends PreferenceActivity implements Preference.OnP
         dlgAlert.create().show();
     }
 
-    private void roomNumberInput() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String roomNumberFromPrefsManager = preferences.getString("roomNumberInput", "");
-
-        editorSettings = settingsSharedPreferences.edit();
-        editorSettings.putString("roomNumberInput", roomNumberFromPrefsManager);
-        editorSettings.apply();
-        editorSettings.commit();
-        System.out.println(roomNumberFromPrefsManager);
-    }
 }

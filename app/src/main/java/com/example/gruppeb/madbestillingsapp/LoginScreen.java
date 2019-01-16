@@ -175,16 +175,14 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                         ResultSet rs = stmt.executeQuery(query);
 
-                        while (rs.next())
-
-                        {
+                        while (rs.next()) {
                             //i = Placement of column in table
                             roomNumberQuery = rs.getString(1);
 
                             if (roomNumberQuery.equals(roomNumberString)) {
 
                                 isSuccess = true;
-                                errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
+                                errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + " " + roomNumberString;
 
                             } else {
 
