@@ -27,6 +27,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -77,8 +78,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     IntroGuide intro;
 
+    private String newLanguageValue;
     private String languageFromSharedPrefs;
     SharedPreferences settingsSharedPreferences;
+    SharedPreferences.Editor editorSettings;
 
     private Context mContext = MainScreen.this;
     ViewPagerAdapter adapter;
@@ -312,6 +315,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 helpCaseToDBAsyncTaskStatement.execute();
                 break;
             case R.id.nav_mySettingsLanguage:
+                LanguageAlertDialog();
                 break;
             case R.id.nav_logout:
                 settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
@@ -331,6 +335,62 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
+    }
+
+    private void LanguageAlertDialog() {
+        String[] languageList = {"Dansk", "English", "العربية"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.drawermenu_language_title));
+        builder.setItems(languageList, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int intFromList) {
+
+                switch (intFromList) {
+                    case 0:
+                        newLanguageValue = "da";
+                        editorSettings = settingsSharedPreferences.edit();
+                        editorSettings.putString("languagePref", newLanguageValue);
+                        editorSettings.apply();
+                        LanguageChangedToast();
+                        break;
+                    case 1:
+                        newLanguageValue = "en";
+                        editorSettings = settingsSharedPreferences.edit();
+                        editorSettings.putString("languagePref", newLanguageValue);
+                        editorSettings.apply();
+                        LanguageChangedToast();
+                        break;
+                    case 2:
+                        newLanguageValue = "ar";
+                        editorSettings = settingsSharedPreferences.edit();
+                        editorSettings.putString("languagePref", newLanguageValue);
+                        editorSettings.apply();
+                        LanguageChangedToast();
+                        break;
+                    default:
+                }
+
+            }
+        });
+        builder.show();
+    }
+
+    private void LanguageChangedToast() {
+        switch (newLanguageValue) {
+            case "da":
+                Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+                break;
+            case "en":
+                Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
+                break;
+            case "ar":
+                Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     @Override

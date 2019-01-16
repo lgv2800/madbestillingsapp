@@ -62,6 +62,7 @@
     <string name="drawermenu_settings_title">Indstillinger</string>
     <string name="drawermenu_help_playintro">Afspil introduktion</string>
     <string name="drawermenu_logout_title">Log ud</string>
+    <string name="drawermenu_language_title">Sprog</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">Indtast rum-nr.</string>

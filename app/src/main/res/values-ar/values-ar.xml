@@ -63,6 +63,7 @@
     <string name="drawermenu_settings_title">الإعدادات</string>
     <string name="drawermenu_help_playintro">عرض المقدمة</string>
     <string name="drawermenu_logout_title">تسجيل الخروج</string>
+    <string name="drawermenu_language_title">اللغة</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">أدخل رقم الغرفة</string>

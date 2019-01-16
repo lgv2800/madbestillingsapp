@@ -64,6 +64,7 @@
     <string name="drawermenu_settings_title">Settings</string>
     <string name="drawermenu_help_playintro">Play introduction</string>
     <string name="drawermenu_logout_title">Log out</string>
+    <string name="drawermenu_language_title">Language</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">Input room number.</string>
