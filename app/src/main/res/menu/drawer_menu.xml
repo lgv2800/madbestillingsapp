@@ -4,50 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <item android:title="@string/drawermenu_my_profile">
-        <menu>
-
-            <group
-                android:id="@+id/menu_bottom1"
-                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_myOrders"
                     android:icon="@drawable/ic_archive_black_24dp"
                     android:title="@string/drawermenu_my_orders" />
-            </group>
-        </menu>
-    </item>
-
-    <item android:title="@string/drawermenu_menu_title">
-        <menu>
-
-            <group
-                android:id="@+id/menu_bottom3"
-                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_myEveningMenu"
                     android:icon="@drawable/ic_restaurant_menu_black_24dp"
                     android:title="@string/drawermenu_menu_evening" />
-            </group>
-        </menu>
-    </item>
-
-    <item android:title="@string/drawermenu_help_title">
-        <menu>
-
-            <group
-                android:id="@+id/menu_bottom4"
-                android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_myHelp"
-                    android:icon="@drawable/ic_help_black_24dp"
-                    android:title="@string/drawermenu_help_callassistance" />
-            </group>
-        </menu>
-    </item>
 
 
-    <item android:title="Indstillinger">
+
+
+    <item android:title="@string/drawermenu_settings_title">
         <menu>
 
             <group
@@ -71,9 +40,26 @@
             </group>
         </menu>
     </item>
+    <item android:title="@string/drawermenu_help_title">
+        <menu>
+
+            <group
+                android:id="@+id/menu_bottom4"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_myHelp"
+                    android:icon="@drawable/ic_help_black_24dp"
+                    android:title="@string/drawermenu_help_callassistance" />
+                <item
+                    android:id="@+id/nav_introplay"
+                    android:icon="@drawable/ic_play_circle_filled_black_24dp"
+                    android:title="@string/drawermenu_help_playintro" />
+            </group>
+        </menu>
+    </item>
 
     <item
-        android:title="Log ud"
+        android:title="@string/drawermenu_logout_title"
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_exit_to_app_black_24dp">
     </item>

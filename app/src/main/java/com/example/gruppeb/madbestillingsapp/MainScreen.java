@@ -75,6 +75,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private ImageView imageView_page1;
     Order order;
 
+    IntroGuide intro;
+
     private String languageFromSharedPrefs;
     SharedPreferences settingsSharedPreferences;
 
@@ -138,7 +140,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         //Order logic
         order = new Order();
-        IntroGuide intro = new IntroGuide();
+        intro = new IntroGuide();
 
         //Add viewpager
         viewPager = findViewById(R.id.pager);
@@ -325,6 +327,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 //TO BE handled
                 Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
                 startActivity(openSettingsScreenIntent);
+                break;
+            case R.id.nav_introplay:
+                intro.playGuide(this, MainScreen.this);
                 break;
 
         }
