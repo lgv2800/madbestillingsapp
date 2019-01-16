@@ -10,6 +10,7 @@
     <string name="login_login_message_loginsuccesswithroomnumber">تم تسجيل الدخول برقم الغرفة : </string>
     <string name="login_login_checkbox_rememberroomnumber">تذكر رقم الغرفة؟</string>
     <string name="my_orders_title">طلباتي</string>
+    <string name="evening_menu_title">القائمة المسائية</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -51,14 +52,17 @@
     <string name="drawermenu_header_institut">بلدية باليروب</string>
     <string name="drawermenu_header_roomNumber">رقم الغرفة : </string>
     <string name="drawermenu_my_profile">ملفي الشخصي</string>
-    <string name="drawermenu_menu_title">Menu</string>
-    <string name="drawermenu_menu_evening">Aftens menu</string>
+    <string name="drawermenu_menu_title">القائمة</string>
+    <string name="drawermenu_menu_evening">القائمة المسائية</string>
     <string name="drawermenu_my_orders">طلباتي</string>
     <string name="drawermenu_help_title">المساعدة</string>
     <string name="drawermenu_help_callassistance">أطلب المساعدة</string>
     <string name="drawermenu_settings_language">اللغة</string>
     <string name="drawermenu_settings_voiceover">التعليق الصوتي</string>
     <string name="drawermenu_settings_miscsettings">إعدادات متنوعة</string>
+    <string name="drawermenu_settings_title">الإعدادات</string>
+    <string name="drawermenu_help_playintro">عرض المقدمة</string>
+    <string name="drawermenu_logout_title">تسجيل الخروج</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">أدخل رقم الغرفة</string>
@@ -85,6 +89,10 @@
     <string name="action_added">تم إضافة إلى العربة</string>
     <string name="action_cart">عربة</string>
     <string name="page_amountchosen">العدد المختار</string>
+
+    <!-- Cart screen -->
+    <string name="cart_screen_title">عربة التسوق</string>
+    <string name="cart_screen_empty_text">السلة فارغة</string>
 
     <!-- Food -->
     <string name="page1_food_title">لحم خنزير</string>

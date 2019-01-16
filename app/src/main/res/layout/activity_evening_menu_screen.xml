@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MyOrdersScreen"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".EveningMenuScreen">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout2"

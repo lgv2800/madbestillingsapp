@@ -45,7 +45,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             setEmptyView();
         } else {
             setContentView(R.layout.activity_cart_screen);
-            setTitle(getString(R.string.action_cart));
+            setTitle(getString(R.string.cart_screen_title));
 
             findViewAndClickListener();
 
@@ -125,6 +125,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     private void setEmptyView() {
         setContentView(R.layout.activity_cart_screen_empty);
+        setTitle(getString(R.string.cart_screen_title));
         mEmptyText =  findViewById(R.id.cart_empty_text);
         mEmptyText.setText(getString(R.string.cart_screen_empty_text));
         com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);

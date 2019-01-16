@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".EveningMenuScreen"></activity>
         <activity
             android:name=".LoginScreen"
             android:configChanges="orientation"
@@ -46,7 +47,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="aae01a62dd6acb92f05d6f60d3b838043ebaee1f" />
-
     </application>
 
 </manifest>

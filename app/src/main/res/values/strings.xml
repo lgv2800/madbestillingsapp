@@ -9,6 +9,7 @@
     <string name="login_login_checkbox_rememberroomnumber">Husk dette rum nr?</string>
 
     <string name="my_orders_title">Mine bestillinger</string>
+    <string name="evening_menu_title">Aftens menu</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -58,6 +59,9 @@
     <string name="drawermenu_settings_language">Sprog</string>
     <string name="drawermenu_settings_voiceover">Oplæser</string>
     <string name="drawermenu_settings_miscsettings">Øvrige indstillinger</string>
+    <string name="drawermenu_settings_title">Indstillinger</string>
+    <string name="drawermenu_help_playintro">Afspil introduktion</string>
+    <string name="drawermenu_logout_title">Log ud</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">Indtast rum-nr.</string>
@@ -80,10 +84,14 @@
     <string name="settingsscreen_aboutapp_about">Om</string>
     <string name="settingsscreen_aboutapp_about_summary">Om Madbestillingsappen.</string>
 
-    <!-- Main tekst -->
+    <!-- Main text -->
     <string name="action_added">Tilføjet til kurv</string>
     <string name="action_cart">Kurv</string>
     <string name="page_amountchosen">Antal Valgt</string>
+
+    <!-- Cart screen -->
+    <string name="cart_screen_title">Kurv</string>
+    <string name="cart_screen_empty_text">Kurven er tom</string>
 
     <!-- Food -->
     <string name="page1_food_title">Skinke</string>
@@ -118,8 +126,4 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" tools:ignore="MissingTranslation">Hello blank fragment</string>
     <string name="pref_settings" tools:ignore="MissingTranslation">settingsPref</string>
-    <string name="cart_screen_empty_text">Kurven er tom</string>
-    <string name="drawermenu_settings_title">Indstillinger</string>
-    <string name="drawermenu_help_playintro">Afspil introduktion</string>
-    <string name="drawermenu_logout_title">Log ud</string>
 </resources>

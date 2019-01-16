@@ -296,24 +296,22 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         switch (menuItem.getItemId()) {
             case R.id.nav_myOrders:
-                //TO BE handled
                 Intent openMyOrdersScreenIntent = new Intent(MainScreen.this, MyOrdersScreen.class);
                 startActivity(openMyOrdersScreenIntent);
                 break;
             case R.id.nav_myEveningMenu:
-                //TO BE handled
-                Intent openEveningMenuScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
+                Intent openEveningMenuScreenIntent = new Intent(MainScreen.this, EveningMenuScreen.class);
                 startActivity(openEveningMenuScreenIntent);
                 break;
+            case R.id.nav_mySettings:
+                Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
+                startActivity(openSettingsScreenIntent);
+                break;
             case R.id.nav_myHelp:
-                //TO BE handled
                 helpCaseToDBAsyncTaskStatement helpCaseToDBAsyncTaskStatement = new helpCaseToDBAsyncTaskStatement();
                 helpCaseToDBAsyncTaskStatement.execute();
                 break;
             case R.id.nav_mySettingsLanguage:
-                //TO BE handled
-                /*Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
-                startActivity(openSettingsScreenIntent);*/
                 break;
             case R.id.nav_logout:
                 settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
@@ -324,14 +322,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(i);
                 break;
             case R.id.nav_mySettingsVoiceOverSwitch:
-                //TO BE handled
-                Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
-                startActivity(openSettingsScreenIntent);
                 break;
             case R.id.nav_introplay:
                 intro.playGuide(this, MainScreen.this);
                 break;
-
         }
 
         drawer.closeDrawer(GravityCompat.START);
