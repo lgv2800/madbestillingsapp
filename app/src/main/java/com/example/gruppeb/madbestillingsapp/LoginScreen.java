@@ -212,6 +212,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 setAnimation(false);
                 Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
                 Order.ROOM_NUMBER = roomNumberString;
+                finish();
             }
 
             if (!isSuccess) {

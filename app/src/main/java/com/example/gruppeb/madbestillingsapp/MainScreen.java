@@ -84,15 +84,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     TextToSpeech mTextToSpeech;
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
-    ArrayList<String> dishNamesJSON_DA;
-    ArrayList<String> dishDescriptionJSON_DA;
-    ArrayList<String> dishNamesJSON_EN;
-    ArrayList<String> dishDescriptionJSON_EN;
-    ArrayList<String> dishNamesJSON_AR;
-    ArrayList<String> dishDescriptionJSON_AR;
-
-    //ArrayList for dishImagesJSON.
-    ArrayList<String> dishImagesJSON;
+    ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON;
 
     Connector mConnector; //Database connector
 
@@ -321,11 +313,20 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 /*Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
                 startActivity(openSettingsScreenIntent);*/
                 break;
+            case R.id.nav_logout:
+                settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = settingsSharedPreferences.edit();
+                edit.putBoolean("checkBoxRoomNumber", false);
+                edit.apply();
+                Intent i = new Intent(MainScreen.this, LoginScreen.class);
+                startActivity(i);
+                break;
             case R.id.nav_mySettingsVoiceOverSwitch:
                 //TO BE handled
                 Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
                 startActivity(openSettingsScreenIntent);
                 break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);

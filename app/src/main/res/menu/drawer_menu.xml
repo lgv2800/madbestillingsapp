@@ -71,4 +71,10 @@
             </group>
         </menu>
     </item>
+
+    <item
+        android:title="Log ud"
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp">
+    </item>
 </menu>
