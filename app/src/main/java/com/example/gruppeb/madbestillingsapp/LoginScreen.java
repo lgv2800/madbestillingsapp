@@ -149,9 +149,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
         //Database
         private String roomNumberString = mRoomNumberEnterField.getText().toString();
+        private String roomNumberStatus = "0";
         private boolean isSuccess = false;
 
         private String roomNumberQuery;
+        private String roomNumberStatusQuery;
         private String errorMessage = "";
 
         @Override
@@ -167,8 +169,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberString + "'";
-                        String query = " SELECT * FROM roomNumber WHERE roomNumber='" + roomNumberString + "'";
+                        String query = " SELECT * FROM roomNumber WHERE roomNumber='" + roomNumberString + "' AND roomNumberStatus='" + roomNumberStatus + "'";
 
                         Statement stmt = con.createStatement();
                         // stmt.executeUpdate(query);
@@ -178,8 +179,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                         while (rs.next()) {
                             //i = Placement of column in table
                             roomNumberQuery = rs.getString(1);
+                            roomNumberStatusQuery = rs.getString(2);
 
-                            if (roomNumberQuery.equals(roomNumberString)) {
+                            if (roomNumberQuery.equals(roomNumberString) && roomNumberStatusQuery.equals(roomNumberStatus)) {
 
                                 isSuccess = true;
                                 errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + " " + roomNumberString;
