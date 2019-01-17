@@ -217,7 +217,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
             if (!isSuccess) {
                 setAnimation(false);
-                Toast wrongNrToast = Toast.makeText(LoginScreen.this,"Forkert værelsesnummer, prøv igen", Toast.LENGTH_LONG);
+                Toast wrongNrToast = Toast.makeText(LoginScreen.this,"Rumnummer findes ikke, prøv igen", Toast.LENGTH_LONG);
                 wrongNrToast.show();
             }
 
