@@ -208,18 +208,17 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             if (isSuccess) {
-                Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
+                mRoomNumberEnterField.setError(errorMessage);
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
                 startActivity(intent);
                 setAnimation(false);
-                //Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
                 Order.ROOM_NUMBER = roomNumberString;
                 finish();
             }
 
             if (!isSuccess) {
                 setAnimation(false);
-                Toast.makeText(LoginScreen.this,errorMessage, Toast.LENGTH_LONG).show();
+                mRoomNumberEnterField.setError(errorMessage);
             }
 
         }
