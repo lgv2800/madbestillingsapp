@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@android:color/transparent">
 <ScrollView
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
 
     <android.support.v7.widget.CardView
@@ -18,18 +20,19 @@
         android:clipToPadding="false"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp"
-        android:layout_gravity="center|top">
+        android:layout_gravity="center|top"
+        android:background="@android:color/transparent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@android:color/transparent">
 
             <ImageView
                 android:id="@+id/page1_image"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:background="@mipmap/food1" />
+                android:layout_height="175dp" />
 
             <TextView
                 android:id="@+id/page1_title"
@@ -88,6 +91,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
+                app:chipCornerRadius="20dp"
                 android:checkable="true"/>
 
             <android.support.design.chip.Chip
@@ -100,6 +104,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
+                app:chipCornerRadius="20dp"
                 android:checkable="true"/>
             </LinearLayout>
 

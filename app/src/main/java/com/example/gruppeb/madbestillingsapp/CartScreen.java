@@ -30,10 +30,9 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbarCart;
-    //ImageView mMainImage;
     ListView mListView;
     Button mOrderCart;
-    TextView mDeleteAll;
+    TextView mDeleteAll, mEmptyText;
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
 
@@ -46,7 +45,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             setEmptyView();
         } else {
             setContentView(R.layout.activity_cart_screen);
-            setTitle(getString(R.string.action_cart));
+            setTitle(getString(R.string.cart_screen_title));
 
             findViewAndClickListener();
 
@@ -70,15 +69,12 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 .setTarget(R.id.button_order)
                 .setPrimaryText(getString(R.string.intro_guide_last_step_title))
                 .setSecondaryText(getString(R.string.intro_guide_last_step_desc))
-                .setBackgroundColour(getResources().getColor(R.color.colorPrimary))
+                .setBackgroundColour(getResources().getColor(R.color.colorPrimaryDark))
                 .setPromptBackground(new RectanglePromptBackground())
                 .setPromptFocal(new RectanglePromptFocal())
-                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                    @Override
-                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state) {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                            // User has pressed the prompt target
-                        }
+                .setPromptStateChangeListener((prompt, state) -> {
+                    if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                        // User has pressed the prompt target
                     }
                 })
                 .show();
@@ -118,8 +114,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
 
     private void findViewAndClickListener() {
-        //mMainImage = findViewById(R.id.cart_mainimage);
-        //mMainImage.setOnClickListener(this);
         mListView = findViewById(R.id.cart_list);
         mDeleteAll = findViewById(R.id.cart_delete_all);
         mDeleteAll.setOnClickListener(this);
@@ -131,6 +125,9 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
 
     private void setEmptyView() {
         setContentView(R.layout.activity_cart_screen_empty);
+        setTitle(getString(R.string.cart_screen_title));
+        mEmptyText = findViewById(R.id.cart_empty_text);
+        mEmptyText.setText(getString(R.string.cart_screen_empty_text));
         com.airbnb.lottie.LottieAnimationView animation = findViewById(R.id.cart_empty_animation);
         animation.setOnClickListener(v -> Toast.makeText(this, "Du har ikke bestilt noget", Toast.LENGTH_SHORT).show());
         createToolBar();

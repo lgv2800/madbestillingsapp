@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -25,7 +24,6 @@ import java.sql.Statement;
 import java.util.Locale;
 
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
-import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
@@ -36,7 +34,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private Boolean mBooleanRememberRoomNumber, mBooleanRememberRoomNumberFromSharedPrefs;
     private CheckBox mCheckBoxRememberRoomNumber;
 
-    private ImageView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
+    private TextView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
 
     private final String TAG = "LoginScreen";
 
@@ -82,7 +80,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         findViews();
         addOnClickListeners();
-
+        updateChosenLanguage();
 
         mBooleanRememberRoomNumberFromSharedPrefs = settingsSharedPreferences.getBoolean("checkBoxRoomNumber", false);
         mRoomNumberFromSharedPrefs = settingsSharedPreferences.getString("roomNumberInput", "");
@@ -107,6 +105,28 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mConnector = new Connector();
     }
 
+    /**
+     * TODO: Den ændrer ikke til bold. ved ikke helt hvorfor. Har også prøvet setTextSize, men den ændrer heller intet
+     */
+    private void updateChosenLanguage() {
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+        mImageViewFlagArabic.setTypeface(null, Typeface.NORMAL);
+        mImageViewFlagEnglish.setTypeface(null, Typeface.NORMAL);
+        mImageViewFlagDanish.setTypeface(null, Typeface.NORMAL);
+        switch (languageFromSharedPrefs) {
+            case "ar":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
+            case "en":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
+            case "da":
+                mImageViewFlagArabic.setTypeface(boldTypeface);
+                break;
+
+        }
+    }
+
     private void addOnClickListeners() {
         mLoginButton.setOnClickListener(this);
 
@@ -119,9 +139,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         mLoginButton = findViewById(R.id.login_button);
         loadingAnimation = findViewById(R.id.login_animation_loading);
         mCheckBoxRememberRoomNumber = findViewById(R.id.checkBox_rememberRoomNumber);
-        mImageViewFlagDanish = findViewById(R.id.imageView_flag_danish);
-        mImageViewFlagEnglish = findViewById(R.id.imageView_flag_english);
-        mImageViewFlagArabic = findViewById(R.id.imageView_flag_arabic);
+        mImageViewFlagDanish = findViewById(R.id.login_language_danish);
+        mImageViewFlagEnglish = findViewById(R.id.login_language_english);
+        mImageViewFlagArabic = findViewById(R.id.login_language_arabic);
         mRoomNumberEnterField = findViewById(R.id.login_number);
     }
 
@@ -129,9 +149,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private class loginAsyncTaskStatement extends AsyncTask<String, String, String> {
         //Database
         private String roomNumberString = mRoomNumberEnterField.getText().toString();
+        private String roomNumberStatus = "0";
         private boolean isSuccess = false;
 
         private String roomNumberQuery;
+        private String roomNumberStatusQuery;
         private String errorMessage = "";
 
         @Override
@@ -147,29 +169,28 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + roomNumberString + "'";
-                        String query = " SELECT * FROM roomNumber WHERE roomNumber='" + roomNumberString + "'";
+                        String query = " SELECT * FROM roomNumber WHERE roomNumber='" + roomNumberString + "' AND roomNumberStatus='" + roomNumberStatus + "'";
 
                         Statement stmt = con.createStatement();
                         // stmt.executeUpdate(query);
 
                         ResultSet rs = stmt.executeQuery(query);
 
-                        while (rs.next())
-
-                        {
+                        while (rs.next()) {
                             //i = Placement of column in table
                             roomNumberQuery = rs.getString(1);
+                            roomNumberStatusQuery = rs.getString(2);
 
-                            if (roomNumberQuery.equals(roomNumberString)) {
+                            if (roomNumberQuery.equals(roomNumberString) && roomNumberStatusQuery.equals(roomNumberStatus)) {
 
                                 isSuccess = true;
-                                errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + roomNumberString;
+                                errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + " " + roomNumberString;
 
                             } else {
 
                                 isSuccess = false;
                                 errorMessage = getString(R.string.login_error_login);
+
                             }
                         }
 
@@ -191,6 +212,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 setAnimation(false);
                 Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
                 Order.ROOM_NUMBER = roomNumberString;
+                finish();
             }
 
             if (!isSuccess) {
@@ -219,19 +241,28 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             setAnimation(true);
         }
 
-        if (v == mImageViewFlagArabic){
+        if (v == mImageViewFlagArabic) {
             Log.d(TAG, "Language changed to ar");
             mLanguageController.changeLanguage("ar", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
 
-        if (v == mImageViewFlagDanish){
+        if (v == mImageViewFlagDanish) {
             Log.d(TAG, "Language changed to da");
             mLanguageController.changeLanguage("da", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
 
-        if (v == mImageViewFlagEnglish){
+        if (v == mImageViewFlagEnglish) {
             Log.d(TAG, "Language changed to en");
             mLanguageController.changeLanguage("en", this);
+            updateChosenLanguage();
+            Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
     }
 

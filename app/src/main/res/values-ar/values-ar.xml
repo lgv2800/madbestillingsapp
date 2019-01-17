@@ -10,6 +10,7 @@
     <string name="login_login_message_loginsuccesswithroomnumber">تم تسجيل الدخول برقم الغرفة : </string>
     <string name="login_login_checkbox_rememberroomnumber">تذكر رقم الغرفة؟</string>
     <string name="my_orders_title">طلباتي</string>
+    <string name="evening_menu_title">القائمة المسائية</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -49,12 +50,20 @@
 
     <!-- Drawer menu -->
     <string name="drawermenu_header_institut">بلدية باليروب</string>
-    <string name="drawermenu_header_roomNumber">رقم الغرفة : </string>
+    <string name="drawermenu_header_roomNumber">رقم الغرفة</string>
     <string name="drawermenu_my_profile">ملفي الشخصي</string>
+    <string name="drawermenu_menu_title">القائمة</string>
+    <string name="drawermenu_menu_evening">القائمة المسائية</string>
     <string name="drawermenu_my_orders">طلباتي</string>
+    <string name="drawermenu_help_title">المساعدة</string>
+    <string name="drawermenu_help_callassistance">أطلب المساعدة</string>
     <string name="drawermenu_settings_language">اللغة</string>
     <string name="drawermenu_settings_voiceover">التعليق الصوتي</string>
     <string name="drawermenu_settings_miscsettings">إعدادات متنوعة</string>
+    <string name="drawermenu_settings_title">الإعدادات</string>
+    <string name="drawermenu_help_playintro">عرض المقدمة</string>
+    <string name="drawermenu_logout_title">تسجيل الخروج</string>
+    <string name="drawermenu_language_title">اللغة</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">أدخل رقم الغرفة</string>
@@ -72,6 +81,8 @@
     <string name="settingsscreen_aboutapp_label">حول التطبيق</string>
     <string name="settingsscreen_aboutapp_help">المساعدة</string>
     <string name="settingsscreen_aboutapp_help_summary">المساعدة في تطبيق الغذاء</string>
+    <string name="settingsscreen_logout_label">Log ud</string>
+    <string name="settingsscreen_logout_summary">Log ud af Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">حول</string>
     <string name="settingsscreen_aboutapp_about_summary">حول تطبيق الغذاء</string>
 
@@ -79,6 +90,10 @@
     <string name="action_added">تم إضافة إلى العربة</string>
     <string name="action_cart">عربة</string>
     <string name="page_amountchosen">العدد المختار</string>
+
+    <!-- Cart screen -->
+    <string name="cart_screen_title">عربة التسوق</string>
+    <string name="cart_screen_empty_text">السلة فارغة</string>
 
     <!-- Food -->
     <string name="page1_food_title">لحم خنزير</string>
@@ -100,6 +115,9 @@
     <string name="page5_food_title">لحم خنزير</string>
     <string name="page5_food_main">لحم خنزير</string>
     <string name="page5_food_sub">لحم خنزير ،الفجل والسلطة</string>
+
+    <string name="language_changed_setting">تغيرت اللغة. يرجى إعادة تشغيل التطبيق.</string>
+    <string name="startup_welcome">أهلا بك</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>

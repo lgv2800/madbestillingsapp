@@ -51,25 +51,24 @@ public class CartDAO implements IDAO {
             for (int i = 0; i < breadType.size(); i++) {
                 breadColor = breadType.get(i);
                 orderMenu = orderItem.get(i);
+                Connection con;
 
                 try {
-                    Connection con = mConnector.CONN();
-                    if (con == null) {
-
-                    } else {
+                    con = mConnector.CONN();
                         String query = " INSERT INTO Orders (roomNumber, orderMenu, breadType) values('" + Order.ROOM_NUMBER + "','" + orderMenu + "','" + breadColor + "')";
 
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
 
                         isSuccess = true;
-                    }
+                         con.close();
                 } catch (Exception ex) {
                     isSuccess = false;
                 }
             }
             return null;
         }
+
     }
 
 }

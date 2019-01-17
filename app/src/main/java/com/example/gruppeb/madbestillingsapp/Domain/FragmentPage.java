@@ -1,38 +1,39 @@
-package com.example.gruppeb.madbestillingsapp.FoodFragments;
+package com.example.gruppeb.madbestillingsapp.Domain;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.design.chip.Chip;
-import android.support.design.chip.ChipGroup;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
-import com.example.gruppeb.madbestillingsapp.MainScreen;
 import com.example.gruppeb.madbestillingsapp.R;
 
-public class Page1 extends Fragment implements View.OnClickListener {
+public class FragmentPage extends Fragment implements View.OnClickListener {
 
     Chip mLight, mDark;
     private BreadType listener;
+    private String title;
+    private String description;
+    private String image;
 
-    public Page1() {
-        //empty constructor
-    }
+    TextView mTitle, mDescription;
+    ImageView mImageView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+   public FragmentPage(){
+       //Required empty constructor
+   }
 
-    }
+   @Override
+    public void onCreate(Bundle savedInstanceState){
+       super.onCreate(savedInstanceState);
 
+   }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class Page1 extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.activity_page1, container, false);
         mLight = view.findViewById(R.id.page1_lightbread);
         mDark = view.findViewById(R.id.page1_darkbread);
+        mTitle = view.findViewById(R.id.page1_title);
+        mDescription = view.findViewById(R.id.page1_subtitle);
+        mImageView = view.findViewById(R.id.page1_image);
 
         mLight.setOnClickListener(this);
         mDark.setOnClickListener(this);
@@ -47,12 +51,31 @@ public class Page1 extends Fragment implements View.OnClickListener {
         //default breadtype set checked
         mDark.setChecked(true);
 
+        modifyView();
         return view;
 
     }
 
+    /**
+     * TODO: be able to change image in fragments
+      */
+    private void modifyView() {
+        title = getArguments().getString("title");
+        description = getArguments().getString("description");
+        image = getArguments().getString("image");
+        mTitle.setText(title);
+
+        mDescription.setText(description);
+        //mImage set image
+        //Set image
+        Glide
+                .with(this)
+                .load(image)
+                .into(mImageView);
+    }
+
     @Override
-    public void onClick(final View v) {
+    public void onClick(View v) {
         if (v == mLight) {
             listener.setBreadType(true);
             mLight.setChecked(true);
@@ -63,7 +86,6 @@ public class Page1 extends Fragment implements View.OnClickListener {
             mDark.setChecked(true);
             mLight.setChecked(false);
         }
-
     }
 
     /**
@@ -82,6 +104,5 @@ public class Page1 extends Fragment implements View.OnClickListener {
             //
         }
     }
-
 
 }

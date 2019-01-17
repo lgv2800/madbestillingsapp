@@ -9,6 +9,7 @@
     <string name="login_login_checkbox_rememberroomnumber">Husk dette rum nr?</string>
 
     <string name="my_orders_title">Mine bestillinger</string>
+    <string name="evening_menu_title">Aftens menu</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -48,12 +49,20 @@
 
     <!-- Drawer menu -->
     <string name="drawermenu_header_institut">Ballerup Kommune</string>
-    <string name="drawermenu_header_roomNumber">Rum-nr: </string>
+    <string name="drawermenu_header_roomNumber">Rum-nr</string>
     <string name="drawermenu_my_profile">Min profil</string>
+    <string name="drawermenu_menu_title">Menu</string>
+    <string name="drawermenu_help_title">Hjælp</string>
+    <string name="drawermenu_help_callassistance">Tilkald hjælp</string>
+    <string name="drawermenu_menu_evening">Aftens menu</string>
     <string name="drawermenu_my_orders">Mine bestillinger</string>
     <string name="drawermenu_settings_language">Sprog</string>
     <string name="drawermenu_settings_voiceover">Oplæser</string>
     <string name="drawermenu_settings_miscsettings">Øvrige indstillinger</string>
+    <string name="drawermenu_settings_title">Indstillinger</string>
+    <string name="drawermenu_help_playintro">Afspil introduktion</string>
+    <string name="drawermenu_logout_title">Log ud</string>
+    <string name="drawermenu_language_title">Sprog</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">Indtast rum-nr.</string>
@@ -71,13 +80,19 @@
     <string name="settingsscreen_aboutapp_label">Om appen</string>
     <string name="settingsscreen_aboutapp_help">Hjælp</string>
     <string name="settingsscreen_aboutapp_help_summary">Hjælp til Madbestillingsappen.</string>
+    <string name="settingsscreen_logout_label">Log ud</string>
+    <string name="settingsscreen_logout_summary">Log ud af Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">Om</string>
     <string name="settingsscreen_aboutapp_about_summary">Om Madbestillingsappen.</string>
 
-    <!-- Main tekst -->
+    <!-- Main text -->
     <string name="action_added">Tilføjet til kurv</string>
     <string name="action_cart">Kurv</string>
     <string name="page_amountchosen">Antal Valgt</string>
+
+    <!-- Cart screen -->
+    <string name="cart_screen_title">Kurv</string>
+    <string name="cart_screen_empty_text">Kurven er tom</string>
 
     <!-- Food -->
     <string name="page1_food_title">Skinke</string>
@@ -99,6 +114,9 @@
     <string name="page5_food_title">Hamburgerryg</string>
     <string name="page5_food_main">Hamburgerryg</string>
     <string name="page5_food_sub">Hamburgerryg, radisser og salat</string>
+
+    <string name="language_changed_setting">Sprog ændret. Genstart venligst applikationen.</string>
+    <string name="startup_welcome">Velkommen.</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>

@@ -11,6 +11,7 @@
     <string name="login_login_checkbox_rememberroomnumber">Remember room number?</string>
 
     <string name="my_orders_title">My orders</string>
+    <string name="evening_menu_title">Evening menu</string>
 
     <!--open close navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -50,12 +51,20 @@
 
     <!-- Drawer menu -->
     <string name="drawermenu_header_institut">Ballerup Municipality</string>
-    <string name="drawermenu_header_roomNumber">Room Number: </string>
+    <string name="drawermenu_header_roomNumber">Room Number</string>
     <string name="drawermenu_my_profile">My profile</string>
     <string name="drawermenu_my_orders">My orders</string>
+    <string name="drawermenu_help_title">Help</string>
+    <string name="drawermenu_help_callassistance">Request help</string>
+    <string name="drawermenu_menu_title">Menu</string>
+    <string name="drawermenu_menu_evening">Aftens menu</string>
     <string name="drawermenu_settings_language">Language</string>
     <string name="drawermenu_settings_voiceover">Voice over</string>
     <string name="drawermenu_settings_miscsettings">Miscellaneous settings</string>
+    <string name="drawermenu_settings_title">Settings</string>
+    <string name="drawermenu_help_playintro">Play introduction</string>
+    <string name="drawermenu_logout_title">Log out</string>
+    <string name="drawermenu_language_title">Language</string>
 
     <!-- Settings screen -->
     <string name="settingsscreen_settings_roomNumber_Input_label">Input room number.</string>
@@ -73,6 +82,8 @@
     <string name="settingsscreen_aboutapp_label">About app.</string>
     <string name="settingsscreen_aboutapp_help">Help</string>
     <string name="settingsscreen_aboutapp_help_summary">In app help.</string>
+    <string name="settingsscreen_logout_label">Log out</string>
+    <string name="settingsscreen_logout_summary">Log out of Madbestillingsappen.</string>
     <string name="settingsscreen_aboutapp_about">About</string>
     <string name="settingsscreen_aboutapp_about_summary">About Madbestillingsappen.</string>
 
@@ -80,6 +91,10 @@
     <string name="action_added">Added to cart</string>
     <string name="action_cart">Cart</string>
     <string name="page_amountchosen">Amount chosen</string>
+
+    <!-- Cart screen -->
+    <string name="cart_screen_title">Cart</string>
+    <string name="cart_screen_empty_text">Cart is empty</string>
 
     <!-- Food -->
     <string name="page1_food_title">Ham</string>
@@ -101,6 +116,9 @@
     <string name="page5_food_title">Pork</string>
     <string name="page5_food_main">Pork sandwich</string>
     <string name="page5_food_sub">Hamburger, radishes and salad</string>
+
+    <string name="language_changed_setting">Language changed. Please restart application.</string>
+    <string name="startup_welcome">Welcome.</string>
 
     <!-- SharedPreferences -->
     <string name="current_order_pref">current_order_pref</string>
