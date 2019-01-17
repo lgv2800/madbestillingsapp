@@ -112,7 +112,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         //Shared preferences
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
-        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
+        String languageFromLocalgetDefault = Locale.getDefault().getLanguage();
+        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", languageFromLocalgetDefault);
 
         mFragmentTitleList = new ArrayList<>();
 
@@ -231,8 +232,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private void fragmentGenerator() {
-        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
-
         switch (languageFromSharedPrefs) {
             case "da":
                 for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
@@ -346,36 +345,32 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.drawermenu_language_title));
-        builder.setItems(languageList, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int intFromList) {
+        builder.setItems(languageList, (dialog, intFromList) -> {
 
-                switch (intFromList) {
-                    case 0:
-                        newLanguageValue = "da";
-                        editorSettings = settingsSharedPreferences.edit();
-                        editorSettings.putString("languagePref", newLanguageValue);
-                        editorSettings.apply();
-                        LanguageChangedToast();
-                        break;
-                    case 1:
-                        newLanguageValue = "en";
-                        editorSettings = settingsSharedPreferences.edit();
-                        editorSettings.putString("languagePref", newLanguageValue);
-                        editorSettings.apply();
-                        LanguageChangedToast();
-                        break;
-                    case 2:
-                        newLanguageValue = "ar";
-                        editorSettings = settingsSharedPreferences.edit();
-                        editorSettings.putString("languagePref", newLanguageValue);
-                        editorSettings.apply();
-                        LanguageChangedToast();
-                        break;
-                    default:
-                }
-
+            switch (intFromList) {
+                case 0:
+                    newLanguageValue = "da";
+                    editorSettings = settingsSharedPreferences.edit();
+                    editorSettings.putString("languagePref", newLanguageValue);
+                    editorSettings.apply();
+                    LanguageChangedToast();
+                    break;
+                case 1:
+                    newLanguageValue = "en";
+                    editorSettings = settingsSharedPreferences.edit();
+                    editorSettings.putString("languagePref", newLanguageValue);
+                    editorSettings.apply();
+                    LanguageChangedToast();
+                    break;
+                case 2:
+                    newLanguageValue = "ar";
+                    editorSettings = settingsSharedPreferences.edit();
+                    editorSettings.putString("languagePref", newLanguageValue);
+                    editorSettings.apply();
+                    LanguageChangedToast();
+                    break;
             }
+
         });
         builder.show();
     }
