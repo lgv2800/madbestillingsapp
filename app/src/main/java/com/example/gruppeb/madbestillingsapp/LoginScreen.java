@@ -158,9 +158,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected String doInBackground(String... params) {
-            if (roomNumberString.trim().equals(""))
+            if (roomNumberString.equals("")) {
                 errorMessage = getString(R.string.login_login_message_fillvalue);
-            else {
+            } else {
                 try {
                     Connection con = mConnector.CONN();
                     if (con == null) {
@@ -186,39 +186,40 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                                 isSuccess = true;
                                 errorMessage = getString(R.string.login_login_message_loginsuccesswithroomnumber) + " " + roomNumberString;
 
-                            } else {
-
-                                isSuccess = false;
-                                errorMessage = getString(R.string.login_error_login);
-
                             }
                         }
+                        if (!isSuccess) {
+                            errorMessage = getString(R.string.login_error_login);
 
+                        }
                     }
-                } catch (Exception ex) {
-                    isSuccess = false;
-                    errorMessage = "Exceptions" + ex;
-                }
+
+
+            } catch(Exception ex){
+                isSuccess = false;
+                errorMessage = "Exceptions" + ex;
             }
-            return errorMessage;
         }
+            return errorMessage;
+    }
+
+
 
         @Override
         protected void onPostExecute(String s) {
             if (isSuccess) {
-
+                Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
                 startActivity(intent);
                 setAnimation(false);
-                Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
                 Order.ROOM_NUMBER = roomNumberString;
                 finish();
             }
 
             if (!isSuccess) {
                 setAnimation(false);
-                Toast wrongNrToast = Toast.makeText(LoginScreen.this,"Rumnummer findes ikke, prøv igen", Toast.LENGTH_LONG);
-                wrongNrToast.show();
+                Toast.makeText(LoginScreen.this,errorMessage, Toast.LENGTH_LONG).show();
             }
 
         }
