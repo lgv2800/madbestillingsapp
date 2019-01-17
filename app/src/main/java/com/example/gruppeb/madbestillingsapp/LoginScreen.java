@@ -208,7 +208,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             if (isSuccess) {
-                mRoomNumberEnterField.setError(errorMessage);
                 Intent intent = new Intent(LoginScreen.this, MainScreen.class);
                 startActivity(intent);
                 setAnimation(false);
