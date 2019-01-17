@@ -26,6 +26,7 @@ import java.util.Locale;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
+import com.example.gruppeb.madbestillingsapp.FoodFragments.FragmentGenerator;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,6 +38,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private TextView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
 
     private final String TAG = "LoginScreen";
+    private final String url = "http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php";
 
     Button mLoginButton;
     EditText mRoomNumberEnterField;
@@ -227,6 +229,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         if (v == mLoginButton) {
+            FragmentGenerator frag = FragmentGenerator.getInstance();
+            frag.setContext(this);
+            frag.getJsonFiles(url);
             loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
             mloginAsyncTaskStatement.execute();
 

@@ -11,6 +11,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -66,7 +67,7 @@ import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 import io.fabric.sdk.android.Fabric;
 
-public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType, NavigationView.OnNavigationItemSelectedListener, AsyncResponse {
+public class MainScreen extends AppCompatActivity implements View.OnClickListener, BreadType, NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar mToolbar;
     FloatingActionButton fab;
@@ -86,9 +87,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     SharedPreferences settingsSharedPreferences;
     SharedPreferences.Editor editorSettings;
 
-    private Context mContext = MainScreen.this;
-    ViewPagerAdapter adapter;
+    FragmentGenerator mFragGenerator;
 
+    private Context mContext = MainScreen.this;
     private CheckBox mCheckBoxVoiceOver;
     private Boolean mBooleanVoiceOverIfChecked;
     TextToSpeech mTextToSpeech;
@@ -107,19 +108,24 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
         }
+        mFragGenerator = FragmentGenerator.getInstance();
+        mFragGenerator.setContext(MainScreen.this);
+        initialView();
 
+    }
+
+    private void initialView(){
         setContentView(R.layout.activity_main_screen);
+        viewPager = findViewById(R.id.pager);
+        mFragGenerator = FragmentGenerator.getInstance();
+        mFragGenerator.setContext(this);
+        mFragGenerator.fragmentGenerator(MainScreen.this);
+        viewPager.setAdapter(mFragGenerator.getAdapter());
+
 
         //Shared preferences
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
-        String languageFromLocalgetDefault = Locale.getDefault().getLanguage();
-        languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", languageFromLocalgetDefault);
 
-        mFragmentTitleList = new ArrayList<>();
-
-        //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
-        PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
-        postResponseAsyncTask.execute("http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php");
 
         //Text To Speech stuff
         //https://www.tutorialspoint.com/android/android_text_to_speech.htm
@@ -131,8 +137,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onInit(int TTS_Status) {
                 if (TTS_Status == TextToSpeech.SUCCESS) {
-                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(languageFromSharedPrefs, ""));
-
+                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(mFragGenerator.getLanguage(), ""));
                     if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("error", "This Language is not supported");
                     }
@@ -151,10 +156,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //Order logic
         order = new Order();
         intro = new IntroGuide();
-
-        //Add viewpager
-        viewPager = findViewById(R.id.pager);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add toolbar
         mToolbar = findViewById(R.id.my_toolbar);
@@ -197,104 +198,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab.setOnClickListener(this);
 
         updateView();
-    }
-
-    @Override
-    public void processFinish(String result) {
-        ArrayList<DishJSON> dishJSONList =
-                new JsonConverter<DishJSON>().toArrayList(result, DishJSON.class);
-
-        dishImagesJSON = new ArrayList<String>();
-
-        dishNamesJSON_DA = new ArrayList<String>();
-        dishDescriptionJSON_DA = new ArrayList<String>();
-
-        dishNamesJSON_EN = new ArrayList<String>();
-        dishDescriptionJSON_EN = new ArrayList<String>();
-
-        dishNamesJSON_AR = new ArrayList<String>();
-        dishDescriptionJSON_AR = new ArrayList<String>();
-
-        for (DishJSON value : dishJSONList) {
-            dishNamesJSON_DA.add(value.daNameLangDA);
-            dishDescriptionJSON_DA.add(value.daDescriptionLangDA);
-
-            dishNamesJSON_EN.add(value.daNameLangEN);
-            dishDescriptionJSON_EN.add(value.daDescriptionLangEN);
-
-            dishNamesJSON_AR.add(value.daNameLangAR);
-            dishDescriptionJSON_AR.add(value.daDescriptionLangAR);
-
-            dishImagesJSON.add(value.daMenuImage);
-        }
-
-        fragmentGenerator();
-    }
-
-    private void fragmentGenerator() {
-        switch (languageFromSharedPrefs) {
-            case "da":
-                for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
-                    String title = dishNamesJSON_DA.get(i);
-                    String description = dishDescriptionJSON_DA.get(i);
-                    String internetURL = dishImagesJSON.get(i);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", title);
-                    bundle.putString("description", description);
-                    bundle.putString("image", internetURL);
-                    FragmentPage fragment = new FragmentPage();
-                    fragment.setArguments(bundle);
-                    adapter.addFragment(fragment, title);
-                    viewPager.setAdapter(adapter);
-                }
-                break;
-            case "en":
-                for (int i = 0; i < dishNamesJSON_EN.size(); i++) {
-                    String title = dishNamesJSON_EN.get(i);
-                    String description = dishDescriptionJSON_EN.get(i);
-                    String internetURL = dishImagesJSON.get(i);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", title);
-                    bundle.putString("description", description);
-                    bundle.putString("image", internetURL);
-                    FragmentPage fragment = new FragmentPage();
-                    fragment.setArguments(bundle);
-                    adapter.addFragment(fragment, title);
-                    viewPager.setAdapter(adapter);
-                }
-                break;
-            case "ar":
-                for (int i = 0; i < dishNamesJSON_AR.size(); i++) {
-                    String title = dishNamesJSON_AR.get(i);
-                    String description = dishDescriptionJSON_AR.get(i);
-                    String internetURL = dishImagesJSON.get(i);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", title);
-                    bundle.putString("description", description);
-                    bundle.putString("image", internetURL);
-                    FragmentPage fragment = new FragmentPage();
-                    fragment.setArguments(bundle);
-                    adapter.addFragment(fragment, title);
-                    viewPager.setAdapter(adapter);
-                }
-                break;
-            default:
-                for (int i = 0; i < dishNamesJSON_DA.size(); i++) {
-                    String title = dishNamesJSON_DA.get(i);
-                    String description = dishDescriptionJSON_DA.get(i);
-                    String internetURL = dishImagesJSON.get(i);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", title);
-                    bundle.putString("description", description);
-                    bundle.putString("image", internetURL);
-                    FragmentPage fragment = new FragmentPage();
-                    fragment.setArguments(bundle);
-                    adapter.addFragment(fragment, title);
-                    viewPager.setAdapter(adapter);
-                }
-                break;
-        }
-
     }
 
     @Override
@@ -465,36 +368,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         this.isLight = a;
     }
 
-    //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-
-    }
-
     //https://developer.android.com/training/appbar/actions#java
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -524,12 +397,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                             startActivity(openCart);
                         }).show();
             }
-            //https://stackoverflow.com/questions/31891062/animate-the-cart-icon-on-button-click
+            /**
+             * kilde
+             *  https://stackoverflow.com/questions/31891062/animate-the-cart-icon-on-button-click
+             */
             ScaleAnimation scale = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
             scale.setDuration(500);
             scale.setInterpolator(new OvershootInterpolator());
             badgeCount.startAnimation(scale);
-            order.order(mFragmentTitleList.get(viewPager.getCurrentItem()), isLight, getApplication());
+            order.order(mFragGenerator.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
 
@@ -538,6 +414,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+
         updateView();
     }
 
