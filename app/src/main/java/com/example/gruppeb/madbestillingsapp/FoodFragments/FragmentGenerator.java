@@ -1,6 +1,7 @@
 package com.example.gruppeb.madbestillingsapp.FoodFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ public class FragmentGenerator implements AsyncResponse {
     private ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON, fragmentTitle;
     private ArrayList<Fragment> fragments;
     private ViewPagerAdapter adapter;
+    LoginScreen loginScreen;
 
     public static volatile FragmentGenerator sSoleInstance = new FragmentGenerator();
 
@@ -48,6 +50,10 @@ public class FragmentGenerator implements AsyncResponse {
         //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(context, this );
         postResponseAsyncTask.execute(url);
+    }
+
+    public void setScreen(LoginScreen loginScreen){
+        this.loginScreen = loginScreen;
     }
 
     @Override
@@ -78,6 +84,9 @@ public class FragmentGenerator implements AsyncResponse {
 
             dishImagesJSON.add(value.daMenuImage);
         }
+        Intent i = new Intent(loginScreen, MainScreen.class);
+        context.startActivity(i);
+        loginScreen.finish();
     }
 
     public void fragmentGenerator(MainScreen mainScreen) {
@@ -99,10 +108,7 @@ public class FragmentGenerator implements AsyncResponse {
                     bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
-                    fragments.add(fragment);
-                    fragmentTitle.add(title);
-                    //adapter.addFragment(fragment, title);
-                    //viewPager.setAdapter(adapter);
+                    adapter.addFragment(fragment, title);
                 }
                 break;
             case "en":
@@ -116,8 +122,7 @@ public class FragmentGenerator implements AsyncResponse {
                     bundle.putString("image", internetURL);
                     FragmentPage fragment = new FragmentPage();
                     fragment.setArguments(bundle);
-                    fragments.add(fragment);
-                    fragmentTitle.add(title);
+                    adapter.addFragment(fragment, title);
                 }
                 break;
             case "ar":

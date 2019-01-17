@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     private final String TAG = "LoginScreen";
     private final String url = "http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php";
+    public static boolean JSONDONE = false;
 
     Button mLoginButton;
     EditText mRoomNumberEnterField;
@@ -210,11 +212,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             if (isSuccess) {
-                Intent intent = new Intent(LoginScreen.this, MainScreen.class);
-                startActivity(intent);
-                setAnimation(false);
                 Order.ROOM_NUMBER = roomNumberString;
-                finish();
+                FragmentGenerator frag = FragmentGenerator.getInstance();
+                frag.setContext(LoginScreen.this);
+                frag.setScreen(LoginScreen.this);
+                frag.getJsonFiles(url);
             }
 
             if (!isSuccess) {
@@ -230,9 +232,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         if (v == mLoginButton) {
-            FragmentGenerator frag = FragmentGenerator.getInstance();
-            frag.setContext(this);
-            frag.getJsonFiles(url);
             loginAsyncTaskStatement mloginAsyncTaskStatement = new loginAsyncTaskStatement();
             mloginAsyncTaskStatement.execute();
 

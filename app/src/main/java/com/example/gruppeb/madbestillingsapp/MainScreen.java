@@ -108,8 +108,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
         }
-        mFragGenerator = FragmentGenerator.getInstance();
-        mFragGenerator.setContext(MainScreen.this);
         initialView();
 
     }
