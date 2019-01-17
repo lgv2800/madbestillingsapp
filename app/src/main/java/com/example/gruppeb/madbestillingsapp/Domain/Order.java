@@ -28,8 +28,8 @@ public class Order {
         editor.clear().apply();
     }
 
-    public void order(int a, boolean isLight, Context context){
-        factory.createDish(a, isLight ,context);
+    public void order(String dish, boolean isLight, Context context){
+        factory.createDish(dish, isLight ,context);
     }
 
     public ArrayList<String> getOrder(Context context){

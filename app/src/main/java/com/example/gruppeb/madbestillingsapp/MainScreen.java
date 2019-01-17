@@ -95,7 +95,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
     ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON;
-
+    public List<String> mFragmentTitleList;
     Connector mConnector; //Database connector
 
     @Override
@@ -113,6 +113,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         //Shared preferences
         settingsSharedPreferences = getSharedPreferences("settingsPref", Context.MODE_PRIVATE);
         languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
+
+        mFragmentTitleList = new ArrayList<>();
 
         //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(this);
@@ -471,7 +473,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
@@ -533,7 +534,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             scale.setDuration(500);
             scale.setInterpolator(new OvershootInterpolator());
             badgeCount.startAnimation(scale);
-            order.order(viewPager.getCurrentItem(), isLight, getApplication());
+            order.order(mFragmentTitleList.get(viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
 
