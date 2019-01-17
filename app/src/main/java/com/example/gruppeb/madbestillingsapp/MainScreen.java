@@ -79,6 +79,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     IntroGuide intro;
 
+    ProgressDialog progressDialog;
+
     private String newLanguageValue;
     private String languageFromSharedPrefs;
     SharedPreferences settingsSharedPreferences;
@@ -156,6 +158,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         setSupportActionBar(mToolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+
+        progressDialog = new ProgressDialog(this);
 
         //https://stackoverflow.com/a/38418531/8968120
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -309,8 +313,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(openSettingsScreenIntent);
                 break;
             case R.id.nav_myHelp:
-                helpCaseToDBAsyncTaskStatement helpCaseToDBAsyncTaskStatement = new helpCaseToDBAsyncTaskStatement();
-                helpCaseToDBAsyncTaskStatement.execute();
+                MainScreen.helpCaseToDBAsyncTaskStatement mHelpCaseToDBAsyncTaskStatement = new MainScreen.helpCaseToDBAsyncTaskStatement();
+                mHelpCaseToDBAsyncTaskStatement.execute();
                 break;
             case R.id.nav_mySettingsLanguage:
                 LanguageAlertDialog();
@@ -412,13 +416,20 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private class helpCaseToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
-        Connection con;
-
         private boolean isSuccess = false;
         private String errorMessage = "";
 
+        protected void onPreExecute() {
+            progressDialog.setMessage("Tilkalder hjælp");
+            progressDialog.show();
+
+            super.onPreExecute();
+        }
+
         @Override
         protected String doInBackground(String... params) {
+            Connection con;
+
             try {
                 con = mConnector.CONN();
                 String query = " INSERT INTO HelpCase (roomNumber) values('" + Order.ROOM_NUMBER + "')";
@@ -427,11 +438,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 stmt.executeUpdate(query);
 
                 isSuccess = true;
-                con.close();
             } catch (Exception ex) {
                 isSuccess = false;
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            progressDialog.hide();
         }
     }
 

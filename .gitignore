@@ -78,3 +78,5 @@ app/src/main/java/com/example/.DS_Store
 app/src/main/java/com/example/gruppeb/.DS_Store
 app/src/main/java/com/example/gruppeb/madbestillingsapp/.DS_Store
 app/src/main/java/com/example/gruppeb/madbestillingsapp/Domain/.DS_Store
+
+app/release/\.app-release\.apk\.icloud
