@@ -41,6 +41,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -79,6 +80,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private TextView badgeCount;
     private ImageView imageView_page1;
     Order order;
+    Button play;
 
     IntroGuide intro;
 
@@ -192,6 +194,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
+
+        play = findViewById(R.id.play);
+        play.setOnClickListener(this);
 
         updateView();
     }
@@ -404,6 +409,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             order.order(jsonController.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
+        if(v==play){
+            textToSpeech();
+        }
 
     }
 
@@ -446,4 +454,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
 
+    public void textToSpeech(){
+        int position = viewPager.getCurrentItem();
+        String read = jsonController.getFragmentTitle(newLanguageValue, position)+ " " + jsonController.getFragmentDescription(newLanguageValue, position);
+        mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
+    }
 }
