@@ -110,6 +110,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             Fabric.with(this, new Crashlytics());
         }
         setContentView(R.layout.activity_main_screen);
+        order = new Order();
         jsonController = new JsonController(this, MainScreen.this);
         jsonController.doAction();
     }
@@ -150,7 +151,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         imageView_page1 = findViewById(R.id.page1_image);
 
         //Order logic
-        order = new Order();
         intro = new IntroGuide();
 
         //Add toolbar
@@ -411,7 +411,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     protected void onResume() {
         super.onResume();
 
-        //updateView();
+        updateView();
     }
 
     private void updateView() {
