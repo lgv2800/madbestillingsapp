@@ -90,8 +90,8 @@ public class JsonController implements JsonObserver {
         return fg.getFragmentDescription(language, position);
     }
 
-    public String getFragmentNames(String language, int position){
-        return fg.getFragmentTitle(position);
+    public String getFragmentTitle(String language, int position){
+        return fg.getFragmentTitle(language, position);
     }
 
 }
