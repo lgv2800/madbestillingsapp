@@ -23,6 +23,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -58,6 +59,7 @@ import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
+import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
@@ -87,8 +89,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     SharedPreferences settingsSharedPreferences;
     SharedPreferences.Editor editorSettings;
 
-    FragmentGenerator mFragGenerator;
-
+    JsonController jsonController;
     private Context mContext = MainScreen.this;
     private CheckBox mCheckBoxVoiceOver;
     private Boolean mBooleanVoiceOverIfChecked;
@@ -108,17 +109,14 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
         }
-        initialView();
-
+        setContentView(R.layout.activity_main_screen);
+        jsonController = new JsonController(this, MainScreen.this);
+        jsonController.doAction();
     }
 
-    private void initialView(){
-        setContentView(R.layout.activity_main_screen);
+    public void initialView(){
         viewPager = findViewById(R.id.pager);
-        mFragGenerator = FragmentGenerator.getInstance();
-        mFragGenerator.setContext(this);
-        mFragGenerator.fragmentGenerator(MainScreen.this);
-        viewPager.setAdapter(mFragGenerator.getAdapter());
+        jsonController.setAdapter(viewPager);
 
 
         //Shared preferences
@@ -135,7 +133,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onInit(int TTS_Status) {
                 if (TTS_Status == TextToSpeech.SUCCESS) {
-                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(mFragGenerator.getLanguage(), ""));
+                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(jsonController.getLanguage(), ""));
                     if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("error", "This Language is not supported");
                     }
@@ -403,7 +401,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             scale.setDuration(500);
             scale.setInterpolator(new OvershootInterpolator());
             badgeCount.startAnimation(scale);
-            order.order(mFragGenerator.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
+            order.order(jsonController.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
 
@@ -413,7 +411,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     protected void onResume() {
         super.onResume();
 
-        updateView();
+        //updateView();
     }
 
     private void updateView() {
@@ -424,6 +422,26 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             } else {
                 badgeCount.setText(Integer.toString(count));
                 badgeCount.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    public void clearStack() {
+        //Here we are clearing back stack fragment entries
+        int backStackEntry = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackEntry > 0) {
+            for (int i = 0; i < backStackEntry; i++) {
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+        }
+
+        //Here we are removing all the fragment that are shown here
+        if (getSupportFragmentManager().getFragments() != null && getSupportFragmentManager().getFragments().size() > 0) {
+            for (int i = 0; i < getSupportFragmentManager().getFragments().size(); i++) {
+                Fragment mFragment = getSupportFragmentManager().getFragments().get(i);
+                if (mFragment != null) {
+                    getSupportFragmentManager().beginTransaction().remove(mFragment).commit();
+                }
             }
         }
     }

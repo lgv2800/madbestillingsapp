@@ -24,6 +24,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Locale;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -213,10 +214,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         protected void onPostExecute(String s) {
             if (isSuccess) {
                 Order.ROOM_NUMBER = roomNumberString;
-                FragmentGenerator frag = FragmentGenerator.getInstance();
-                frag.setContext(LoginScreen.this);
-                frag.setScreen(LoginScreen.this);
-                frag.getJsonFiles(url);
+                Intent i = new Intent(LoginScreen.this, MainScreen.class);
+                startActivity(i);
             }
 
             if (!isSuccess) {

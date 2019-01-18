@@ -10,7 +10,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
+import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
 import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
+import com.example.gruppeb.madbestillingsapp.JsonController;
 import com.example.gruppeb.madbestillingsapp.LoginScreen;
 import com.example.gruppeb.madbestillingsapp.MainScreen;
 import com.kosalgeek.android.json.JsonConverter;
@@ -31,7 +33,7 @@ public class FragmentGenerator implements AsyncResponse {
     private ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON, fragmentTitle;
     private ArrayList<Fragment> fragments;
     private ViewPagerAdapter adapter;
-    LoginScreen loginScreen;
+    JsonController jsonController;
 
     public static volatile FragmentGenerator sSoleInstance = new FragmentGenerator();
 
@@ -52,9 +54,6 @@ public class FragmentGenerator implements AsyncResponse {
         postResponseAsyncTask.execute(url);
     }
 
-    public void setScreen(LoginScreen loginScreen){
-        this.loginScreen = loginScreen;
-    }
 
     @Override
     public void processFinish(String result) {
@@ -84,9 +83,8 @@ public class FragmentGenerator implements AsyncResponse {
 
             dishImagesJSON.add(value.daMenuImage);
         }
-        Intent i = new Intent(loginScreen, MainScreen.class);
-        context.startActivity(i);
-        loginScreen.finish();
+        jsonController.jsonCompleted();
+
     }
 
     public void fragmentGenerator(MainScreen mainScreen) {
@@ -177,6 +175,15 @@ public class FragmentGenerator implements AsyncResponse {
 
     public String getFragmentTitle(int position){
         return fragmentTitle.get(position);
+    }
+
+    public void setController(JsonController jsonController) {
+        this.jsonController = jsonController;
+    }
+
+    public void setAdapter(ViewPager viewPager, MainScreen main) {
+        fragmentGenerator(main);
+        viewPager.setAdapter(getAdapter());
     }
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
 
