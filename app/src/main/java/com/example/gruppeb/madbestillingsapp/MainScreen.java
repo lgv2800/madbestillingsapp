@@ -117,7 +117,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         jsonController.doAction();
     }
 
-    public void initialView(){
+    public void initialView() {
         viewPager = findViewById(R.id.pager);
         jsonController.setAdapter(viewPager);
 
@@ -212,14 +212,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.nav_myEveningMenu:
                 Intent openEveningMenuScreenIntent = new Intent(MainScreen.this, EveningMenuScreen.class);
                 startActivity(openEveningMenuScreenIntent);
-                break;
-            case R.id.nav_mySettings:
-                Intent openSettingsScreenIntent = new Intent(MainScreen.this, SettingsScreen.class);
-                startActivity(openSettingsScreenIntent);
-                break;
-            case R.id.nav_myHelp:
-                MainScreen.helpCaseToDBAsyncTaskStatement mHelpCaseToDBAsyncTaskStatement = new MainScreen.helpCaseToDBAsyncTaskStatement();
-                mHelpCaseToDBAsyncTaskStatement.execute();
                 break;
             case R.id.nav_mySettingsLanguage:
                 LanguageAlertDialog();
@@ -316,41 +308,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private class helpCaseToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
-        private boolean isSuccess = false;
-        private String errorMessage = "";
-
-        protected void onPreExecute() {
-            progressDialog.setMessage("Tilkalder hjælp");
-            progressDialog.show();
-
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            Connection con;
-
-            try {
-                con = mConnector.CONN();
-                String query = " INSERT INTO HelpCase (roomNumber) values('" + Order.ROOM_NUMBER + "')";
-
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate(query);
-
-                isSuccess = true;
-            } catch (Exception ex) {
-                isSuccess = false;
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            progressDialog.hide();
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -409,7 +366,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             order.order(jsonController.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
-        if(v==play){
+        if (v == play) {
             textToSpeech();
         }
 
@@ -454,10 +411,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    public void textToSpeech(){
+    public void textToSpeech() {
         int position = viewPager.getCurrentItem();
-        String language = settingsSharedPreferences.getString("languagePref",null);
-        String read = jsonController.getFragmentTitle(language, position)+ " " + jsonController.getFragmentDescription(language, position);
+        String language = settingsSharedPreferences.getString("languagePref", null);
+        String read = jsonController.getFragmentTitle(language, position) + " " + jsonController.getFragmentDescription(language, position);
         mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
     }
 }

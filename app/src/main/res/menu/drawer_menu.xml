@@ -29,11 +29,6 @@
                     android:icon="@drawable/ic_record_voice_over_black_24dp"
                     android:title="@string/drawermenu_settings_voiceover"
                     app:actionViewClass="android.widget.CheckBox" />
-                <item
-                    android:id="@+id/nav_mySettings"
-                    android:icon="@drawable/ic_settings_applications_black_24dp"
-                    android:title="@string/drawermenu_settings_miscsettings" />
-
             </group>
         </menu>
     </item>
@@ -43,10 +38,6 @@
             <group
                 android:id="@+id/menu_bottom4"
                 android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_myHelp"
-                    android:icon="@drawable/ic_help_black_24dp"
-                    android:title="@string/drawermenu_help_callassistance" />
                 <item
                     android:id="@+id/nav_introplay"
                     android:icon="@drawable/ic_play_circle_filled_black_24dp"
