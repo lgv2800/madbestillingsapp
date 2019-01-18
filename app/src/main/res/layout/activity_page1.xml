@@ -108,14 +108,6 @@
                 android:checkable="true"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="304dp"
-                android:text="Read" />
-
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </ScrollView>

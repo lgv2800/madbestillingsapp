@@ -69,6 +69,16 @@
             app:layout_anchorGravity="bottom|right|end"
             app:rippleColor="@android:color/white" />
 
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="304dp"
+            android:text="Read"
+            app:layout_anchor="@+id/pager"
+            app:layout_anchorGravity="left|bottom" />
+
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
