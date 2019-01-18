@@ -185,6 +185,25 @@ public class FragmentGenerator implements AsyncResponse {
         fragmentGenerator(main);
         viewPager.setAdapter(getAdapter());
     }
+
+    public String getFragmentDescription(String language, int position) {
+        switch(language){
+            case "da" : return dishDescriptionJSON_DA.get(position);
+            case "en" : return dishDescriptionJSON_EN.get(position);
+            case "ar" : return dishDescriptionJSON_AR.get(position);
+        }
+        return dishDescriptionJSON_DA.get(position);
+    }
+
+    public String getFragmentTitle(String language, int position){
+        switch (language){
+            case "da" : return dishNamesJSON_DA.get(position);
+            case "en" : return dishNamesJSON_EN.get(position);
+            case "ar" : return dishNamesJSON_AR.get(position);
+        }
+        return dishNamesJSON_DA.get(position);
+    }
+
     //Code skeleton from http://www.gadgetsaint.com/android/create-viewpager-tabs-android/
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
