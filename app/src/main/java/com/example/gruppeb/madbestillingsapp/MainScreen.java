@@ -456,7 +456,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     public void textToSpeech(){
         int position = viewPager.getCurrentItem();
-        String read = jsonController.getFragmentTitle(newLanguageValue, position)+ " " + jsonController.getFragmentDescription(newLanguageValue, position);
+        String language = settingsSharedPreferences.getString("languagePref",null);
+        String read = jsonController.getFragmentTitle(language, position)+ " " + jsonController.getFragmentDescription(language, position);
         mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
     }
 }
