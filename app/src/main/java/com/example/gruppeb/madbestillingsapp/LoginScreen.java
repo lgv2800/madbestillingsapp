@@ -216,6 +216,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 Order.ROOM_NUMBER = roomNumberString;
                 Intent i = new Intent(LoginScreen.this, MainScreen.class);
                 startActivity(i);
+                finish();
             }
 
             if (!isSuccess) {
