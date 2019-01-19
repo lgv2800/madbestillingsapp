@@ -19,16 +19,22 @@ import com.bumptech.glide.Glide;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar mToolbarOrders;
     TextView mNumberOfOrdersCountTextView;
 
+    private String strDate;
     private String roomNumberFromIntent;
     private String roomNumberStringFromExtra;
     private int roomNumberStringFromExtraToInt;
@@ -103,6 +109,15 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
+    //https://gist.githubusercontent.com/pacificregmi/00927e29c4c0f9eae414/raw/eff50094306248331fdf570e3c5f13e57fe85b69/MainActivity.java
+    public void getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-d");
+        strDate = mdformat.format(calendar.getTime());
+        strDate += "%";
+        System.out.print(strDate);
+    }
+
     private class MyOrdersListAsyncTaskStatement extends AsyncTask<String, String, String> {
         private String numberOfOrdersInDBStringFromQuery;
         private String orderMenuInDBStringFromQuery;
@@ -115,6 +130,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         protected void onPreExecute() {
             progressDialog.setMessage("Indlæser");
             progressDialog.show();
+            getCurrentDate();
 
             super.onPreExecute();
         }
@@ -133,7 +149,13 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                         System.out.println("Forbindelse til DB er aktiv.");
 
                         //String query = " SELECT COUNT(*) FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
-                        String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
+                        //
+
+                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
+
+                        String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "' AND orderDate LIKE '" + strDate + "'";
+
+                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
 
                         Statement stmt = con.createStatement();
 
