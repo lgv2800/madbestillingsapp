@@ -23,35 +23,35 @@ public class Order {
         orderItems = new ArrayList<>();
     }
 
-    public void clearOrder(Context context){
-        SharedPreferences.Editor editor = context.getSharedPreferences(context.getString(R.string.current_order_pref),0).edit();
+    public void clearOrder(Context context, String preference){
+        SharedPreferences.Editor editor = context.getSharedPreferences(preference,0).edit();
         editor.clear().apply();
     }
 
-    public void order(String dish, boolean isLight, Context context){
-        factory.createDish(dish, isLight ,context);
+    public void order(String dish, String dishDanish, boolean isLight, Context context){
+        factory.createDish(dish, dishDanish, isLight ,context);
     }
 
-    public ArrayList<String> getOrder(Context context){
-        createOrderList(context);
+    public ArrayList<String> getOrder(Context context, String preference){
+        createOrderList(context, preference);
         return orderItems;
     }
 
-    public ArrayList<String> getBreadType(Context context){
-        getOrderItemsBreadType(context);
+    public ArrayList<String> getBreadType(Context context, String preference){
+        getOrderItemsBreadType(context, preference);
         return orderItemsBreadType;
     }
 
-    public ArrayList<Map<String, String>> getMap(Context context){
-        createOrderList(context);
-        getOrderItemsBreadType(context);
+    public ArrayList<Map<String, String>> getMap(Context context, String preference){
+        createOrderList(context, preference);
+        getOrderItemsBreadType(context, preference);
         orderMap = new ArrayList<>();
         generateMap();
         return orderMap;
     }
 
-    private void createOrderList(Context context){
-        SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref), Context.MODE_PRIVATE);
+    private void createOrderList(Context context, String preference){
+        SharedPreferences orderPref = context.getSharedPreferences(preference, Context.MODE_PRIVATE);
         orderItems = new ArrayList<>();
 
         int count = orderPref.getInt("count", 0);
@@ -62,8 +62,8 @@ public class Order {
 
     }
 
-    private void getOrderItemsBreadType(Context context){
-        SharedPreferences orderPref = context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
+    private void getOrderItemsBreadType(Context context, String preference){
+        SharedPreferences orderPref = context.getSharedPreferences(preference,Context.MODE_PRIVATE);
         orderItemsBreadType = new ArrayList<>();
 
         int count = orderPref.getInt("count",0);
@@ -71,12 +71,22 @@ public class Order {
         /** increments through the order, if the order is true (meaning it's light bread), a String res will be added to the arraylist
          *
          */
-        for (int i =0; i < count; i++){
-            if (orderPref.getBoolean("light_bread"+i, false)){
-                orderItemsBreadType.add(context.getString(R.string.breadtype_light));
+        if (preference == context.getString(R.string.current_database_order)){
+            for (int i = 0; i < count; i++) {
+                if (orderPref.getBoolean("light_bread" + i, false)) {
+                    orderItemsBreadType.add("LYS");
+                } else if (!orderPref.getBoolean("light_bread" + i, false)) {
+                    orderItemsBreadType.add("MØRK");
+                }
             }
-            else if (!orderPref.getBoolean("light_bread"+i, false)){
-                orderItemsBreadType.add(context.getString(R.string.breadtype_dark));
+        }
+        else {
+            for (int i = 0; i < count; i++) {
+                if (orderPref.getBoolean("light_bread" + i, false)) {
+                    orderItemsBreadType.add(context.getString(R.string.breadtype_light));
+                } else if (!orderPref.getBoolean("light_bread" + i, false)) {
+                    orderItemsBreadType.add(context.getString(R.string.breadtype_dark));
+                }
             }
         }
     }

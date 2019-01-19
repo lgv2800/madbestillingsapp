@@ -8,12 +8,15 @@ import com.example.gruppeb.madbestillingsapp.R;
 
 public class DishFactory {
 
-    public void createDish(String dish, boolean isLight, Context context){
+    public void createDish(String dish, String dishDanish ,boolean isLight, Context context){
 
 
         /**The order is assigned an unique count, which is incremented each time.
          *
          */
+        SharedPreferences databasePref = context.getSharedPreferences(context.getString(R.string.current_database_order), Context.MODE_PRIVATE);
+        SharedPreferences.Editor databaseEdit = databasePref.edit();
+
         SharedPreferences orderPref =  context.getSharedPreferences(context.getString(R.string.current_order_pref),Context.MODE_PRIVATE);
         SharedPreferences.Editor orderEdit = orderPref.edit();
 
@@ -21,9 +24,13 @@ public class DishFactory {
         int temp = count;
         temp++;
 
-        orderEdit.putString("id"+count, dish).putBoolean("light_bread"+count, isLight).apply();
+        databaseEdit.putString("id"+count, dishDanish)
+                    .putBoolean("light_bread"+count, isLight)
+                    .putInt("count", temp).apply();
 
-        orderEdit.putInt("count", temp).apply();
+        orderEdit.putString("id"+count, dish)
+                    .putBoolean("light_bread"+count, isLight)
+                    .putInt("count", temp).apply();
 
     }
 }

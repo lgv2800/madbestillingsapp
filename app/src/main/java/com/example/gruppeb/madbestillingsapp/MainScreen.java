@@ -61,6 +61,7 @@ import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
+import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
 import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
@@ -98,7 +99,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private CheckBox mCheckBoxVoiceOver;
     private Boolean mBooleanVoiceOverIfChecked;
     TextToSpeech mTextToSpeech;
-    LanguageController languageController;
+    ILanguageSettings languageController;
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
     ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON;
@@ -355,7 +356,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             scale.setDuration(500);
             scale.setInterpolator(new OvershootInterpolator());
             badgeCount.startAnimation(scale);
-            order.order(jsonController.getFragmentTitle(viewPager.getCurrentItem()), isLight, getApplication());
+            order.order(jsonController.getFragmentTitle(viewPager.getCurrentItem()), jsonController.getFragmentTitle("da", viewPager.getCurrentItem()), isLight, getApplication());
             updateView();
         }
         if (v == play) {
@@ -379,26 +380,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             } else {
                 badgeCount.setText(Integer.toString(count));
                 badgeCount.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    public void clearStack() {
-        //Here we are clearing back stack fragment entries
-        int backStackEntry = getSupportFragmentManager().getBackStackEntryCount();
-        if (backStackEntry > 0) {
-            for (int i = 0; i < backStackEntry; i++) {
-                getSupportFragmentManager().popBackStackImmediate();
-            }
-        }
-
-        //Here we are removing all the fragment that are shown here
-        if (getSupportFragmentManager().getFragments() != null && getSupportFragmentManager().getFragments().size() > 0) {
-            for (int i = 0; i < getSupportFragmentManager().getFragments().size(); i++) {
-                Fragment mFragment = getSupportFragmentManager().getFragments().get(i);
-                if (mFragment != null) {
-                    getSupportFragmentManager().beginTransaction().remove(mFragment).commit();
-                }
             }
         }
     }
