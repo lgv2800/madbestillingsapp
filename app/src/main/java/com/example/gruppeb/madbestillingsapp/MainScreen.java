@@ -62,6 +62,7 @@ import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
 import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
+import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
 import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
@@ -97,6 +98,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private CheckBox mCheckBoxVoiceOver;
     private Boolean mBooleanVoiceOverIfChecked;
     TextToSpeech mTextToSpeech;
+    LanguageController languageController;
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
     ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON;
@@ -401,7 +403,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     public void textToSpeech() {
         int position = viewPager.getCurrentItem();
-        String language = settingsSharedPreferences.getString("languagePref", null);
+        String language = languageController.getLanguage(this);
         String read = jsonController.getFragmentTitle(language, position) + " " + jsonController.getFragmentDescription(language, position);
         mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
     }

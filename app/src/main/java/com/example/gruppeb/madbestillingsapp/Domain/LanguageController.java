@@ -12,4 +12,10 @@ public class LanguageController implements ILanguageSettings{
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
         prefEditor.putString("languagePref", language).apply();
     }
+
+    public String getLanguage(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settingsPref",Context.MODE_PRIVATE);
+        String language = sharedPreferences.getString("languagePref","da");
+        return language;
+    }
 }
