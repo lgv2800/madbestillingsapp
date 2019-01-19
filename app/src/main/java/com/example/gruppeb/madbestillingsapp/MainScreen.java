@@ -43,6 +43,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,7 +81,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private TextView badgeCount;
     private ImageView imageView_page1;
     Order order;
-    Button play;
+    ImageButton play;
 
     IntroGuide intro;
 
@@ -195,7 +196,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
-        play = findViewById(R.id.play);
+        play = findViewById(R.id.tts_play);
         play.setOnClickListener(this);
 
         updateView();
@@ -249,21 +250,21 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                     editorSettings = settingsSharedPreferences.edit();
                     editorSettings.putString("languagePref", newLanguageValue);
                     editorSettings.apply();
-                    LanguageChangedToast();
+                    LanguageChangedToast("Sprog ændret. Genstart venligst applikationen.");
                     break;
                 case 1:
                     newLanguageValue = "en";
                     editorSettings = settingsSharedPreferences.edit();
                     editorSettings.putString("languagePref", newLanguageValue);
                     editorSettings.apply();
-                    LanguageChangedToast();
+                    LanguageChangedToast("Language changed. Please restart application.");
                     break;
                 case 2:
                     newLanguageValue = "ar";
                     editorSettings = settingsSharedPreferences.edit();
                     editorSettings.putString("languagePref", newLanguageValue);
                     editorSettings.apply();
-                    LanguageChangedToast();
+                    LanguageChangedToast("تغيرت اللغة. يرجى إعادة تشغيل التطبيق.");
                     break;
             }
 
@@ -271,21 +272,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         builder.show();
     }
 
-    private void LanguageChangedToast() {
-        switch (newLanguageValue) {
-            case "da":
-                Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
-                break;
-            case "en":
-                Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
-                break;
-            case "ar":
-                Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
-                break;
-        }
+    private void LanguageChangedToast(String text) {
+        Toast.makeText(this,text , Toast.LENGTH_SHORT).show();
     }
 
     private void VoiceOverChangedToast() {
