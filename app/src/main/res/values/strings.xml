@@ -119,6 +119,7 @@
     <string name="startup_welcome">Velkommen.</string>
 
     <!-- SharedPreferences -->
+    <string name="current_database_order">current_database_pref</string>
     <string name="current_order_pref">current_order_pref</string>
     <string name="cart_delete_all">Ryd alt</string>
     <string name="title_activity_my_orders_screen">Mine bestillinger</string>

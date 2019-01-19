@@ -13,6 +13,7 @@ public class LanguageController implements ILanguageSettings{
         prefEditor.putString("languagePref", language).apply();
     }
 
+    @Override
     public String getLanguage(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences("settingsPref",Context.MODE_PRIVATE);
         String language = sharedPreferences.getString("languagePref","da");

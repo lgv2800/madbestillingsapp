@@ -26,6 +26,7 @@ import java.util.Locale;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.FragmentGenerator;
@@ -49,7 +50,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     SharedPreferences settingsSharedPreferences;
     SharedPreferences.Editor editorSettings;
-    LanguageController mLanguageController;
+    ILanguageSettings mLanguageController;
 
     Connector mConnector; //Database connector
 

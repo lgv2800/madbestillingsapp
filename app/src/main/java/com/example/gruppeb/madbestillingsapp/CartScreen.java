@@ -83,12 +83,14 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     //@Override
     public void onClick(View v) {
         if (v == mDeleteAll) {
-            mOrder.clearOrder(this);
+            mOrder.clearOrder(this, getString(R.string.current_database_order));
+            mOrder.clearOrder(this, getString(R.string.current_order_pref));
             setEmptyView();
         } else if (v == mOrderCart) {
-            IDAO dao = new CartDAO(mOrder.getOrder(this), mOrder.getBreadType(this));
+            IDAO dao = new CartDAO(mOrder.getOrder(this, getString(R.string.current_database_order)), mOrder.getBreadType(this, getString(R.string.current_database_order)));
             dao.executeAction();
-            mOrder.clearOrder(this);
+            mOrder.clearOrder(this, getString(R.string.current_database_order));
+            mOrder.clearOrder(this, getString(R.string.current_order_pref));
             orderComplete();
         }
     }
@@ -105,7 +107,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     private void populateItemList() {
-        orderMap = mOrder.getMap(this);
+        orderMap = mOrder.getMap(this, getString(R.string.current_order_pref));
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, orderMap, R.layout.order_list, new String[]{"title", "breadtype"}, new int[]{R.id.cart_list_title, R.id.cart_list_breadtype});
 
