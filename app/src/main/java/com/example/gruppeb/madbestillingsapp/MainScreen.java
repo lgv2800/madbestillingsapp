@@ -118,6 +118,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         order = new Order();
         jsonController = new JsonController(this, MainScreen.this);
         jsonController.doAction();
+
+        languageController = new LanguageController();
     }
 
     public void initialView() {
