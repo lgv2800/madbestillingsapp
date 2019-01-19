@@ -8,6 +8,22 @@
     tools:context=".MyOrdersScreen"
     tools:layout_editor_absoluteY="25dp">
 
+    <ListView
+        android:id="@+id/listView_MyOrdersListView"
+        android:layout_width="354dp"
+        android:layout_height="560dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="0dp"
