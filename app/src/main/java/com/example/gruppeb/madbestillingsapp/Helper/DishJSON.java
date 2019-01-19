@@ -3,6 +3,7 @@ package com.example.gruppeb.madbestillingsapp.Helper;
 import com.google.gson.annotations.SerializedName;
 
 public class DishJSON {
+    //Day menu
     @SerializedName("idDayMenu")
     public int idDayMenu;
 
