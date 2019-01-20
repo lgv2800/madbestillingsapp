@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/imageView_EveningDishImage"
+                android:layout_marginTop="25dp"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/textView_EveningDishName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/imageView_EveningDishImage"
+                android:text="Dish Name"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView_EveningDishDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_EveningDishName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/imageView_EveningDishImage"
+                android:text="Dish Description"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/grey"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_EveningDishComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_EveningDishDescription"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/imageView_EveningDishImage"
+                android:background="@color/colorPrimary"
+                android:text="Dish Comment"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="#000000" />
+
+            <!--
+            <TextView
+                android:id="@+id/textView_DishBreadType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_DishDescription"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@id/imageView_DishImage"
+                android:background="@color/colorPrimary"
+                android:text="Bread Type"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/grey"
+                android:textStyle="bold" /> -->
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

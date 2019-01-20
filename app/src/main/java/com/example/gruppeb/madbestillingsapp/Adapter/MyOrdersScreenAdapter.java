@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gruppeb.madbestillingsapp.Domain.MyOrdersScreenModel;
-import com.example.gruppeb.madbestillingsapp.MyOrdersScreen;
+import com.example.gruppeb.madbestillingsapp.Model.MyOrdersScreenModel;
 import com.example.gruppeb.madbestillingsapp.R;
 
 import java.util.List;
@@ -35,21 +34,15 @@ public class MyOrdersScreenAdapter extends RecyclerView.Adapter<MyOrdersScreenAd
         return new MyOrdersScreenViewHolder(mView);
     }
 
-    public void setDishesFromOrdersList(List<MyOrdersScreenModel> dishesFromOrdersList) {
-        this.dishesFromOrdersList = dishesFromOrdersList;
-        notifyDataSetChanged();
-    }
-
     @Override
     public void onBindViewHolder(@NonNull MyOrdersScreenViewHolder myOrdersScreenViewHolder, int position) {
         MyOrdersScreenModel mMyOrdersScreenModel = dishesFromOrdersList.get(position);
 
         myOrdersScreenViewHolder.textViewDishOrderID.setText(Integer.toString(mMyOrdersScreenModel.getOrderDishID()));
         myOrdersScreenViewHolder.textViewDishName.setText(mMyOrdersScreenModel.getOrderDishName());
-        myOrdersScreenViewHolder.textViewDishDescription.setText(mMyOrdersScreenModel.getOrderDishDscription());
         myOrdersScreenViewHolder.textViewDishBreadType.setText(mMyOrdersScreenModel.getOrderDishBreadType());
         myOrdersScreenViewHolder.textViewDishOrderDate.setText(mMyOrdersScreenModel.getOrderDishDate());
-        myOrdersScreenViewHolder.mImageView.setImageDrawable(mContext.getResources().getDrawable(mMyOrdersScreenModel.getOrderImageView(), null));
+        //myOrdersScreenViewHolder.mImageView.setImageDrawable(mContext.getResources().getDrawable(mMyOrdersScreenModel.getOrderImageView(), null));
     }
 
     @Override
@@ -59,15 +52,14 @@ public class MyOrdersScreenAdapter extends RecyclerView.Adapter<MyOrdersScreenAd
 
     class MyOrdersScreenViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView mImageView;
-        TextView textViewDishName, textViewDishDescription, textViewDishBreadType, textViewDishOrderID, textViewDishOrderDate;
+        //ImageView mImageView;
+        TextView textViewDishName, textViewDishBreadType, textViewDishOrderID, textViewDishOrderDate;
 
         public MyOrdersScreenViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mImageView = itemView.findViewById(R.id.imageView_DishImage);
+            //mImageView = itemView.findViewById(R.id.imageView_DishImage);
             textViewDishName = itemView.findViewById(R.id.textView_DishName);
-            textViewDishDescription = itemView.findViewById(R.id.textView_DishDescription);
             textViewDishBreadType = itemView.findViewById(R.id.textView_DishBreadType);
             textViewDishOrderDate = itemView.findViewById(R.id.textView_DishOrderDate);
             textViewDishOrderID = itemView.findViewById(R.id.textView_DishOrderID);

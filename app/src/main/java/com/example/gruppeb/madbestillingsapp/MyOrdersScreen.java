@@ -1,33 +1,21 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.gruppeb.madbestillingsapp.Adapter.MyOrdersScreenAdapter;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
-import com.example.gruppeb.madbestillingsapp.Domain.MyOrdersScreenModel;
+import com.example.gruppeb.madbestillingsapp.Model.MyOrdersScreenModel;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
-import com.example.gruppeb.madbestillingsapp.Helper.EveningDishJSON;
-import com.kosalgeek.android.json.JsonConverter;
-import com.kosalgeek.asynctask.AsyncResponse;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -35,8 +23,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
@@ -194,7 +180,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                                     String orderBreadTypeFromDB = orderBreadTypeInDBStringFromQueryList.get(i);
                                     String orderDateFromDB = orderDateInDBStringFromQueryList.get(i);
 
-                                    dishesFromOrdersList.add(new MyOrdersScreenModel(orderIDFromDB, orderMenuFromDB, "Description", orderBreadTypeFromDB, orderDateFromDB, R.drawable.ballerup));
+                                    dishesFromOrdersList.add(new MyOrdersScreenModel(orderIDFromDB, orderMenuFromDB, orderBreadTypeFromDB, orderDateFromDB)); //, R.drawable.ballerup));
                                 }
 
                                 adapter = new MyOrdersScreenAdapter(getApplicationContext(), dishesFromOrdersList);
