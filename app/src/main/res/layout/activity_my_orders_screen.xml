@@ -8,6 +8,20 @@
     tools:context=".MyOrdersScreen"
     tools:layout_editor_absoluteY="25dp">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_MyOrdersRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <!--
     <ListView
         android:id="@+id/listView_MyOrdersListView"
         android:layout_width="354dp"
@@ -23,14 +37,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    -->
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
         android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_MyOrdersRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_OrdersToolbar"
@@ -45,24 +63,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/content_my_orders_screen"
-        tools:layout_editor_absoluteX="247dp"
-        tools:layout_editor_absoluteY="276dp" />
-
     <TextView
         android:id="@+id/textView_numberOfOrdersCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="328dp"
+        android:layout_marginBottom="328dp"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
 </android.support.constraint.ConstraintLayout>

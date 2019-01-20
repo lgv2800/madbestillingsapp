@@ -51,7 +51,9 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -103,6 +105,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
     //ArrayList for dishNamesJSON, dishDescriptionJSON for languages DA, EN and AR.
     ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON;
+
     public List<String> mFragmentTitleList;
     Connector mConnector; //Database connector
 

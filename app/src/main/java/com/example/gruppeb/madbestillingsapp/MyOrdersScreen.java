@@ -5,7 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.gruppeb.madbestillingsapp.Adapter.MyOrdersScreenAdapter;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.MyOrdersScreenModel;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
+import com.example.gruppeb.madbestillingsapp.Helper.EveningDishJSON;
+import com.kosalgeek.android.json.JsonConverter;
+import com.kosalgeek.asynctask.AsyncResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,8 +36,25 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
+
+    List<String> evDishNameListString;
+    List<String> evDishDescriptionListString;
+    String[] evDishNameArrayString;
+    String[] evDishDescriptionArrayString;
+
+    ArrayList<String> eveningDishImagesJSON, eveningDishNamesJSON_DA, eveningDishDescriptionJSON_DA, eveningDishNamesJSON_EN, eveningDishDescriptionJSON_EN, eveningDishNamesJSON_AR, eveningDishDescriptionJSON_AR;
+    ArrayList<HashMap<String, String>> evDishNameDescriptionArrayList;
+    HashMap<String, String> evDishNameDescriptionHashMap;
+
+
+    RecyclerView recyclerView;
+    MyOrdersScreenAdapter adapter;
+
+    List<MyOrdersScreenModel> dishesFromOrdersList;
 
     Toolbar mToolbarOrders;
     TextView mNumberOfOrdersCountTextView;
@@ -38,14 +63,8 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     private String roomNumberFromIntent;
     private String roomNumberStringFromExtra;
     private int roomNumberStringFromExtraToInt;
-    private int numberOfOrdersInDB;
 
-    private ImageView page1_image;
-
-    ListView mMyOrdersListView;
-    ArrayList<String> dishOrderMenusByRoomNumber;
-
-    Context mContext = MyOrdersScreen.this;
+    //Context mContext = MyOrdersScreen.this;
     ProgressDialog progressDialog;
 
     Connector mConnector; //Database connector
@@ -59,7 +78,14 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         mToolbarOrders = findViewById(R.id.my_OrdersToolbar);
         setSupportActionBar(mToolbarOrders);
 
-        mMyOrdersListView = findViewById(R.id.listView_MyOrdersListView);
+        //RecyclerView, dishesFromOrdersList
+        dishesFromOrdersList = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_MyOrdersRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        //mMyOrdersListView = findViewById(R.id.listView_MyOrdersListView);
 
         mNumberOfOrdersCountTextView = findViewById(R.id.textView_numberOfOrdersCount);
 
@@ -84,14 +110,11 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
         progressDialog = new ProgressDialog(this);
 
-        dishOrderMenusByRoomNumber = new ArrayList<String>();
-
         //Database
         mConnector = new Connector();
 
         MyOrdersScreen.MyOrdersListAsyncTaskStatement mMyOrdersListAsyncTaskStatement = new MyOrdersScreen.MyOrdersListAsyncTaskStatement();
         mMyOrdersListAsyncTaskStatement.execute();
-
     }
 
     //@Override
@@ -120,9 +143,13 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
     private class MyOrdersListAsyncTaskStatement extends AsyncTask<String, String, String> {
         private String numberOfOrdersInDBStringFromQuery;
-        private String orderMenuInDBStringFromQuery;
+        private int orderIDInDBStringFromQuery;
+        private String orderMenuInDBStringFromQuery, orderBreadTypeInDBStringFromQuery, orderDateInDBStringFromQuery;
         private String errorMessage = "";
         private boolean isSuccess = false;
+
+        ArrayList<Integer> orderIDInDBStringFromQueryList;
+        ArrayList<String> orderMenuInDBStringFromQueryList, orderBreadTypeInDBStringFromQueryList, orderDateInDBStringFromQueryList;
 
         private int conditionInt = 1;
 
@@ -145,17 +172,14 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                     if (con == null) {
                         errorMessage = getString(R.string.login_login_message_checkinternet);
                     } else {
+                        orderIDInDBStringFromQueryList = new ArrayList<Integer>();
+                        orderMenuInDBStringFromQueryList = new ArrayList<String>();
+                        orderBreadTypeInDBStringFromQueryList = new ArrayList<String>();
+                        orderDateInDBStringFromQueryList = new ArrayList<String>();
 
                         System.out.println("Forbindelse til DB er aktiv.");
 
-                        //String query = " SELECT COUNT(*) FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
-                        //
-
-                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
-
                         String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "' AND orderDate LIKE '" + strDate + "'";
-
-                        //String query = " SELECT * FROM Orders WHERE roomNumber='" + Order.ROOM_NUMBER + "'";
 
                         Statement stmt = con.createStatement();
 
@@ -163,16 +187,40 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
                         while (rs.next()) {
                             //i = Placement of column in table
-                            //roomNumberQuery = rs.getString(2);
+                            orderIDInDBStringFromQuery = rs.getInt(1); //orderID
                             orderMenuInDBStringFromQuery = rs.getString(3); //orderMenu
-                            dishOrderMenusByRoomNumber.add(orderMenuInDBStringFromQuery);
-                            //numberOfOrdersInDBStringFromQuery = rs.getString(4); //breadType
+                            orderBreadTypeInDBStringFromQuery = rs.getString(4); //breadType
+                            orderDateInDBStringFromQuery = rs.getString(5); //orderDate
+
+                            orderIDInDBStringFromQueryList.add(orderIDInDBStringFromQuery);
+                            orderMenuInDBStringFromQueryList.add(orderMenuInDBStringFromQuery);
+                            orderBreadTypeInDBStringFromQueryList.add(orderBreadTypeInDBStringFromQuery);
+                            orderDateInDBStringFromQueryList.add(orderDateInDBStringFromQuery);
 
                             isSuccess = true;
-
                         }
 
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                for (int i = 0; i < orderMenuInDBStringFromQueryList.size(); i++) {
+                                    int orderIDFromDB = orderIDInDBStringFromQueryList.get(i);
+                                    String orderMenuFromDB = orderMenuInDBStringFromQueryList.get(i);
+                                    String orderBreadTypeFromDB = orderBreadTypeInDBStringFromQueryList.get(i);
+                                    String orderDateFromDB = orderDateInDBStringFromQueryList.get(i);
+
+                                    dishesFromOrdersList.add(new MyOrdersScreenModel(orderIDFromDB, orderMenuFromDB, "Description", orderBreadTypeFromDB, orderDateFromDB, R.drawable.ballerup));
+                                }
+
+                                adapter = new MyOrdersScreenAdapter(getApplicationContext(), dishesFromOrdersList);
+                                recyclerView.setAdapter(adapter);
+
+                            }
+                        });
+
                     }
+
                 } catch (Exception ex) {
                     isSuccess = false;
                     errorMessage = "Exceptions" + ex;
@@ -183,19 +231,10 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), "" + errorMessage, Toast.LENGTH_LONG).show();
-
             if (isSuccess) {
-                setAdapter();
             }
-
             progressDialog.hide();
         }
-    }
-
-    private void setAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_orders_list, dishOrderMenusByRoomNumber);
-        mMyOrdersListView.setAdapter(adapter);
     }
 
 }
