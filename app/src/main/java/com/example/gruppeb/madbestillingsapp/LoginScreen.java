@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -41,8 +42,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     private TextView mImageViewFlagDanish, mImageViewFlagEnglish, mImageViewFlagArabic;
 
     private final String TAG = "LoginScreen";
-    private final String url = "http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php";
-    public static boolean JSONDONE = false;
 
     Button mLoginButton;
     EditText mRoomNumberEnterField;
@@ -135,7 +134,15 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     private void addOnClickListeners() {
         mLoginButton.setOnClickListener(this);
-
+        mRoomNumberEnterField.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN)&& (keyCode ==KeyEvent.KEYCODE_ENTER)){
+                    mLoginButton.callOnClick();
+                }
+                return false;
+            }
+        });
         mImageViewFlagArabic.setOnClickListener(this);
         mImageViewFlagDanish.setOnClickListener(this);
         mImageViewFlagEnglish.setOnClickListener(this);
