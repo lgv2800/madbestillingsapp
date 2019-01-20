@@ -75,7 +75,7 @@
             android:layout_height="50sp"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
-            android:background="@drawable/ic_speaker_phone_black_24dp"
+            android:background="@drawable/ic_record_voice_over_black_24dp"
             app:layout_anchor="@+id/pager"
             app:layout_anchorGravity="left|bottom|start" />
 
