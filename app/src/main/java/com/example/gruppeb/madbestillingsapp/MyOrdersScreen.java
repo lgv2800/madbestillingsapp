@@ -41,16 +41,6 @@ import java.util.List;
 
 public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
 
-    List<String> evDishNameListString;
-    List<String> evDishDescriptionListString;
-    String[] evDishNameArrayString;
-    String[] evDishDescriptionArrayString;
-
-    ArrayList<String> eveningDishImagesJSON, eveningDishNamesJSON_DA, eveningDishDescriptionJSON_DA, eveningDishNamesJSON_EN, eveningDishDescriptionJSON_EN, eveningDishNamesJSON_AR, eveningDishDescriptionJSON_AR;
-    ArrayList<HashMap<String, String>> evDishNameDescriptionArrayList;
-    HashMap<String, String> evDishNameDescriptionHashMap;
-
-
     RecyclerView recyclerView;
     MyOrdersScreenAdapter adapter;
 
@@ -64,7 +54,6 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     private String roomNumberStringFromExtra;
     private int roomNumberStringFromExtraToInt;
 
-    //Context mContext = MyOrdersScreen.this;
     ProgressDialog progressDialog;
 
     Connector mConnector; //Database connector
@@ -83,9 +72,6 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_MyOrdersRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        //mMyOrdersListView = findViewById(R.id.listView_MyOrdersListView);
 
         mNumberOfOrdersCountTextView = findViewById(R.id.textView_numberOfOrdersCount);
 
@@ -110,8 +96,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
 
         progressDialog = new ProgressDialog(this);
 
-        //Database
-        mConnector = new Connector();
+        mConnector = new Connector(); //Database
 
         MyOrdersScreen.MyOrdersListAsyncTaskStatement mMyOrdersListAsyncTaskStatement = new MyOrdersScreen.MyOrdersListAsyncTaskStatement();
         mMyOrdersListAsyncTaskStatement.execute();
@@ -142,7 +127,6 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     }
 
     private class MyOrdersListAsyncTaskStatement extends AsyncTask<String, String, String> {
-        private String numberOfOrdersInDBStringFromQuery;
         private int orderIDInDBStringFromQuery;
         private String orderMenuInDBStringFromQuery, orderBreadTypeInDBStringFromQuery, orderDateInDBStringFromQuery;
         private String errorMessage = "";
