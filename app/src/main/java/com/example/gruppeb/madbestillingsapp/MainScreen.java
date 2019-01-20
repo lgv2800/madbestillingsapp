@@ -233,8 +233,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 Intent i = new Intent(MainScreen.this, LoginScreen.class);
                 startActivity(i);
                 break;
-            case R.id.nav_mySettingsVoiceOverSwitch:
-                break;
             case R.id.nav_introplay:
                 intro.playGuide(this, MainScreen.this);
                 break;
