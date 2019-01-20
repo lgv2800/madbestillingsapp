@@ -42,7 +42,6 @@ public class MyOrdersScreenAdapter extends RecyclerView.Adapter<MyOrdersScreenAd
         myOrdersScreenViewHolder.textViewDishName.setText(mMyOrdersScreenModel.getOrderDishName());
         myOrdersScreenViewHolder.textViewDishBreadType.setText(mMyOrdersScreenModel.getOrderDishBreadType());
         myOrdersScreenViewHolder.textViewDishOrderDate.setText(mMyOrdersScreenModel.getOrderDishDate());
-        //myOrdersScreenViewHolder.mImageView.setImageDrawable(mContext.getResources().getDrawable(mMyOrdersScreenModel.getOrderImageView(), null));
     }
 
     @Override
@@ -52,13 +51,11 @@ public class MyOrdersScreenAdapter extends RecyclerView.Adapter<MyOrdersScreenAd
 
     class MyOrdersScreenViewHolder extends RecyclerView.ViewHolder {
 
-        //ImageView mImageView;
         TextView textViewDishName, textViewDishBreadType, textViewDishOrderID, textViewDishOrderDate;
 
         public MyOrdersScreenViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //mImageView = itemView.findViewById(R.id.imageView_DishImage);
             textViewDishName = itemView.findViewById(R.id.textView_DishName);
             textViewDishBreadType = itemView.findViewById(R.id.textView_DishBreadType);
             textViewDishOrderDate = itemView.findViewById(R.id.textView_DishOrderDate);

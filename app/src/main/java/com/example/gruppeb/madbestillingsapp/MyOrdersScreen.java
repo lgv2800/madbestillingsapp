@@ -180,7 +180,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
                                     String orderBreadTypeFromDB = orderBreadTypeInDBStringFromQueryList.get(i);
                                     String orderDateFromDB = orderDateInDBStringFromQueryList.get(i);
 
-                                    dishesFromOrdersList.add(new MyOrdersScreenModel(orderIDFromDB, orderMenuFromDB, orderBreadTypeFromDB, orderDateFromDB)); //, R.drawable.ballerup));
+                                    dishesFromOrdersList.add(new MyOrdersScreenModel(orderIDFromDB, orderMenuFromDB, orderBreadTypeFromDB, orderDateFromDB));
                                 }
 
                                 adapter = new MyOrdersScreenAdapter(getApplicationContext(), dishesFromOrdersList);

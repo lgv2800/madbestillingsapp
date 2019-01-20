@@ -4,9 +4,8 @@ public class MyOrdersScreenModel {
 
     private int orderDishID;
     private String orderDishName, orderDishBreadType, orderDishDate;
-    //private int orderImageView;
 
-    public MyOrdersScreenModel(int orderDishID, String orderDishName, String orderDishBreadType, String orderDishDate) { //int orderImageView) {
+    public MyOrdersScreenModel(int orderDishID, String orderDishName, String orderDishBreadType, String orderDishDate) {
         this.orderDishID = orderDishID;
         this.orderDishName = orderDishName;
         this.orderDishBreadType = orderDishBreadType;
@@ -29,8 +28,4 @@ public class MyOrdersScreenModel {
     public String getOrderDishBreadType() {
         return orderDishBreadType;
     }
-
-    /*public int getOrderImageView() {
-        return orderImageView;
-    }*/
 }

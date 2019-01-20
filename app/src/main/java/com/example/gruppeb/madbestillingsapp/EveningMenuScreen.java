@@ -109,7 +109,7 @@ public class EveningMenuScreen extends AppCompatActivity implements AsyncRespons
 
             eveningDishNamesJSON_DA.add(value.evNameLangDA);
             eveningDishDescriptionJSON_DA.add(value.evDescriptionLangDA);
-            eveningDishDescriptionJSON_DA.add(value.evCommentLangDA);
+            eveningDishCommentJSON_DA.add(value.evCommentLangDA);
 
             eveningDishNamesJSON_EN.add(value.evNameLangEN);
             eveningDishDescriptionJSON_EN.add(value.evDescriptionLangEN);
@@ -123,9 +123,9 @@ public class EveningMenuScreen extends AppCompatActivity implements AsyncRespons
         for (int i = 0; i < eveningDishNamesJSON_DA.size(); i++) {
             String mEveningDishNameJSON_DA = eveningDishNamesJSON_DA.get(i);
             String mEveningDishDescriptionJSON_DA = eveningDishDescriptionJSON_DA.get(i);
-            String mEveningDishCommentJSON_DA = eveningDishDescriptionJSON_DA.get(i);
+            String mEveningDishCommentJSON_DA = eveningDishCommentJSON_DA.get(i);
 
-            eveningMenuList.add(new EveningMenuScreenModel(mEveningDishNameJSON_DA, mEveningDishDescriptionJSON_DA, mEveningDishCommentJSON_DA, R.drawable.ballerup));
+            eveningMenuList.add(new EveningMenuScreenModel(mEveningDishNameJSON_DA, mEveningDishDescriptionJSON_DA, mEveningDishCommentJSON_DA)); //R.drawable.ballerup
         }
 
         adapter = new EveningMenuScreenAdapter(getApplicationContext(), eveningMenuList);

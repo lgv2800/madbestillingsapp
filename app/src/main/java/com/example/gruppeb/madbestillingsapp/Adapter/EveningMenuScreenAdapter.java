@@ -48,7 +48,7 @@ public class EveningMenuScreenAdapter extends RecyclerView.Adapter<EveningMenuSc
         eveningMenuScreenViewHolder.textViewEveningDishName.setText(mEveningMenuScreenModel.getEveningName());
         eveningMenuScreenViewHolder.textViewEveningDishDescription.setText(mEveningMenuScreenModel.getEveningDescription());
         eveningMenuScreenViewHolder.textViewEveningDishComment.setText(mEveningMenuScreenModel.getEveningComment());
-        eveningMenuScreenViewHolder.mImageView.setImageDrawable(mContext.getResources().getDrawable(mEveningMenuScreenModel.getEveningImageView(), null));
+        //eveningMenuScreenViewHolder.mImageView.setImageDrawable(mContext.getResources().getDrawable(mEveningMenuScreenModel.getEveningImageView(), null));
     }
 
     @Override
@@ -58,13 +58,13 @@ public class EveningMenuScreenAdapter extends RecyclerView.Adapter<EveningMenuSc
 
     class EveningMenuScreenViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView mImageView;
+        //ImageView mImageView;
         TextView textViewEveningDishName, textViewEveningDishDescription, textViewEveningDishComment;
 
         public EveningMenuScreenViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mImageView = itemView.findViewById(R.id.imageView_EveningDishImage);
+            //mImageView = itemView.findViewById(R.id.imageView_EveningDishImage);
             textViewEveningDishName = itemView.findViewById(R.id.textView_EveningDishName);
             textViewEveningDishDescription = itemView.findViewById(R.id.textView_EveningDishDescription);
             textViewEveningDishComment = itemView.findViewById(R.id.textView_EveningDishComment);
