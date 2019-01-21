@@ -173,12 +173,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         progressDialog = new ProgressDialog(this);
 
-        //https://stackoverflow.com/a/38418531/8968120
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        TextView roomNumberNavbar = headerView.findViewById(R.id.nav_header_roomNumber);
-        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + " " + Order.ROOM_NUMBER);
-        navigationView.setNavigationItemSelectedListener(this);
+        setRoomNumber();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -209,14 +204,11 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         play.setOnClickListener(this);
         mCheckBoxVoiceOver = findViewById(R.id.nav_mySettingsVoiceOverSwitch);
         mCheckBoxVoiceOver.setChecked(settingsSharedPreferences.getBoolean("voice", false));
-        mCheckBoxVoiceOver.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                boolean voice = mCheckBoxVoiceOver.isChecked();
-                SharedPreferences.Editor editor = settingsSharedPreferences.edit();
-                editor.putBoolean("voice", voice).apply();
-                updateView();
-            }
+        mCheckBoxVoiceOver.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            boolean voice = mCheckBoxVoiceOver.isChecked();
+            SharedPreferences.Editor editor = settingsSharedPreferences.edit();
+            editor.putBoolean("voice", voice).apply();
+            updateView();
         });
 
         updateView();
@@ -404,6 +396,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         if (!voicePref){
             play.setVisibility(View.INVISIBLE);
         }
+        setRoomNumber();
+    }
+
+    private void setRoomNumber() {
+        //https://stackoverflow.com/a/38418531/8968120
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView roomNumberNavbar = headerView.findViewById(R.id.nav_header_roomNumber);
+        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + " " + Order.ROOM_NUMBER);
     }
 
     public void textToSpeech() {
