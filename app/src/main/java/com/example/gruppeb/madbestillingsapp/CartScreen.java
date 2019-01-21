@@ -48,15 +48,11 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        speak =  new Button(this);
-        speak = findViewById(R.id.play1);
-        speak.setOnClickListener(this);
-
         mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int TTS_Status) {
                 if (TTS_Status == TextToSpeech.SUCCESS) {
-                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(jsonController.getLanguage(), ""));
+                    int TTS_Result = mTextToSpeech.setLanguage(new Locale("da", "")); //jsonController.getLanguage()
                     if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("error", "This Language is not supported");
                     }
@@ -88,6 +84,8 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 editor.apply();
                 playGuide_cart();
             }
+
+            createPlayVoiceOverButton();
 
         }
 
@@ -192,6 +190,12 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     public void textToSpeech() {
         String read = getString(R.string.current_order_pref);
         mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    private void createPlayVoiceOverButton() {
+        speak =  new Button(this);
+        speak = findViewById(R.id.play1);
+        speak.setOnClickListener(this);
     }
 
 }
