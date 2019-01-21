@@ -43,6 +43,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -206,6 +207,17 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         play = findViewById(R.id.tts_play);
         play.setOnClickListener(this);
+        mCheckBoxVoiceOver = findViewById(R.id.nav_mySettingsVoiceOverSwitch);
+        mCheckBoxVoiceOver.setChecked(settingsSharedPreferences.getBoolean("voice", false));
+        mCheckBoxVoiceOver.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                boolean voice = mCheckBoxVoiceOver.isChecked();
+                SharedPreferences.Editor editor = settingsSharedPreferences.edit();
+                editor.putBoolean("voice", voice).apply();
+                updateView();
+            }
+        });
 
         updateView();
     }
@@ -232,8 +244,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 edit.apply();
                 Intent i = new Intent(MainScreen.this, LoginScreen.class);
                 startActivity(i);
-                break;
-            case R.id.nav_mySettingsVoiceOverSwitch:
                 break;
             case R.id.nav_introplay:
                 intro.playGuide(this, MainScreen.this);
@@ -384,6 +394,15 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 badgeCount.setText(Integer.toString(count));
                 badgeCount.setVisibility(View.VISIBLE);
             }
+        }
+        ImageButton play = findViewById(R.id.tts_play);
+        SharedPreferences pref = getSharedPreferences("settingsPref", MODE_PRIVATE);
+        boolean voicePref = pref.getBoolean("voice", false);
+        if (voicePref){
+            play.setVisibility(View.VISIBLE);
+        }
+        if (!voicePref){
+            play.setVisibility(View.INVISIBLE);
         }
     }
 
