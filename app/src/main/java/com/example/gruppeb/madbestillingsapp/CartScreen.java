@@ -120,7 +120,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             mOrder.clearOrder(this, getString(R.string.current_database_order));
             mOrder.clearOrder(this, getString(R.string.current_order_pref));
             orderComplete();
-        } else if (v == speak){
+        } else if (v == speak) {
             textToSpeech();
         }
 
@@ -188,14 +188,19 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     public void textToSpeech() {
-        ArrayList<String> orderArrayList = mOrder.getMap(this,getString(R.string.current_order_pref));
-        for(String pos: orderArrayList) {
-            mTextToSpeech.speak(pos, TextToSpeech.QUEUE_FLUSH, null);
+        ArrayList<String> orderArrayList = mOrder.getOrder(this, getString(R.string.current_order_pref));
+        ArrayList<String> breadTypeArrayList = mOrder.getBreadType(this, getString(R.string.current_order_pref));
+        
+        assert (orderArrayList.size() == breadTypeArrayList.size());
+        for (int i = 0; i < orderArrayList.size(); i++) {
+            String orderVoiceOver = orderArrayList.get(i);
+            String breadTypeVoiceOver = breadTypeArrayList.get(i);
+            mTextToSpeech.speak(orderVoiceOver + " " + breadTypeVoiceOver, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
     private void createPlayVoiceOverButton() {
-        speak =  new Button(this);
+        speak = new Button(this);
         speak = findViewById(R.id.play1);
         speak.setOnClickListener(this);
     }
