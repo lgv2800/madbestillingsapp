@@ -20,6 +20,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/login_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Ali Harb El-Haj Moussa (s175119) \nElísa Kristín Sverrisdóttir (s175115)\nOliver Køppen (s175108) \nSebastian Bilde (s175116)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/login_title"
         style="@style/Title"
         android:layout_width="wrap_content"
