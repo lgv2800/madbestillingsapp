@@ -188,8 +188,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     public void textToSpeech() {
-        String read = getString(R.string.current_order_pref);
-        mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
+        ArrayList<String> orderArrayList = mOrder.getMap(this,getString(R.string.current_order_pref));
+        for(String pos: orderArrayList) {
+            mTextToSpeech.speak(pos, TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
     private void createPlayVoiceOverButton() {
