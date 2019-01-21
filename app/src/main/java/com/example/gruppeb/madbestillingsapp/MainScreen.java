@@ -408,7 +408,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView roomNumberNavbar = headerView.findViewById(R.id.nav_header_roomNumber);
-        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + " " + Order.ROOM_NUMBER);
+        String roomNumber = getRoomNumber();
+        roomNumberNavbar.setText(getString(R.string.drawermenu_header_roomNumber) + " " + roomNumber);
+    }
+
+    private String getRoomNumber() {
+        SharedPreferences room = getSharedPreferences("settingsPref", MODE_PRIVATE);
+        return room.getString("roomNumberInput", Order.ROOM_NUMBER);
     }
 
     public void textToSpeech() {

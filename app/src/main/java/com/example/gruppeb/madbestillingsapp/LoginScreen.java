@@ -222,6 +222,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         protected void onPostExecute(String s) {
             if (isSuccess) {
                 Order.ROOM_NUMBER = roomNumberString;
+                setRoomNumber();
                 Intent i = new Intent(LoginScreen.this, MainScreen.class);
                 startActivity(i);
                 finish();
@@ -293,11 +294,17 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         editorSettings = settingsSharedPreferences.edit();
         editorSettings.putBoolean("checkBoxRoomNumber", mBooleanRememberRoomNumber);
-        editorSettings.putString("roomNumberInput", Order.ROOM_NUMBER);
         editorSettings.apply();
         editorSettings.commit();
 
         System.out.println(mBooleanRememberRoomNumber);
+    }
+
+    private void setRoomNumber(){
+        settingsSharedPreferences = getSharedPreferences("settingsPref", MODE_PRIVATE);
+        SharedPreferences.Editor edit = settingsSharedPreferences.edit();
+        edit.putString("roomNumberInput", Order.ROOM_NUMBER);
+        edit.commit();
     }
 
     private void playIntro() {
