@@ -48,6 +48,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        speak =  new Button(this);
         speak = findViewById(R.id.play1);
         speak.setOnClickListener(this);
 
