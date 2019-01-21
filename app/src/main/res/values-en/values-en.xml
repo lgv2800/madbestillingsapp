@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- English strings -->
 <resources>
-    <string name="app_name">Madbestillingsapp</string>
+    <string name="app_name">Gruppe B Madbestillingsapp</string>
     <string name="login_number_hint">Room number</string>
     <string name="login_login_button">Login</string>
     <string name="login_login_message_errorhashappend">An error has occurred</string>

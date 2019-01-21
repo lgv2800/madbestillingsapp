@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Madbestillingsapp</string>
+    <string name="app_name">Gruppe B Madbestillingsapp</string>
     <string name="login_number_hint">Nummer</string>
     <string name="login_login_button">Login</string>
     <string name="login_login_message_errorhashappend">Det er opstået en fejl</string>

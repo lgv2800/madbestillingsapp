@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Arabic strings -->
 <resources>
-    <string name="app_name">تطبيق نظام الأغذية</string>
+    <string name="app_name">تطبيق نظام الأغذية Gruppe B</string>
     <string name="login_number_hint">الرقم</string>
     <string name="login_login_button">الدخول</string>
     <string name="login_login_message_errorhashappend">حدث خطأ</string>
