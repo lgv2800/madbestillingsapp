@@ -160,6 +160,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         });
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         imageView_page1 = findViewById(R.id.page1_image);
 
@@ -240,6 +241,8 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.nav_introplay:
                 intro.playGuide(this, MainScreen.this);
+                break;
+            case R.id.nav_mySettingsVoiceOverSwitch:
                 break;
         }
 
