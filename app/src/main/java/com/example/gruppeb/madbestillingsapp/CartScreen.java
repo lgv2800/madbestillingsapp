@@ -4,8 +4,10 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +19,11 @@ import android.widget.Toast;
 
 import com.example.gruppeb.madbestillingsapp.Domain.IDAO;
 import com.example.gruppeb.madbestillingsapp.Domain.CartDAO;
+import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
 import com.example.gruppeb.madbestillingsapp.Domain.Order;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
@@ -29,16 +33,41 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
+    TextToSpeech mTextToSpeech;
+    JsonController jsonController;
     Toolbar mToolbarCart;
     ListView mListView;
     Button mOrderCart;
     TextView mDeleteAll, mEmptyText;
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
+    Button speak;
+    LanguageController languageController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        speak = findViewById(R.id.play1);
+        speak.setOnClickListener(this);
+
+        mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int TTS_Status) {
+                if (TTS_Status == TextToSpeech.SUCCESS) {
+                    int TTS_Result = mTextToSpeech.setLanguage(new Locale(jsonController.getLanguage(), ""));
+                    if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("error", "This Language is not supported");
+                    }
+                } else {
+                    Log.e("error", "Initialization Failed!");
+                }
+
+                //mTextToSpeech.speak(getString(R.string.startup_welcome), TextToSpeech.QUEUE_FLUSH, null, null);
+
+            }
+
+        });
 
         mOrder = new Order();
         if (mOrder.getCount(this) == 0) {
@@ -92,7 +121,10 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             mOrder.clearOrder(this, getString(R.string.current_database_order));
             mOrder.clearOrder(this, getString(R.string.current_order_pref));
             orderComplete();
+        } else if (v == speak){
+            textToSpeech();
         }
+
     }
 
 
@@ -154,6 +186,11 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+    }
+
+    public void textToSpeech() {
+        String read = getString(R.string.current_order_pref);
+        mTextToSpeech.speak(read, TextToSpeech.QUEUE_FLUSH, null);
     }
 
 }
