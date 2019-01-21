@@ -159,6 +159,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             }
 
         });
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         imageView_page1 = findViewById(R.id.page1_image);
 
