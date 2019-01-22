@@ -195,7 +195,9 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         for (int i = 0; i < orderArrayList.size(); i++) {
             String orderVoiceOver = orderArrayList.get(i);
             String breadTypeVoiceOver = breadTypeArrayList.get(i);
-            mTextToSpeech.speak(orderVoiceOver + " " + breadTypeVoiceOver, TextToSpeech.QUEUE_FLUSH, null);
+            String speakString = "";
+            speakString = speakString + orderVoiceOver + breadTypeVoiceOver;
+            mTextToSpeech.speak(speakString, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
