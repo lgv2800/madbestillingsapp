@@ -190,15 +190,23 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
     public void textToSpeech() {
         ArrayList<String> orderArrayList = mOrder.getOrder(this, getString(R.string.current_order_pref));
         ArrayList<String> breadTypeArrayList = mOrder.getBreadType(this, getString(R.string.current_order_pref));
-        
-        assert (orderArrayList.size() == breadTypeArrayList.size());
-        for (int i = 0; i < orderArrayList.size(); i++) {
-            String orderVoiceOver = orderArrayList.get(i);
-            String breadTypeVoiceOver = breadTypeArrayList.get(i);
-            String speakString = "";
-            speakString = speakString + orderVoiceOver + breadTypeVoiceOver;
-            mTextToSpeech.speak(speakString, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        Handler handler = new Handler();
+
+        final Runnable r = new Runnable() {
+            public void run() {
+                assert (orderArrayList.size() == breadTypeArrayList.size());
+                for (int i = 0; i < orderArrayList.size(); i++) {
+                    String orderVoiceOver = orderArrayList.get(i);
+                    String breadTypeVoiceOver = breadTypeArrayList.get(i);
+                    String speakString = "";
+                    speakString = orderVoiceOver + " " + breadTypeVoiceOver;
+                    mTextToSpeech.speak(speakString, TextToSpeech.QUEUE_FLUSH, null);
+                }
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.postDelayed(r, 1000);
     }
 
     private void createPlayVoiceOverButton() {
