@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="354dp"
-        android:src="@drawable/ballerup"
+        android:src="@mipmap/ballerup"
         app:layout_constraintBottom_toTopOf="@+id/checkBox_rememberRoomNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

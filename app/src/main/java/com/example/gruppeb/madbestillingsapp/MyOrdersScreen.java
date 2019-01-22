@@ -54,7 +54,7 @@ public class MyOrdersScreen extends AppCompatActivity{
 
         //RecyclerView, dishesFromOrdersList
         dishesFromOrdersList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_MyOrdersRecyclerView);
+        recyclerView = findViewById(R.id.recyclerView_MyOrdersRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
