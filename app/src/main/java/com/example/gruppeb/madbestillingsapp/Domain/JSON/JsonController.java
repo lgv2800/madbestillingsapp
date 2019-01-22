@@ -1,6 +1,5 @@
-package com.example.gruppeb.madbestillingsapp;
+package com.example.gruppeb.madbestillingsapp.Domain.JSON;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,15 +8,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
-import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
-import com.example.gruppeb.madbestillingsapp.FoodFragments.FragmentGenerator;
+import com.example.gruppeb.madbestillingsapp.Domain.FragmentGenerator;
 import com.example.gruppeb.madbestillingsapp.FoodFragments.SplashFragment;
+import com.example.gruppeb.madbestillingsapp.MainScreen;
+import com.example.gruppeb.madbestillingsapp.R;
 
 public class JsonController implements JsonObserver {
     Context context;
     MainScreen mainScreen;
     FragmentGenerator fg;
-    private final String url = "http://35.178.118.175/MadbestillingsappWebportal/dayMenuJSON.php";
     SplashFragment fragment;
     FragmentTransaction fragmentTransaction;
     FragmentManager fm;
@@ -34,7 +33,7 @@ public class JsonController implements JsonObserver {
         if (haveNetworkConnection()) {
             fg = FragmentGenerator.getInstance();
             fg.setContext(context);
-            fg.getJsonFiles(url);
+            fg.getJsonFiles();
             fg.setController(this);
             beginTransaction();
         }

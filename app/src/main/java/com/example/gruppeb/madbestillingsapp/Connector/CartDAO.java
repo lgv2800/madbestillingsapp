@@ -1,18 +1,17 @@
-package com.example.gruppeb.madbestillingsapp.Domain;
+package com.example.gruppeb.madbestillingsapp.Connector;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import com.example.gruppeb.madbestillingsapp.Connector.Connector;
+import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Order;
 
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CartDAO implements IDAO {
-    Connector mConnector; //Database connector
-    ArrayList<String> orderItem;
-    ArrayList<String> breadType;
+    private Connector mConnector; //Database connector
+    private ArrayList<String> orderItem;
+    private ArrayList<String> breadType;
 
     public CartDAO(ArrayList<String> orderItem, ArrayList<String> breadType) {
         this.orderItem = orderItem;
@@ -30,20 +29,9 @@ public class CartDAO implements IDAO {
     public class CartToDBAsyncTaskStatement extends AsyncTask<String, String, String> {
         private boolean isSuccess = false;
 
-        /*public CartToDBAsyncTaskStatement(Context mContext) {
-            //mContext = this.Context;
-        }*/
-
         //Variables of dish
-        //private int dishAmount = Order.getCount(mContext);
-        private int dishAmount = 1;
         String breadColor;
         String orderMenu;
-
-        /*ArrayList <String> itemOrdered = new ArrayList<String>();
-        ArrayList <String> breadType = new ArrayList<String>();*/
-
-        //private String itemOrdered = new String[]{"Lys", "Mørk"};
 
 
         @Override

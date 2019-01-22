@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +15,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +23,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Locale;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
-import com.example.gruppeb.madbestillingsapp.Domain.Order;
-import com.example.gruppeb.madbestillingsapp.FoodFragments.FragmentGenerator;
+import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Order;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,9 +61,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         languageFromLocalgetDefault = Locale.getDefault().getLanguage();
 
         languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", languageFromLocalgetDefault);
-        //languageFromSharedPrefs = settingsSharedPreferences.getString("languagePref", "");
 
-        //https://blog.lokalise.co/android-app-localization/
+        /**
+         * https://blog.lokalise.co/android-app-localization/
+         */
         // Create a new Locale object
         Locale locale = new Locale(languageFromSharedPrefs);
         Locale.setDefault(locale);
@@ -134,14 +131,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
     private void addOnClickListeners() {
         mLoginButton.setOnClickListener(this);
-        mRoomNumberEnterField.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN)&& (keyCode ==KeyEvent.KEYCODE_ENTER)){
-                    mLoginButton.callOnClick();
-                }
-                return false;
+        mRoomNumberEnterField.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN)&& (keyCode ==KeyEvent.KEYCODE_ENTER)){
+                mLoginButton.callOnClick();
             }
+            return false;
         });
         mImageViewFlagArabic.setOnClickListener(this);
         mImageViewFlagDanish.setOnClickListener(this);
@@ -227,12 +221,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 startActivity(i);
                 finish();
             }
-
             if (!isSuccess) {
                 setAnimation(false);
                 mRoomNumberEnterField.setError(errorMessage);
             }
-
         }
     }
 
@@ -249,7 +241,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 mBooleanRememberRoomNumber = true;
                 setCheckBoxRememberRoomNumber();
             }
-
             setAnimation(true);
         }
 
@@ -258,7 +249,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             mLanguageController.changeLanguage("ar", this);
             updateChosenLanguage();
             Toast.makeText(this, "تغيرت اللغة. يرجى إعادة تشغيل التطبيق.", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
 
         if (v == mImageViewFlagDanish) {
@@ -266,7 +256,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             mLanguageController.changeLanguage("da", this);
             updateChosenLanguage();
             Toast.makeText(this, "Sprog ændret. Genstart venligst applikationen.", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
 
         if (v == mImageViewFlagEnglish) {
@@ -274,7 +263,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             mLanguageController.changeLanguage("en", this);
             updateChosenLanguage();
             Toast.makeText(this, "Language changed. Please restart application.", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, getString(R.string.language_changed_setting), Toast.LENGTH_SHORT).show();
         }
     }
 

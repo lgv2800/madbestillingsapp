@@ -1,17 +1,12 @@
 package com.example.gruppeb.madbestillingsapp.FoodFragments;
 
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
 import com.example.gruppeb.madbestillingsapp.R;
 
 public class SplashFragment extends Fragment {

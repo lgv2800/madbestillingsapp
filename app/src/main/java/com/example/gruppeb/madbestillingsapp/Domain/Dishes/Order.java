@@ -1,4 +1,4 @@
-package com.example.gruppeb.madbestillingsapp.Domain;
+package com.example.gruppeb.madbestillingsapp.Domain.Dishes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ public class Order {
     private DishFactory factory = new DishFactory();
     private ArrayList<String> orderItems;
     private ArrayList<String> orderItemsBreadType;
-    ArrayList<Map<String, String>> orderMap;
+    private ArrayList<Map<String, String>> orderMap;
 
     public static String ROOM_NUMBER;
 

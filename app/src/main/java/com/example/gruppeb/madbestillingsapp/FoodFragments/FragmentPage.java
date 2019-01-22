@@ -1,4 +1,4 @@
-package com.example.gruppeb.madbestillingsapp.Domain;
+package com.example.gruppeb.madbestillingsapp.FoodFragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
 import com.example.gruppeb.madbestillingsapp.R;
 
 public class FragmentPage extends Fragment implements View.OnClickListener {

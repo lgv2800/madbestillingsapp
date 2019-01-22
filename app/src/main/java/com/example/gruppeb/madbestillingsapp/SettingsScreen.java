@@ -2,18 +2,11 @@ package com.example.gruppeb.madbestillingsapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.Reader;
 
 public class SettingsScreen extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 

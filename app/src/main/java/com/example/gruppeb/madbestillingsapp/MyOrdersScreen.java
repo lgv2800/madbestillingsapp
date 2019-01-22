@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.gruppeb.madbestillingsapp.Adapter.MyOrdersScreenAdapter;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Model.MyOrdersScreenModel;
-import com.example.gruppeb.madbestillingsapp.Domain.Order;
+import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Order;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,7 +25,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyOrdersScreen extends AppCompatActivity implements View.OnClickListener {
+public class MyOrdersScreen extends AppCompatActivity{
 
     RecyclerView recyclerView;
     MyOrdersScreenAdapter adapter;
@@ -36,7 +36,6 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
     TextView mNumberOfOrdersCountTextView;
 
     private String strDate;
-    private String roomNumberFromIntent;
     private String roomNumberStringFromExtra;
     private int roomNumberStringFromExtraToInt;
 
@@ -67,6 +66,7 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        String roomNumberFromIntent;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -88,12 +88,9 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         mMyOrdersListAsyncTaskStatement.execute();
     }
 
-    //@Override
-    public void onClick(View v) {
-
-    }
-
-    //https://developer.android.com/training/appbar/actions#java
+    /**
+     * https://developer.android.com/training/appbar/actions#java
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -103,7 +100,9 @@ public class MyOrdersScreen extends AppCompatActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
-    //https://gist.githubusercontent.com/pacificregmi/00927e29c4c0f9eae414/raw/eff50094306248331fdf570e3c5f13e57fe85b69/MainActivity.java
+    /**
+     * https://gist.githubusercontent.com/pacificregmi/00927e29c4c0f9eae414/raw/eff50094306248331fdf570e3c5f13e57fe85b69/MainActivity.java
+     */
     public void getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-d");

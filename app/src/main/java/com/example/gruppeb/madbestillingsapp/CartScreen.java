@@ -1,6 +1,5 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,16 +10,16 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gruppeb.madbestillingsapp.Domain.IDAO;
-import com.example.gruppeb.madbestillingsapp.Domain.CartDAO;
+import com.example.gruppeb.madbestillingsapp.Connector.IDAO;
+import com.example.gruppeb.madbestillingsapp.Connector.CartDAO;
+import com.example.gruppeb.madbestillingsapp.Domain.JSON.JsonController;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
-import com.example.gruppeb.madbestillingsapp.Domain.Order;
+import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Order;
 
 import java.util.ArrayList;
 import java.util.Locale;

@@ -1,30 +1,17 @@
 package com.example.gruppeb.madbestillingsapp;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -36,43 +23,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
 import com.example.gruppeb.madbestillingsapp.Connector.Connector;
 import com.example.gruppeb.madbestillingsapp.Domain.BreadType;
-import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
 import com.example.gruppeb.madbestillingsapp.Domain.ILanguageSettings;
-import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
+import com.example.gruppeb.madbestillingsapp.Domain.JSON.JsonController;
 import com.example.gruppeb.madbestillingsapp.Domain.LanguageController;
-import com.example.gruppeb.madbestillingsapp.Domain.Order;
-import com.example.gruppeb.madbestillingsapp.FoodFragments.*;
-import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
-import com.kosalgeek.android.json.JsonConverter;
-import com.kosalgeek.asynctask.AsyncResponse;
-import com.kosalgeek.asynctask.PostResponseAsyncTask;
+import com.example.gruppeb.madbestillingsapp.Domain.Dishes.Order;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -93,7 +62,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     ProgressDialog progressDialog;
 
     private String newLanguageValue;
-    private String languageFromSharedPrefs;
     SharedPreferences settingsSharedPreferences;
     SharedPreferences.Editor editorSettings;
 

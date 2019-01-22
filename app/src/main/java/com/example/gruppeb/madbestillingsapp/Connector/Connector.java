@@ -4,18 +4,20 @@ import android.annotation.SuppressLint;
 import android.os.StrictMode;
 import android.util.Log;
 
+import com.example.gruppeb.madbestillingsapp.Domain.LeafClass;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connector {
 
-    String jdbcClass = "com.mysql.jdbc.Driver";
+    String jdbcClass = LeafClass.JDBC_DRIVER;
 
     //Amazon Web Server (AWS) RDS database
-    String url = "jdbc:mysql://ahemdb.cug8phllmerd.eu-west-2.rds.amazonaws.com:3306/Madbestilling_BallerupKommune";
-    String username = "balkom_madbestilling";
-    String password = "8yH1OEPeZVhp";
+    String url = LeafClass.URL_DATABASE;
+    String username = LeafClass.USER_DATABASE;
+    String password = LeafClass.PW_DATABASE;
 
     @SuppressLint("NewApi")
     public Connection CONN() {

@@ -10,7 +10,6 @@ public class MyOrdersScreenModel {
         this.orderDishName = orderDishName;
         this.orderDishBreadType = orderDishBreadType;
         this.orderDishDate = orderDishDate;
-        //this.orderImageView = orderImageView;
     }
 
     public int getOrderDishID() {

@@ -1,7 +1,6 @@
-package com.example.gruppeb.madbestillingsapp.FoodFragments;
+package com.example.gruppeb.madbestillingsapp.Domain;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.example.gruppeb.madbestillingsapp.Domain.FragmentPage;
-import com.example.gruppeb.madbestillingsapp.Domain.JsonObserver;
+import com.example.gruppeb.madbestillingsapp.FoodFragments.FragmentPage;
 import com.example.gruppeb.madbestillingsapp.Helper.DishJSON;
-import com.example.gruppeb.madbestillingsapp.JsonController;
-import com.example.gruppeb.madbestillingsapp.LoginScreen;
+import com.example.gruppeb.madbestillingsapp.Domain.JSON.JsonController;
 import com.example.gruppeb.madbestillingsapp.MainScreen;
 import com.kosalgeek.android.json.JsonConverter;
 import com.kosalgeek.asynctask.AsyncResponse;
@@ -21,15 +18,10 @@ import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 public class FragmentGenerator implements AsyncResponse {
     private Context context;
-    private String url;
     private ArrayList<String> dishNamesJSON_DA, dishDescriptionJSON_DA, dishNamesJSON_EN, dishDescriptionJSON_EN, dishNamesJSON_AR, dishDescriptionJSON_AR, dishImagesJSON, fragmentTitle;
     private ArrayList<Fragment> fragments;
     private ViewPagerAdapter adapter;
@@ -47,11 +39,13 @@ public class FragmentGenerator implements AsyncResponse {
         this.context = context;
     }
 
-    public void getJsonFiles(String url){
-        this.url = url;
-        //JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
+
+    /**
+     * JSON stuff - https://www.youtube.com/watch?v=PRQvn__YkCM
+     */
+    public void getJsonFiles(){
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(context, this );
-        postResponseAsyncTask.execute(url);
+        postResponseAsyncTask.execute(LeafClass.URL);
     }
 
 
