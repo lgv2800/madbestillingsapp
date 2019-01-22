@@ -203,6 +203,14 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
         speak = new Button(this);
         speak = findViewById(R.id.play1);
         speak.setOnClickListener(this);
+        SharedPreferences pref = getSharedPreferences("settingsPref", MODE_PRIVATE);
+        boolean voicePref = pref.getBoolean("voice", false);
+        if(voicePref){
+            speak.setVisibility(View.VISIBLE);
+        }
+        else if(!voicePref){
+            speak.setVisibility(View.INVISIBLE);
+        }
     }
 
 }
