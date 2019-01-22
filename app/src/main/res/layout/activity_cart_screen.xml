@@ -75,15 +75,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/play1"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginStart="8dp"
-        android:text="Play"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>
