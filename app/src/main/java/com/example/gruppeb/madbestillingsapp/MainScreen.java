@@ -290,17 +290,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         Toast.makeText(this,text , Toast.LENGTH_SHORT).show();
     }
 
-    private void VoiceOverChangedToast() {
-        if (mBooleanVoiceOverIfChecked) {
-            // Do your coding
-            Toast.makeText(this, "VoiceOver er slået til.", Toast.LENGTH_SHORT).show();
-        } else {
-            // Do your coding
-            Toast.makeText(this, "VoiceOver er slået fra.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

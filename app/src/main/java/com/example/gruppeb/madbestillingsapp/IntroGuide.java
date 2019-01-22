@@ -17,18 +17,6 @@ class IntroGuide {
                 .setPromptFocal(new RectanglePromptFocal())
                 .setPromptStateChangeListener((prompt, state) -> {
                     if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                        // User has pressed the prompt target
-
-                        new MaterialTapTargetPrompt.Builder(mainScreen)
-                                .setTarget(R.id.page1_chiplayout)
-                                .setPrimaryText(context.getString(R.string.intro_guide_second_step_title))
-                                .setBackgroundColour(context.getResources().getColor(R.color.colorPrimaryDark))
-                                .setPromptBackground(new RectanglePromptBackground())
-                                .setPromptFocal(new RectanglePromptFocal())
-                                .setSecondaryText(context.getString(R.string.intro_guide_second_step_desc))
-                                .setPromptStateChangeListener((prompt13, state13) -> {
-                                    if (state13 == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                        // User has pressed the prompt target
 
                                         new MaterialTapTargetPrompt.Builder(mainScreen)
                                                 .setTarget(R.id.fab)
@@ -54,9 +42,6 @@ class IntroGuide {
                                                     }
                                                 })
                                                 .show();
-                                    }
-                                })
-                                .show();
                     }
                 })
                 .show();
