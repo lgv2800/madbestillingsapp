@@ -23,7 +23,7 @@
     <string name="language_arabic">Arabic</string>
 
     <!-- Onboard screen -->
-    <string name="onboard_first_title">Order breakfast</string>
+    <string name="onboard_first_title">Order lunch</string>
     <string name="onboard_first_desc">You can order from your smartphone or tablet.</string>
     <string name="onboard_second_title">Influence</string>
     <string name="onboard_second_desc">You can choose the right and type of bread.</string>
