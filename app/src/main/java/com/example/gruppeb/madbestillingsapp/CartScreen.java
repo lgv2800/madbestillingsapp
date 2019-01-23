@@ -32,38 +32,16 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 
 public class CartScreen extends AppCompatActivity implements View.OnClickListener {
 
-    TextToSpeech mTextToSpeech;
-    JsonController jsonController;
     Toolbar mToolbarCart;
     ListView mListView;
     Button mOrderCart;
     TextView mDeleteAll, mEmptyText;
     ArrayList<Map<String, String>> orderMap;
     Order mOrder;
-    Button speak;
-    LanguageController languageController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mTextToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int TTS_Status) {
-                if (TTS_Status == TextToSpeech.SUCCESS) {
-                    int TTS_Result = mTextToSpeech.setLanguage(new Locale("da", "")); //jsonController.getLanguage()
-                    if (TTS_Result == TextToSpeech.LANG_MISSING_DATA || TTS_Result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("error", "This Language is not supported");
-                    }
-                } else {
-                    Log.e("error", "Initialization Failed!");
-                }
-
-                //mTextToSpeech.speak(getString(R.string.startup_welcome), TextToSpeech.QUEUE_FLUSH, null, null);
-
-            }
-
-        });
 
         mOrder = new Order();
         if (mOrder.getCount(this) == 0) {
@@ -83,9 +61,6 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
                 editor.apply();
                 playGuide_cart();
             }
-
-            createPlayVoiceOverButton();
-
         }
 
     }
@@ -119,10 +94,7 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             mOrder.clearOrder(this, getString(R.string.current_database_order));
             mOrder.clearOrder(this, getString(R.string.current_order_pref));
             orderComplete();
-        } else if (v == speak) {
-            textToSpeech();
         }
-
     }
 
 
@@ -185,41 +157,4 @@ public class CartScreen extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
-
-    public void textToSpeech() {
-        ArrayList<String> orderArrayList = mOrder.getOrder(this, getString(R.string.current_order_pref));
-        ArrayList<String> breadTypeArrayList = mOrder.getBreadType(this, getString(R.string.current_order_pref));
-        Handler handler = new Handler();
-
-        final Runnable r = new Runnable() {
-            public void run() {
-                assert (orderArrayList.size() == breadTypeArrayList.size());
-                for (int i = 0; i < orderArrayList.size(); i++) {
-                    String orderVoiceOver = orderArrayList.get(i);
-                    String breadTypeVoiceOver = breadTypeArrayList.get(i);
-                    String speakString = "";
-                    speakString = orderVoiceOver + " " + breadTypeVoiceOver;
-                    mTextToSpeech.speak(speakString, TextToSpeech.QUEUE_FLUSH, null);
-                }
-                handler.postDelayed(this, 1000);
-            }
-        };
-
-        handler.postDelayed(r, 1000);
-    }
-
-    private void createPlayVoiceOverButton() {
-        speak = new Button(this);
-        speak = findViewById(R.id.play1);
-        speak.setOnClickListener(this);
-        SharedPreferences pref = getSharedPreferences("settingsPref", MODE_PRIVATE);
-        boolean voicePref = pref.getBoolean("voice", false);
-        if(voicePref){
-            speak.setVisibility(View.VISIBLE);
-        }
-        else if(!voicePref){
-            speak.setVisibility(View.INVISIBLE);
-        }
-    }
-
 }
