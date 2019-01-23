@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
     <color name="colorPrimary">@android:color/white</color>
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#fd5523</color>
@@ -16,9 +15,3 @@
     <color name="grey">#7e7e7e</color>
 </resources>
 
-=======
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-</resources>
->>>>>>> master
